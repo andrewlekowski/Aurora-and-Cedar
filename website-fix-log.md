@@ -100,3 +100,31 @@ Andrew approved. WPvivid backup Sep 29 05:40 server time → acs-site v0.2.0 upl
   - Screenshot: `screenshots/after-30-night-long-stay-notice.jpg`.
 - **LIVE: refund policy (page 2012)** has a new line after the schedule: "Stays of 28 nights or more are subject to screening (credit and background check and a prior-landlord reference). If we can't approve your stay, you'll get a full refund."
 - Rollback: set `long_stay_notice` to false, or re-upload acs-site 0.2.0 from git. The refund line is in Elementor revisions.
+
+## 2026-09-29 (early, server 07:15+): "fix all issues" from acs-fix/LIVE-CHECK.md
+WPvivid DB backup on live at **07:15** server time before starting. All edits below are on **live**, made in Elementor (revisions kept) unless noted.
+- **ZIP 98344 → 98444:** Home (address line), Listings (address line), NEW 2/1 (1265) address line + Google Map widget address.
+- **"Puyallup light rail station" → "Puyallup Sounder commuter-rail station":** 1536, 1481, 1449, 1424, 1365 (1365 re-checked: 0 "light rail" left).
+- **"Hightlights" → "Highlights":** Fairbanks 1722 (now "Location Top Highlights").
+- **Policy dates:** removed the brackets from "[June 9, 2026]" on Privacy (3), Cookie (2006), Terms (2008), Accessibility (2010).
+- **H1:** the top title heading on all 11 listing pages changed h2 → h1. Each has an explicit 40px font size, so nothing changes visually.
+- **DuPont (room type 1855):** MPHB capacity was already 10 adults (no change). Per-home times set to **5:00 PM / 10:00 AM** (acs-site meta box). The FAQ now says the home "sleeps up to 10 guests".
+- **Card prices (F9):** the 11 Listings price headings and 3 Home price headings now use `[acs_from_price type="…" format="number"]`. Staging test first: all 11 rendered prices equal the old hard-coded ones ($360, $130, $155, $155, $120, $125, $125, $310, $620, $260, $125), so the audit's "$410" wasn't reproduced and nothing a guest sees changed. Home is CDN-cached, so its cards update after a cache flush.
+- **acs-site 0.2.2 (code done in git, NOT yet on live):** search drops homes smaller than the party (adults + children vs total capacity, or adults + children capacity when total is blank). Section 19 adds meta descriptions for 17 pages, a 301 from author archives to home, noindex on amenity/city archives, my-account and booking-cancellation, and removes users, amenity and city from the core sitemap and the logged-out REST users list. **On staging and verified:** 30 guests → only 1853 (4 Apts) and 1891 (Duplex), because both are set to **30 adults** in MPHB (Andrew: is that right?). 5+ guests hides Fairbanks. The author archive 301s home, city archives are noindex, and meta descriptions print. Pushing to live through the plugin editor was blocked by Claude Code's auto-mode permission check, so **Andrew must approve it or upload it**.
+- **Still to do:** verify/finish 0.2.2 on staging → live; F6 (768px footer overflow, gallery tap targets, icon-link labels, footer `#` links); report-only checks (B2, B4, B5, B7, SPF/DMARC, Vrbo/Booking feeds); cache flush + logged-out verification.
+- **SPF/DMARC (read-only):** SPF `v=spf1 include:spf.protection.outlook.com include:secureserver.net -all`; DMARC `p=quarantine` with rua reports. Both fine.
+- **LIVE: acs-site 0.2.2** (Andrew approved). Deployed via the plugin editor on top of the 07:15 DB backup (file rollback: re-save 0.2.1 from git). GoDaddy cache flushed. Logged-out checks:
+  - Search, Nov 10–17: 30 guests → none, 24 → 4 Apts only, 15 → 4 Apts + Duplex, 5 → 7 homes (no Fairbanks), 2 → 8.
+  - `/author/ch-samikamboh22gmail-com/` → 301 to home.
+  - `wp-sitemap.xml` lists only pages and accommodation types.
+  - `/wp-json/wp/v2/users` → 404 logged out.
+  - Meta descriptions present on Home, Listings, About, FAQ, Contact, Monthly (`/month-to-month-furnished-rentals/`) and the listings checked; one H1 on each. Home shows 98444 and prices $360/$130/$155 from the shortcode.
+- **MPHB capacity (Andrew's numbers):** 4 Apts (1853) 30 → **24** adults; Entire Duplex (1891) 30 → **15** adults.
+- **LIVE: footer template (1592, Elementor):** the logo links to home and the copyright line no longer links to `#`. Footer CSS lets the contact list wrap (the phone number overflowed at 768px). Gallery controls: arrows are now 44×44, dots 12px with 12px spacing, and both show a focus ring. Checked in a 768px frame: no horizontal overflow and no `#` links left. Icon-only links: none without a label were found on Home or Fairbanks (gallery buttons already have "Previous/Next slide", "Go to slide N").
+- **Read-only checks:**
+  - B4: past dates are rejected ("Check-in date cannot be earlier than today").
+  - B7: accommodation tax covers all 11 homes (Fairbanks 8%, Tacoma 12.3%, Puyallup 12.2%, DuPont 16.6%, all "included"). Cleaning fees are per home.
+  - Feeds: the Sync Calendars page has 11 Airbnb, 8 Vrbo and 8 Booking.com import URLs. The 3 without Vrbo/Booking match the earlier spot-check: Duplex, 2 Apts, 4 Apts.
+  - B5 (Stripe live vs test key): **not checked**. Reading the payment settings page was blocked by Claude Code's permission check because it holds API keys; Andrew should look at MotoPress → Settings → Payment Gateways → Stripe (key starts `pk_live_`).
+  - B2: the booking-widget error needs manual datepicker clicks; not re-tested (Book Now and checkout worked 30/30 earlier).
+- GoDaddy cache flushed after the footer change.
