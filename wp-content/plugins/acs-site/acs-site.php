@@ -4,7 +4,7 @@
  * Description: Aurora & Cedar Stays site code: review count, no-cache booking pages, live "from" prices,
  *              pet-fee estimate, per-home check-in/out times, clearer booking messages, GA4 events, schema,
  *              city search, weekly/monthly discount display, search results → checkout.
- * Version:     0.2.0
+ * Version:     0.2.1
  * Author:      Aurora & Cedar Stays
  *
  * Every section is independent and guarded, so a missing MotoPress function turns a feature off
@@ -40,6 +40,8 @@ function acs_config() {
 		'city_search'       => true,
 		'discount_display'  => true,
 		'results_checkout'  => true,
+		'long_stay_notice'  => true,
+		'long_stay_nights'  => 28,
 	) );
 }
 
@@ -1321,3 +1323,105 @@ add_action( 'wp_footer', function () {
 	</script>
 	<?php
 } );
+
+/* -------------------------------------------------------------------------
+ * 18. Stays of 28+ nights: screening notice (display only)
+ * Long stays stay bookable (the guest can pay to lock in dates and rate). Checkout shows a notice
+ * that screening applies, with a "Message us" email link prefilled with the stay. Approved by
+ * Andrew, Sep 28, 2026, together with the matching line in the refund policy.
+ * ---------------------------------------------------------------------- */
+
+/**
+ * mailto: link prefilled with the stay. {guests} and {total} are filled in by JS on click,
+ * so they reflect the current checkout (guest count, coupon).
+ */
+function acs_long_stay_mailto( $title, \DateTime $checkIn, \DateTime $checkOut, $nights ) {
+	$format  = get_option( 'date_format' );
+	$subject = sprintf( 'Stay of %d nights: %s', $nights, $title );
+	$body    = sprintf(
+		"Hi Andrew and Vivian,\n\nI'm interested in a longer stay:\nProperty: %s\nCheck-in: %s\nCheck-out: %s (%d nights)\nGuests: {guests}\nTotal shown: {total}\n\n",
+		$title,
+		date_i18n( $format, $checkIn->getTimestamp() ),
+		date_i18n( $format, $checkOut->getTimestamp() ),
+		$nights
+	);
+	return 'mailto:' . acs_config()['contact_email'] . '?subject=' . rawurlencode( $subject ) . '&body=' . rawurlencode( $body );
+}
+
+/** @return array|null [ 'nights', 'href' ] for a checkout booking of 28+ nights. */
+function acs_long_stay_for_booking( $booking ) {
+	$cfg = acs_config();
+	if ( ! $cfg['long_stay_notice'] || ! is_object( $booking ) || ! method_exists( $booking, 'getCheckInDate' ) ) {
+		return null;
+	}
+	$checkIn  = $booking->getCheckInDate();
+	$checkOut = $booking->getCheckOutDate();
+	if ( ! $checkIn || ! $checkOut ) {
+		return null;
+	}
+	$nights = \MPHB\Utils\DateUtils::calcNights( $checkIn, $checkOut );
+	if ( $nights < $cfg['long_stay_nights'] ) {
+		return null;
+	}
+	$titles = array();
+	foreach ( (array) $booking->getReservedRooms() as $room ) {
+		$type = MPHB()->getRoomTypeRepository()->findById( $room->getRoomTypeId() );
+		if ( $type ) {
+			$titles[] = $type->getTitle();
+		}
+	}
+	return array(
+		'nights' => $nights,
+		'href'   => acs_long_stay_mailto( implode( ', ', $titles ), $checkIn, $checkOut, $nights ),
+	);
+}
+
+// Full notice above the price breakdown (the breakdown prints at priority 30).
+add_action( 'mphb_sc_checkout_form', function ( $booking ) {
+	$stay = acs_long_stay_for_booking( $booking );
+	if ( ! $stay ) {
+		return;
+	}
+	?>
+	<div class="acs-long-stay-notice" role="note" style="background:#fff8e6;border:1px solid #e8c77a;border-radius:8px;padding:14px 16px;margin:0 0 18px;">
+		<p style="margin:0 0 6px;"><strong><?php echo esc_html( sprintf( 'Staying %d nights or more? Talk to us before you book.', acs_config()['long_stay_nights'] ) ); ?></strong></p>
+		<p style="margin:0 0 8px;">Longer stays need a quick screening: a credit and background check and a reference from a prior landlord, depending on your location. You can book now to lock in these dates and this rate. We'll contact you within 24 hours to finish screening. If we can't approve your stay, you'll get a full refund. Security deposit and first month are due at signing.</p>
+		<p style="margin:0;"><a class="acs-long-stay-message" href="<?php echo esc_attr( $stay['href'] ); ?>" style="font-weight:600;">Message us about this stay</a> &middot; or call <a href="tel:+12053417045">+1 (205) 341-7045</a></p>
+	</div>
+	<?php
+}, 25 );
+
+// Short reminder just above the terms and the final button.
+add_action( 'mphb_sc_checkout_form', function ( $booking ) {
+	$stay = acs_long_stay_for_booking( $booking );
+	if ( ! $stay ) {
+		return;
+	}
+	printf(
+		'<p class="acs-long-stay-short" style="background:#fff8e6;border-radius:6px;padding:10px 12px;">%s <a class="acs-long-stay-message" href="%s" style="font-weight:600;">%s</a></p>',
+		esc_html( sprintf( 'Stays of %d+ nights are subject to screening. We\'ll contact you within 24 hours; full refund if we can\'t approve your stay.', acs_config()['long_stay_nights'] ) ),
+		esc_attr( $stay['href'] ),
+		esc_html__( 'Message us about this stay', 'acs-site' )
+	);
+}, 59 );
+
+// Fill {guests} and {total} into the email when the link is clicked.
+add_action( 'wp_footer', function () {
+	if ( ! acs_config()['long_stay_notice'] || ! function_exists( 'mphb_is_checkout_page' ) || ! mphb_is_checkout_page() ) {
+		return;
+	}
+	?>
+	<script>
+	document.addEventListener('click', function (e) {
+		var a = e.target.closest && e.target.closest('a.acs-long-stay-message');
+		if (!a) { return; }
+		if (!a.dataset.acsBase) { a.dataset.acsBase = a.getAttribute('href'); }
+		var adults = document.querySelector('select[name*="[adults]"]'), kids = document.querySelector('select[name*="[children]"]');
+		var guests = (adults && adults.value ? parseInt(adults.value, 10) : 0) + (kids && kids.value ? parseInt(kids.value, 10) : 0);
+		var totalEl = document.querySelector('.mphb-price-breakdown-total .mphb-table-price-column');
+		var total = totalEl ? totalEl.textContent.replace(/\s+/g, ' ').trim() : 'see checkout';
+		a.setAttribute('href', a.dataset.acsBase.replace('%7Bguests%7D', encodeURIComponent(guests ? String(guests) : 'not selected yet')).replace('%7Btotal%7D', encodeURIComponent(total)));
+	}, true);
+	</script>
+	<?php
+}, 40 );
