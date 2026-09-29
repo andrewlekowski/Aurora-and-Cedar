@@ -121,6 +121,14 @@ do_action( 'mphb_sc_search_results_before_room' );
 						<span class="acs-card-discount"><?php echo esc_html( sprintf( '%s discount applied: %d%% off every night', $discount['label'], $discount['pct'] ) ); ?></span>
 					<?php endif; ?>
 				<?php endif; ?>
+				<?php
+				$nights = $hasDates ? \MPHB\Utils\DateUtils::calcNights( $checkInDate, $checkOutDate ) : 0;
+				if ( $nights && acs_config()['long_stay_notice'] && $nights >= acs_config()['long_stay_nights'] ) :
+					?>
+					<span class="acs-card-longstay"><?php esc_html_e( 'Long stay: screening applies; we reply within 24 hours.', 'acs-site' ); ?>
+						<a href="<?php echo esc_attr( acs_long_stay_mailto( $title, $checkInDate, $checkOutDate, $nights ) ); ?>"><?php esc_html_e( 'Message us', 'acs-site' ); ?></a>
+					</span>
+				<?php endif; ?>
 				<?php if ( $capacity ) : ?>
 					<span class="mphb-air-card-capacity">
 						<?php echo esc_html( sprintf( _n( 'Up to %d guest', 'Up to %d guests', $capacity, 'acs-site' ), $capacity ) ); ?>
