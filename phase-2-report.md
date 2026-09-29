@@ -2,6 +2,8 @@
 
 **Nothing is live yet.** Neither phase 1 nor phase 2 could run from this cloud session. It has no Claude in Chrome, and its network policy blocks the site, Airbnb and wordpress.org. Every wp-admin, Google and PageSpeed step still needs a Chrome session on Andrew's computer.
 
+**Update Sep 29 (evening, local Chrome):** phase 1 is live, except the refund policy and cleanup (see `website-fix-log.md`). Phase 2 is still not started. Opening WPvivid Staging was blocked by the session's permission check, and the plugin doesn't go live without staging. `acs-site.zip` is built. **Later:** Andrew allowed staging. WPvivid staging was created at `/mystaging01`, but it returns HTTP 500 on every PHP page, so the plugin is still not installed anywhere; the error log is needed. Listing IDs for `listing_page_ids`: 1722, 1560, 1536, 1503, 1481, 1449, 1424, 1365, 1325, 1265, 1077.
+
 ## Built and ready (in this repo)
 - **`wp-content/plugins/acs-site/`**: the "ACS Site Customizations" plugin, one section per feature:
   - #2: no-cache headers on booking pages
