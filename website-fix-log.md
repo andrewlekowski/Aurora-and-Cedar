@@ -87,3 +87,16 @@ acs-site v0.2.0 with the &plus;/colour fixes is on staging. Discount display: 30
 
 ## 2026-09-28 ~10:45 PM AKDT: checkout discount + Book Now LIVE
 Andrew approved. WPvivid backup Sep 29 05:40 server time → acs-site v0.2.0 uploaded + activated on live → GoDaddy cache flushed. Logged-out checks pass. 11/11 live totals unchanged to the cent. WELCOMEBACK + weekly verified on live ($962.61, savings $137.03). Rollback: deactivate ACS Site Customizations (the old MotoPress city search comes back automatically) or restore the 05:40 backup.
+
+## 2026-09-28 (late): Andrew's decisions for the fix run
+- **Pet fees stay as live:** $20 per pet per night; 28+ nights $399 first pet + $100 each additional.
+- **Fairbanks:** 10 Rosella Ave is the address and map pin for both 10 and 10½ (10½ doesn't resolve on Google Maps).
+- **28+ night stays:** stay bookable through checkout with the discount shown. Guests can pay to lock in dates and rate. A notice + "Message us" link says screening applies and hosts reply within 24 h. **Approved:** full refund if the stay isn't approved. Refund-policy line to be added with the notice.
+- Revised run prompt and setup script: `tasks/acs-fix-run-prompt.md`, `tasks/acs-fix-run-setup.sh` (uses GoDaddy's own staging, not /mystaging01; extends acs-site instead of a new mu-plugin; needs Node.js installed).
+- **LIVE: acs-site 0.2.1, the 28+ night notice** (section 18; switch `long_stay_notice`, threshold `long_stay_nights`).
+  - Checkout for stays of 28+ nights shows the screening notice above the price breakdown, plus a short line above the final button. Both have a "Message us about this stay" mailto to Hello@, prefilled with property, dates, nights, and the current guests/total. Search cards show a long-stay line with the same link.
+  - Staging: 30n shows it, 7n/5n don't, totals unchanged, it survives a guest change, and the email fills "Guests: 3 / Total shown: $3,571.92".
+  - Live: WPvivid DB backup at **06:43** server time → upload 0.2.1 → cache flush. Logged out, all 11 totals are unchanged; the notice shows on exactly the four 30-night cases; search results for 30n show the line on 10/10 cards.
+  - Screenshot: `screenshots/after-30-night-long-stay-notice.jpg`.
+- **LIVE: refund policy (page 2012)** has a new line after the schedule: "Stays of 28 nights or more are subject to screening (credit and background check and a prior-landlord reference). If we can't approve your stay, you'll get a full refund."
+- Rollback: set `long_stay_notice` to false, or re-upload acs-site 0.2.0 from git. The refund line is in Elementor revisions.
