@@ -22,10 +22,12 @@ To keep the next session moving, everything that could be done offline is drafte
 - Take a fresh WPvivid backup (the last one is from Sep 28, 4 PM AKDT).
 - To install the mu-plugin: upload `acs-review-count.php` to `wp-content/mu-plugins/` via GoDaddy File Manager/SFTP, or paste its body into a Code Snippets snippet set to run everywhere.
 
-### Decisions needed from Andrew
-- Airbnb availability window (Fairbanks is blocked Jan 25 – Sep 30, 2027)
-- Is Vrbo Premier Host status current?
-- Pet species allowed, max pets, pet-eligible units
+### Andrew's answers (Sep 29)
+- Airbnb: **do not lengthen the availability window and do not touch Airbnb at all.** The Jan 25 – Sep 30, 2027 Fairbanks block stays as is.
+- Vrbo Premier Host: still current. The About copy keeps it.
+- Pets: friendly pets allowed; guests ask the host about restrictions. The pet policy copy is updated to match.
+- Family photo: received in chat and saved as `assets/VivianSalchaRiver-6-2.webp`.
+
+### Still open
 - Suggested pet house rules in `copy/06-07-policies.md`: OK to use?
 - Military base names on the monthly-stays page (JBLM / Fort Wainwright / Eielson): accurate?
-- Path to `VivianSalchaRiver-6-2.jpg`

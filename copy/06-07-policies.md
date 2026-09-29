@@ -1,11 +1,13 @@
 # Pet Policy (/pet-policy/) and Refund & Cancellation Policy
 
 ## Pet Policy — replacement text
+Andrew (Sep 29): friendly pets allowed; guests ask host for restrictions. No species/number list on the page.
+
 Remove all `[dogs / cats / dogs and cats]`, `[2]`, `[pool area / gym / clubhouse / lobby seating]` placeholders and the elevator / lobby / "residents" / "building" language.
 
 > **Pet Policy**
 >
-> Pets are welcome at our pet-friendly homes. [SPECIES — ask Andrew] only, up to [MAX PETS — ask Andrew] per stay. Pet-friendly homes: [UNITS — ask Andrew].
+> Friendly pets are welcome. Some homes have restrictions on the type, size or number of pets, so please ask us before you book.
 >
 > **Pet fees**
 > - $20 per pet, per night.
