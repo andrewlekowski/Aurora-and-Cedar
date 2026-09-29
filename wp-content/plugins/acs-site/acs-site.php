@@ -4,7 +4,7 @@
  * Description: Aurora & Cedar Stays site code: review count, no-cache booking pages, live "from" prices,
  *              pet-fee estimate, per-home check-in/out times, clearer booking messages, GA4 events, schema,
  *              city search, weekly/monthly discount display, search results → checkout.
- * Version:     0.2.1
+ * Version:     0.2.2
  * Author:      Aurora & Cedar Stays
  *
  * Every section is independent and guarded, so a missing MotoPress function turns a feature off
@@ -802,8 +802,10 @@ class ACS_City_Search {
 		$city      = isset( $_GET['mphb_city'] ) ? absint( $_GET['mphb_city'] ) : 0;
 		$pets      = ! empty( $_GET['mphb_pets'] );
 		$amenities = isset( $_GET['mphb_amenities'] ) ? array_filter( array_map( 'absint', (array) $_GET['mphb_amenities'] ) ) : array();
+		// Party size: MotoPress lets several rooms share a party, so it doesn't drop homes that are too small.
+		$guests    = ( isset( $_GET['mphb_adults'] ) ? absint( $_GET['mphb_adults'] ) : 0 ) + ( isset( $_GET['mphb_children'] ) ? absint( $_GET['mphb_children'] ) : 0 );
 
-		if ( ! $city && ! $pets && empty( $amenities ) ) {
+		if ( ! $city && ! $pets && empty( $amenities ) && ! $guests ) {
 			return $posts;
 		}
 
@@ -811,7 +813,19 @@ class ACS_City_Search {
 
 		return array_values( array_filter(
 			$posts,
-			function ( $post ) use ( $city, $pets, $amenities, $facilityTax ) {
+			function ( $post ) use ( $city, $pets, $amenities, $facilityTax, $guests ) {
+				if ( $guests ) {
+					$roomType = MPHB()->getRoomTypeRepository()->findById( $post->ID );
+					if ( $roomType ) {
+						$max = (int) $roomType->getTotalCapacity();
+						if ( $max <= 0 ) {
+							$max = (int) $roomType->getAdultsCapacity() + (int) $roomType->getChildrenCapacity();
+						}
+						if ( $max > 0 && $guests > $max ) {
+							return false;
+						}
+					}
+				}
 				if ( $city && ! has_term( $city, ACS_City_Search::CITY_TAX, $post ) ) {
 					return false;
 				}
@@ -1425,3 +1439,91 @@ add_action( 'wp_footer', function () {
 	</script>
 	<?php
 }, 40 );
+
+/* -------------------------------------------------------------------------
+ * 19. Search engines: meta descriptions, and keep thin/private archives out
+ * No SEO plugin is installed. If Yoast/Rank Math is added later, move these
+ * descriptions into it and delete this section.
+ * ---------------------------------------------------------------------- */
+
+function acs_meta_descriptions() {
+	return array(
+		23   => 'Eleven furnished homes in Tacoma, Puyallup, DuPont and Fairbanks, hosted by Andrew and Vivian. Weekly and monthly discounts when you book direct.',
+		40   => 'Compare our furnished homes near JBLM, PLU, Puyallup and Fairbanks. Check live availability and book direct.',
+		51   => 'Andrew and Vivian host their homes themselves: no management company, honest listings and quick answers.',
+		102  => 'Check-in times, pets, parking, Wi-Fi, discounts, long stays and cancellations: answers for booking direct with Aurora & Cedar Stays.',
+		80   => 'Questions about a stay? Email Hello@AuroraAndCedarStays.com or call +1 (205) 341-7045.',
+		2899 => 'Furnished monthly stays for travel nurses, military PCS moves, relocations and insurance housing in Washington and Alaska.',
+		1077 => 'Huge, private 3-bedroom, 1-bath rental in Tacoma near PLU and JBLM. Book direct with Aurora & Cedar Stays.',
+		1265 => 'New, private 2-bedroom, 1-bath unit in Tacoma close to JBLM and PLU. Book direct with Aurora & Cedar Stays.',
+		1325 => 'Book both units of our duplex near PLU: room for groups and families near JBLM.',
+		1365 => 'Chic, spacious private stay in Puyallup in a great location. Book direct with Aurora & Cedar Stays.',
+		1424 => '2-bedroom, 1-bath unit in Puyallup with a private backyard. Book direct with Aurora & Cedar Stays.',
+		1449 => 'Spacious, private and convenient 2-bedroom, 1-bath home in Puyallup. Book direct with Aurora & Cedar Stays.',
+		1481 => 'Trendy private basement studio in Puyallup. Book direct with Aurora & Cedar Stays.',
+		1503 => 'Book two spacious furnished apartments in Puyallup together: good for families and crews.',
+		1536 => 'Four spacious furnished apartments on one Puyallup property: room for large groups.',
+		1560 => 'Spacious 4-bedroom, 2-bath home in DuPont, 3 minutes to JBLM, with a huge yard. Sleeps up to 10.',
+		1722 => 'Cozy Fairbanks retreat steps from Creamer\'s Field. Book direct with Aurora & Cedar Stays.',
+	);
+}
+
+add_action( 'wp_head', function () {
+	$id = is_front_page() ? (int) get_option( 'page_on_front' ) : ( is_page() ? get_queried_object_id() : 0 );
+	$descriptions = acs_meta_descriptions();
+	if ( $id && isset( $descriptions[ $id ] ) ) {
+		printf( '<meta name="description" content="%s" />' . "\n", esc_attr( $descriptions[ $id ] ) );
+	}
+}, 2 );
+
+// Author archives only list the site's own pages and expose account names: send them home.
+add_action( 'template_redirect', function () {
+	if ( is_author() ) {
+		wp_safe_redirect( home_url( '/' ), 301 );
+		exit;
+	}
+}, 1 );
+
+// Amenity and city archives, account and cancellation pages: keep out of search results.
+add_filter( 'wp_robots', function ( $robots ) {
+	$private_pages = array( 'my-account', 'booking-cancellation' );
+	if ( is_tax( array( 'mphb_room_type_facility', ACS_City_Search::CITY_TAX ) ) || is_page( $private_pages ) ) {
+		$robots['noindex'] = true;
+		$robots['follow']  = true;
+	}
+	return $robots;
+} );
+
+// Core sitemap: no user list, no amenity/city archives.
+add_filter( 'wp_sitemaps_add_provider', function ( $provider, $name ) {
+	return 'users' === $name ? false : $provider;
+}, 10, 2 );
+
+add_filter( 'wp_sitemaps_taxonomies', function ( $taxonomies ) {
+	unset( $taxonomies['mphb_room_type_facility'], $taxonomies[ ACS_City_Search::CITY_TAX ] );
+	return $taxonomies;
+} );
+
+add_filter( 'wp_sitemaps_posts_query_args', function ( $args, $post_type ) {
+	if ( 'page' === $post_type ) {
+		$ids = array();
+		foreach ( array( 'my-account', 'booking-cancellation' ) as $slug ) {
+			$page = get_page_by_path( $slug );
+			if ( $page ) {
+				$ids[] = $page->ID;
+			}
+		}
+		if ( $ids ) {
+			$args['post__not_in'] = array_merge( isset( $args['post__not_in'] ) ? (array) $args['post__not_in'] : array(), $ids );
+		}
+	}
+	return $args;
+}, 10, 2 );
+
+// The public users endpoint lists account slugs; logged-out visitors don't need it.
+add_filter( 'rest_endpoints', function ( $endpoints ) {
+	if ( ! is_user_logged_in() ) {
+		unset( $endpoints['/wp/v2/users'], $endpoints['/wp/v2/users/(?P<id>[\d]+)'] );
+	}
+	return $endpoints;
+} );
