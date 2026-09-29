@@ -1,0 +1,445 @@
+/* =====================================================================
+   City search & results (moved out of the MotoPress plugin folder)
+   ===================================================================== */
+.mphb-air-search,
+.mphb-air-list,
+.mphb-air-card {
+	--air-accent: #8cad98;
+	--air-accent-dark: #779a85;
+	--air-ink: #222222;
+	--air-muted: #6a6a6a;
+	--air-line: #ebebeb;
+	--air-bg: #ffffff;
+	--air-radius: 14px;
+	--air-shadow: 0 6px 20px rgba(0,0,0,.08);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	color: var(--air-ink);
+	box-sizing: border-box;
+}
+.mphb-air-search *,
+.mphb-air-list *,
+.mphb-air-card * { box-sizing: border-box; }
+
+/* ---------- Search form ---------- */
+.mphb-air-search { max-width: 980px; margin: 0 auto 1.5rem; }
+.mphb-air-search-bar {
+	display: flex;
+	align-items: stretch;
+	background: var(--air-bg);
+	border: 1px solid var(--air-line);
+	border-radius: 999px;
+	box-shadow: var(--air-shadow);
+	padding: 6px 6px 6px 8px;
+	gap: 0;
+}
+.mphb-air-field {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 8px 14px;
+	flex: 1 1 0;
+	min-width: 0;
+}
+.mphb-air-field.mphb-air-field-date { flex: 1.25 1 0; }
+.mphb-air-field + .mphb-air-field { border-left: 1px solid var(--air-line); }
+.mphb-air-field label {
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: .02em;
+	text-transform: none;
+	margin: 0 0 2px;
+	color: var(--air-ink);
+}
+/* Neutralise theme styling on the controls inside the bar. */
+.mphb-air-search-bar input[type="text"],
+.mphb-air-search-bar select {
+	border: 0 !important;
+	outline: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	font-size: 14px;
+	line-height: 1.3;
+	color: var(--air-ink);
+	padding: 0 !important;
+	margin: 0 !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	height: auto !important;
+	min-height: 0 !important;
+	text-align: left;
+	text-overflow: ellipsis;
+	-webkit-appearance: none;
+	appearance: none;
+	border-radius: 0 !important;
+}
+.mphb-air-field select { cursor: pointer; }
+.mphb-air-field input::placeholder { color: var(--air-muted); }
+
+/* Guests stepper */
+.mphb-air-guests { position: relative; }
+.mphb-air-search-bar .mphb-air-guests-toggle,
+.mphb-air-guests-toggle {
+	all: unset;
+	box-sizing: border-box !important;
+	display: block !important;
+	width: 100% !important;
+	min-height: 0 !important;
+	height: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: none !important;
+	background-color: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-size: 14px !important;
+	line-height: 1.3 !important;
+	font-weight: 400 !important;
+	color: var(--air-ink) !important;
+	text-align: left !important;
+	text-transform: none !important;
+	letter-spacing: normal !important;
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.mphb-air-search-bar .mphb-air-guests-toggle:hover,
+.mphb-air-search-bar .mphb-air-guests-toggle:focus {
+	background: none !important;
+	background-color: transparent !important;
+	box-shadow: none !important;
+	color: var(--air-ink) !important;
+}
+.mphb-air-guests-pop {
+	position: absolute;
+	z-index: 40;
+	top: calc(100% + 14px);
+	left: 0;
+	width: 300px;
+	max-width: 86vw;
+	background: #fff;
+	border: 1px solid var(--air-line);
+	border-radius: 16px;
+	box-shadow: var(--air-shadow);
+	padding: 18px;
+}
+.mphb-air-stepper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 10px 0;
+}
+.mphb-air-stepper + .mphb-air-stepper { border-top: 1px solid var(--air-line); }
+.mphb-air-stepper-label { display: block; font-weight: 600; font-size: 15px; }
+.mphb-air-stepper-sub { display: block; font-size: 12px; color: var(--air-muted); }
+.mphb-air-stepper-ctrl { display: inline-flex; align-items: center; gap: 14px; }
+.mphb-air-step {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	border: 1px solid #b0b0b0;
+	background: #fff;
+	color: #222;
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+.mphb-air-step:hover:not(:disabled) { border-color: #222; }
+.mphb-air-step:disabled { opacity: .35; cursor: not-allowed; }
+.mphb-air-step-value { min-width: 18px; text-align: center; font-size: 15px; }
+.mphb-air-guests-done {
+	margin-top: 14px;
+	width: 100%;
+	border: 0;
+	border-radius: 10px;
+	background: var(--air-ink);
+	color: #fff;
+	padding: 10px;
+	font-weight: 600;
+	cursor: pointer;
+}
+.mphb-air-submit {
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: 6px;
+	padding: 0 20px;
+	border: 0;
+	border-radius: 999px;
+	background: var(--air-accent);
+	color: #fff;
+	font-size: 15px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background .15s ease;
+}
+.mphb-air-submit:hover { background: var(--air-accent-dark); }
+.mphb-air-submit svg { display: block; }
+
+/* Secondary filters row */
+.mphb-air-filters {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	flex-wrap: wrap;
+	margin-top: 14px;
+	padding: 0 8px;
+}
+.mphb-air-amenities { position: relative; }
+.mphb-air-amenities > summary {
+	list-style: none;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 9px 18px;
+	background: #fff;
+	border: 1px solid #d8d8d8;
+	border-radius: 999px;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--air-ink);
+	box-shadow: 0 1px 3px rgba(0,0,0,.08);
+	user-select: none;
+}
+.mphb-air-amenities > summary::-webkit-details-marker { display: none; }
+.mphb-air-amenities > summary::after {
+	content: "";
+	width: 8px; height: 8px;
+	border-right: 2px solid #717171;
+	border-bottom: 2px solid #717171;
+	transform: rotate(45deg);
+	margin-top: -3px;
+}
+.mphb-air-count {
+	background: var(--air-accent);
+	color: #fff;
+	border-radius: 999px;
+	font-size: 11px;
+	min-width: 18px;
+	height: 18px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 5px;
+}
+.mphb-air-amenities-list {
+	position: absolute;
+	z-index: 30;
+	top: calc(100% + 8px);
+	left: 0;
+	min-width: 260px;
+	max-height: 320px;
+	overflow-y: auto;
+	background: #fff;
+	border: 1px solid var(--air-line);
+	border-radius: 14px;
+	box-shadow: var(--air-shadow);
+	padding: 14px;
+	display: grid;
+	gap: 10px;
+}
+.mphb-air-check,
+.mphb-air-pets {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+	cursor: pointer;
+}
+.mphb-air-pets {
+	background: #fff;
+	border: 1px solid #d8d8d8;
+	border-radius: 999px;
+	padding: 9px 18px;
+	font-weight: 600;
+	color: var(--air-ink);
+	box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+.mphb-air-check input,
+.mphb-air-pets input { width: 16px; height: 16px; accent-color: var(--air-accent); }
+.mphb-air-empty { color: var(--air-muted); margin: 0; font-size: 13px; }
+
+/* ---------- Results list ---------- */
+.mphb-air-list {
+	display: grid;
+	gap: 22px;
+	max-width: 900px;
+}
+
+/* Clean results header (replaces the plain "X accommodations found" line). */
+.mphb-air-results-head {
+	max-width: 900px;
+	margin: 0 0 18px;
+}
+.mphb-air-results-title {
+	margin: 0;
+	font-size: 26px;
+	line-height: 1.2;
+	font-weight: 700;
+	color: var(--air-ink);
+}
+.mphb-air-results-sub {
+	margin: 6px 0 0;
+	color: var(--air-muted);
+	font-size: 15px;
+}
+.mphb-air-results-sub .mphb-air-dot-sep { margin: 0 4px; opacity: .7; }
+.mphb-air-results-empty { margin: 8px 0 0; color: var(--air-muted); font-size: 15px; }
+
+/*
+ * Hide MotoPress's auto-recommendation panel and the empty reservation cart.
+ * Each card has its own Book Now (straight to checkout when dates are set),
+ * so these top blocks are not used.
+ */
+.mphb_sc_search_results-wrapper .mphb-recommendation-title,
+.mphb_sc_search_results-wrapper .mphb-recommendation,
+.mphb_sc_search_results-wrapper #mphb-recommendation,
+.mphb_sc_search_results-wrapper .mphb-reservation-cart {
+	display: none !important;
+}
+
+/* ---------- Card ---------- */
+.mphb-air-card {
+	display: grid;
+	grid-template-columns: 260px 1fr;
+	gap: 22px;
+	padding: 22px 0;
+	border-bottom: 1px solid var(--air-line);
+}
+.mphb-air-card:first-child { padding-top: 4px; }
+.mphb-air-card:last-child { border-bottom: 0; }
+.mphb-air-card-media {
+	display: block;
+	width: 260px;
+	height: 196px;
+	border-radius: var(--air-radius);
+	overflow: hidden;
+	background: #f0f0f0;
+	flex: 0 0 auto;
+}
+.mphb-air-card-img,
+.mphb-air-card-media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform .4s ease;
+}
+.mphb-air-card-media:hover img { transform: scale(1.04); }
+.mphb-air-card-noimg {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(135deg,#f2f2f2,#e3e3e3);
+}
+.mphb-air-card-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-width: 0;
+}
+.mphb-air-card-title { margin: 0; font-size: 18px; line-height: 1.3; font-weight: 700; }
+.mphb-air-card-title a { color: var(--air-ink); text-decoration: none; }
+.mphb-air-card-title a:hover { text-decoration: underline; }
+.mphb-air-card-address { margin: 6px 0 0; color: var(--air-muted); font-size: 14px; }
+.mphb-air-card-excerpt {
+	margin: 10px 0 0;
+	color: #444;
+	font-size: 14px;
+	line-height: 1.55;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.mphb-air-card-chips {
+	list-style: none;
+	margin: 12px 0 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+.mphb-air-card-chips li {
+	font-size: 12px;
+	color: #3a3a3a;
+	background: #f4f4f4;
+	border-radius: 999px;
+	padding: 4px 10px;
+}
+.mphb-air-card-footer {
+	margin-top: 16px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+.mphb-air-card-meta { display: flex; flex-direction: column; gap: 2px; }
+.mphb-air-card-price { font-size: 19px; font-weight: 700; color: var(--air-ink); }
+.mphb-air-card-price-note { font-weight: 400; color: var(--air-muted); font-size: 13px; margin-left: 4px; }
+.mphb-air-card-capacity { font-size: 13px; color: var(--air-muted); }
+.mphb-air-booknow {
+	display: inline-block;
+	background: var(--air-accent);
+	color: #fff !important;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1;
+	padding: 13px 26px;
+	border-radius: 999px;
+	text-decoration: none !important;
+	border: 0;
+	box-shadow: 0 1px 2px rgba(0,0,0,.12);
+	transition: background .15s ease, transform .05s ease;
+	white-space: nowrap;
+	cursor: pointer;
+	font-family: inherit;
+}
+.mphb-air-booknow:hover { background: var(--air-accent-dark); color: #fff !important; }
+.mphb-air-booknow:active { transform: translateY(1px); }
+
+/* Book Now form + View details (results with dates) */
+.acs-card-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.acs-booknow-form { margin: 0; }
+.acs-viewdetails { color: var(--air-ink); font-size: 14px; font-weight: 600; text-decoration: underline; }
+.acs-card-was { color: var(--air-muted); font-weight: 400; font-size: 15px; margin-right: 6px; }
+.acs-card-discount { font-size: 13px; color: #2e7d32; font-weight: 600; }
+
+/* ---------- Single listing ---------- */
+.mphb-air-single-address {
+	font-size: 15px;
+	color: var(--air-muted);
+	margin: 6px 0 14px;
+}
+.mphb-air-single-address .mphb-air-dot {
+	color: var(--air-accent);
+	margin-right: 4px;
+	font-size: 10px;
+	vertical-align: middle;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+	.mphb-air-search-bar {
+		flex-direction: column;
+		border-radius: 22px;
+		padding: 10px;
+		gap: 4px;
+	}
+	.mphb-air-field { padding: 10px 12px; }
+	.mphb-air-field + .mphb-air-field { border-left: 0; border-top: 1px solid var(--air-line); }
+	.mphb-air-submit { width: 100%; justify-content: center; margin: 8px 0 0; padding: 12px; }
+	.mphb-air-card { grid-template-columns: 1fr; }
+	.mphb-air-card-media { width: 100%; height: 220px; }
+	.mphb-air-card-footer { margin-top: 14px; }
+	.acs-card-actions { width: 100%; justify-content: space-between; }
+}
