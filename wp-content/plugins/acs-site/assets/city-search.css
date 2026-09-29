@@ -413,6 +413,8 @@
 .acs-viewdetails { color: var(--air-ink); font-size: 14px; font-weight: 600; text-decoration: underline; }
 .acs-card-was { color: var(--air-muted); font-weight: 400; font-size: 15px; margin-right: 6px; }
 .acs-card-discount { font-size: 13px; color: #2e7d32; font-weight: 600; }
+.acs-card-longstay { font-size: 13px; color: #5f3b00; }
+.acs-card-longstay a { font-weight: 600; text-decoration: underline; }
 
 /* ---------- Single listing ---------- */
 .mphb-air-single-address {
