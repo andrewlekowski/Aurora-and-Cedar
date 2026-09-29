@@ -31,3 +31,7 @@ To keep the next session moving, everything that could be done offline is drafte
 ### Still open
 - Suggested pet house rules in `copy/06-07-policies.md`: OK to use?
 - Military base names on the monthly-stays page (JBLM / Fort Wainwright / Eielson): accurate?
+
+## 2026-09-29: phase 2 (cloud session, no live changes)
+Still no Chrome and still blocked by the network policy (site, Airbnb, wordpress.org). Built the `acs-site` plugin (staging-first, see its README) and the monthly health-check prompt. Wrote `phase-2-report.md`.
+Andrew (Sep 29): he's an **Army aviation veteran, former Apache pilot**, not active duty. The About draft is updated.

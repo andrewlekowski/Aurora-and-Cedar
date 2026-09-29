@@ -14,7 +14,7 @@ We host eleven homes across Washington and Alaska ourselves. No management compa
 ## Our story
 We started by renting out a spare room in our own home. Our first guests stayed with us, and it grew from there.
 
-Since 2019 we've been buying and fixing up homes, mostly places that needed real work. Today we have eleven across Washington and Alaska, and the two of us still run them. Andrew is an Army aviation officer and flies Apaches. Vivian runs the guest side with him. When you message us, you're talking to one of us.
+Since 2019 we've been buying and fixing up homes, mostly places that needed real work. Today we have eleven across Washington and Alaska, and the two of us still run them. Andrew is an Army aviation veteran and former Apache pilot. Vivian runs the guest side with him. When you message us, you're talking to one of us.
 
 **Mattress photo caption:** Where it started: a mattress on the floor of a spare room in our own home. Our first guests stayed with us.
 
