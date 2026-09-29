@@ -38,4 +38,3 @@ Slug: `/month-to-month-furnished-rentals/` · Add to main nav and footer. **No p
 
 Email notifications to Hello@AuroraAndCedarStays.com. Confirmation message: "Thanks! We'll get back to you within one business day with availability and a quote."
 
-<!-- Verify base names (JBLM / Fort Wainwright / Eielson) match the actual home locations before publishing. -->

@@ -15,7 +15,7 @@ Remove all `[dogs / cats / dogs and cats]`, `[2]`, `[pool area / gym / clubhouse
 >
 > Pet fees are collected separately after you book.
 >
-> **While you're here** <!-- suggested house rules; confirm with Andrew -->
+> **While you're here**
 > - Let us know about your pet when you book.
 > - Keep pets off beds and furniture, or cover them.
 > - Pick up after your pet outside and dispose of waste in the trash.

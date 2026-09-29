@@ -29,11 +29,11 @@
 
 ## Waiting on Andrew
 - Staging approval for #3, #5 and #7, once they've been tested
-- Coupon amount: 5% is the default, and he can raise it
+- ~~Coupon amount~~: Andrew confirmed 5%.
 - The cross-streets list, once it's been drafted
 - Whether to delete Sami's account and move its content to Andrew
 - His own sign-ins for 2FA, Site Kit and Search Console
-- From phase 1: the suggested pet house rules, and the base names on the Monthly Stays page
+- ~~Pet house rules / base names~~: approved.
 
 ## Suggested one-liner for Airbnb/Vrbo checkout instructions
 > Thanks for staying with us! Next time, book direct at AuroraAndCedarStays.com with code WELCOMEBACK and save.

@@ -29,8 +29,7 @@ To keep the next session moving, everything that could be done offline is drafte
 - Family photo: received in chat and saved as `assets/VivianSalchaRiver-6-2.webp`.
 
 ### Still open
-- Suggested pet house rules in `copy/06-07-policies.md`: OK to use?
-- Military base names on the monthly-stays page (JBLM / Fort Wainwright / Eielson): accurate?
+- Nothing. As of Sep 29 Andrew approved the pet house rules and the base names (JBLM / Fort Wainwright / Eielson), and set WELCOMEBACK at 5%.
 
 ## 2026-09-29: phase 2 (cloud session, no live changes)
 Still no Chrome and still blocked by the network policy (site, Airbnb, wordpress.org). Built the `acs-site` plugin (staging-first, see its README) and the monthly health-check prompt. Wrote `phase-2-report.md`.
