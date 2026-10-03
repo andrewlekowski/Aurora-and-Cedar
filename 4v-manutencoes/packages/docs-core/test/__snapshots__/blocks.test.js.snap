@@ -1,0 +1,2131 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`document builders: block snapshots > contrato / en / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "No. C-2026-001",
+    "t": "title",
+    "text": "PRIVATE EQUIPMENT PURCHASE AND SALE AGREEMENT",
+  },
+  {
+    "t": "p",
+    "text": "**Valdir de Paula Bicudo ME**, registered under CNPJ (Brazilian company tax ID) no. 21.914.770/0001-10, State Registration Isento, headquartered at Rua São Marcos, 126 – Jardim São José, Jacareí – SP, ZIP 12327-668, herein represented by Valdir de Paula Bicudo, hereinafter simply referred to as the **SELLER**.",
+  },
+  {
+    "t": "p",
+    "text": "**Clínica Exemplo Ltda**, registered under CNPJ no. 12.345.678/0001-90, headquartered at Rua das Flores, 100 – Centro, São José dos Campos – SP, ZIP 12200-000, herein represented by Ana Souza, CPF 123.456.789-00, hereinafter simply referred to as the **BUYER**.",
+  },
+  {
+    "t": "p",
+    "text": "The parties above have agreed to the following:",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 1 – SUBJECT MATTER",
+  },
+  {
+    "t": "p",
+    "text": "The SELLER declares to be the lawful owner of the equipment listed below, which is sold to the BUYER in **used and serviced** condition:",
+  },
+  {
+    "head": [
+      "Equipment",
+      "Serial no.",
+    ],
+    "rows": [
+      [
+        "Autoclave Sercon 21 litros",
+        "SN12345",
+      ],
+      [
+        "Seladora Cristófoli",
+        "CR-998",
+      ],
+    ],
+    "t": "table",
+    "widths": [
+      68,
+      32,
+    ],
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 2 – PRICE AND PAYMENT",
+  },
+  {
+    "t": "p",
+    "text": "The total, fair and agreed price is **R$ 1.200,00 (one thousand two hundred reais)**, paid as follows: by PIX (instant bank transfer); metade na assinatura e metade na entrega.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 3 – DELIVERY AND POSSESSION",
+  },
+  {
+    "t": "p",
+    "text": "The BUYER takes possession of the equipment on **October 5, 2026**, from which date the BUYER is responsible for its custody and care.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 4 – TRANSPORT",
+  },
+  {
+    "t": "p",
+    "text": "The equipment will be shipped by a carrier chosen by the BUYER, who will bear the freight and the risks of transport.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 5 – ORIGIN AND ENCUMBRANCES",
+  },
+  {
+    "t": "p",
+    "text": "The SELLER warrants that the equipment is free and clear of any lien, debt, seizure or restriction. Should the equipment be taken from the BUYER for a reason prior to this sale, the SELLER will refund the amount received, adjusted for inflation and increased by statutory interest.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 6 – WARRANTY",
+  },
+  {
+    "t": "p",
+    "text": "a) The SELLER grants a warranty of **18 (dezoito) meses** against operating defects, counted from the delivery date of the equipment.",
+  },
+  {
+    "t": "p",
+    "text": "b) The warranty is void if the warranty seal is broken, if the equipment suffers a fall, accident or damage caused by third parties, or if it is connected to the wrong electrical voltage.",
+  },
+  {
+    "t": "p",
+    "text": "c) Warranty service is free of charge to the BUYER, who must request it by WhatsApp (12) 99788-1836 or by e-mail 4Vmanutencoes@gmail.com.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 7 – INSTALLATION AND USE",
+  },
+  {
+    "t": "p",
+    "text": "The BUYER declares to have received the equipment tested and in working order and undertakes to install and use it according to the manufacturer’s manual, at the correct electrical voltage.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 8 – GENERAL PROVISIONS",
+  },
+  {
+    "t": "p",
+    "text": "This agreement is entered into on an irrevocable and irreversible basis and binds the parties, their heirs and successors.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 9 – JURISDICTION",
+  },
+  {
+    "t": "p",
+    "text": "The courts of the District of **Jacareí – SP** are chosen to settle any dispute relating to this agreement, waiving any other, however privileged.",
+  },
+  {
+    "t": "p",
+    "text": "In witness whereof, the parties sign this agreement in 2 (two) copies of equal content and form, in the presence of the 2 (two) witnesses below.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, October 2, 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "SELLER",
+          },
+          {
+            "x": "Valdir de Paula Bicudo ME",
+          },
+          {
+            "x": "CNPJ 21.914.770/0001-10",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "BUYER",
+          },
+          {
+            "x": "Clínica Exemplo Ltda",
+          },
+          {
+            "x": "CNPJ 12.345.678/0001-90",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Witness 1",
+          },
+          {
+            "x": "João Silva, CPF 111.222.333-44",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Witness 2",
+          },
+          {
+            "x": "Name: ____________________",
+          },
+          {
+            "x": "CPF: ________________",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > contrato / fr / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "N° C-2026-001",
+    "t": "title",
+    "text": "CONTRAT PRIVÉ DE VENTE D’ÉQUIPEMENT",
+  },
+  {
+    "t": "p",
+    "text": "**Valdir de Paula Bicudo ME**, inscrite au CNPJ (registre fiscal brésilien des entreprises) sous le n° 21.914.770/0001-10, Inscription d’État Isento, dont le siège est situé Rua São Marcos, 126 – Jardim São José, Jacareí – SP, CEP 12327-668, ici représentée par Valdir de Paula Bicudo, ci-après dénommée simplement le **VENDEUR**.",
+  },
+  {
+    "t": "p",
+    "text": "**Clínica Exemplo Ltda**, inscrite au CNPJ sous le n° 12.345.678/0001-90, dont le siège est situé Rua das Flores, 100 – Centro, São José dos Campos – SP, CEP 12200-000, ici représentée par Ana Souza, CPF 123.456.789-00, ci-après dénommée simplement l’**ACHETEUR**.",
+  },
+  {
+    "t": "p",
+    "text": "Les parties ci-dessus ont convenu de ce qui suit :",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 1 – OBJET",
+  },
+  {
+    "t": "p",
+    "text": "Le VENDEUR déclare être le propriétaire légitime de l’équipement (ou des équipements) ci-dessous, qu’il vend à l’ACHETEUR dans l’état suivant : **d’occasion et révisé**.",
+  },
+  {
+    "head": [
+      "Équipement",
+      "N° de série",
+    ],
+    "rows": [
+      [
+        "Autoclave Sercon 21 litros",
+        "SN12345",
+      ],
+      [
+        "Seladora Cristófoli",
+        "CR-998",
+      ],
+    ],
+    "t": "table",
+    "widths": [
+      68,
+      32,
+    ],
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 2 – PRIX ET PAIEMENT",
+  },
+  {
+    "t": "p",
+    "text": "Le prix total, juste et convenu, est de **R$ 1.200,00 (mille deux cents reais)**, payé comme suit : par PIX (virement bancaire instantané); metade na assinatura e metade na entrega.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 3 – LIVRAISON ET PRISE DE POSSESSION",
+  },
+  {
+    "t": "p",
+    "text": "L’ACHETEUR prend possession de l’équipement le **5 octobre 2026**, date à partir de laquelle il en assume la garde et la conservation.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 4 – TRANSPORT",
+  },
+  {
+    "t": "p",
+    "text": "L’équipement sera expédié par un transporteur désigné par l’ACHETEUR, qui supportera le fret et les risques du transport.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 5 – ORIGINE ET CHARGES",
+  },
+  {
+    "t": "p",
+    "text": "Le VENDEUR garantit que l’équipement est libre de toute charge, dette, saisie ou restriction. Si l’équipement venait à être retiré à l’ACHETEUR pour un motif antérieur à la présente vente, le VENDEUR rembourserait la somme reçue, corrigée monétairement et majorée des intérêts légaux.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 6 – GARANTIE",
+  },
+  {
+    "t": "p",
+    "text": "a) Le VENDEUR accorde une garantie de **18 (dezoito) meses** contre les défauts de fonctionnement, à compter de la date de livraison de l’équipement.",
+  },
+  {
+    "t": "p",
+    "text": "b) La garantie devient caduque si le sceau de garantie est rompu, si l’équipement subit une chute, un accident ou un dommage causé par des tiers, ou s’il est branché à une mauvaise tension électrique.",
+  },
+  {
+    "t": "p",
+    "text": "c) Le service sous garantie est gratuit pour l’ACHETEUR, qui doit le demander par WhatsApp au (12) 99788-1836 ou par e-mail à 4Vmanutencoes@gmail.com.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 7 – INSTALLATION ET UTILISATION",
+  },
+  {
+    "t": "p",
+    "text": "L’ACHETEUR déclare avoir reçu l’équipement testé et en état de fonctionnement et s’engage à l’installer et à l’utiliser conformément au manuel du fabricant, à la tension électrique correcte.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 8 – DISPOSITIONS GÉNÉRALES",
+  },
+  {
+    "t": "p",
+    "text": "Le présent contrat est conclu à titre irrévocable et irrétractable et lie les parties, leurs héritiers et leurs ayants cause.",
+  },
+  {
+    "t": "ch",
+    "text": "CLAUSE 9 – JURIDICTION COMPÉTENTE",
+  },
+  {
+    "t": "p",
+    "text": "Le tribunal de la juridiction de **Jacareí – SP** est choisi pour régler tout litige relatif au présent contrat, à l’exclusion de tout autre, même plus privilégié.",
+  },
+  {
+    "t": "p",
+    "text": "En foi de quoi, les parties signent le présent contrat en 2 (deux) exemplaires de même teneur et de même forme, en présence des 2 (deux) témoins ci-dessous.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, le 2 octobre 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "VENDEUR",
+          },
+          {
+            "x": "Valdir de Paula Bicudo ME",
+          },
+          {
+            "x": "CNPJ 21.914.770/0001-10",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "ACHETEUR",
+          },
+          {
+            "x": "Clínica Exemplo Ltda",
+          },
+          {
+            "x": "CNPJ 12.345.678/0001-90",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Témoin 1",
+          },
+          {
+            "x": "João Silva, CPF 111.222.333-44",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Témoin 2",
+          },
+          {
+            "x": "Nom : ____________________",
+          },
+          {
+            "x": "CPF : ________________",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > contrato / pt / empty data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "Nº C-2026-001",
+    "t": "title",
+    "text": "CONTRATO PARTICULAR DE COMPRA E VENDA DE EQUIPAMENTO",
+  },
+  {
+    "t": "p",
+    "text": "**Valdir de Paula Bicudo ME**, inscrita no CNPJ sob o nº 21.914.770/0001-10, Inscrição Estadual Isento, com sede em Rua São Marcos, 126 – Jardim São José, Jacareí – SP, CEP 12327-668, neste ato representada por Valdir de Paula Bicudo, doravante denominada simplesmente **VENDEDOR**.",
+  },
+  {
+    "t": "p",
+    "text": "**____________________________**, ______________, portador(a) do RG nº ______________, inscrito(a) no CPF sob o nº ________________, residente em ______________________________, ________________, CEP __________, doravante denominado(a) simplesmente **COMPRADOR**.",
+  },
+  {
+    "t": "p",
+    "text": "As partes acima têm entre si justo e contratado o que segue:",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 1ª – DO OBJETO",
+  },
+  {
+    "t": "p",
+    "text": "O VENDEDOR declara ser o legítimo proprietário do(s) equipamento(s) abaixo, que vende ao COMPRADOR no estado **usado e revisado**:",
+  },
+  {
+    "head": [
+      "Equipamento",
+      "Nº de série",
+    ],
+    "rows": [
+      [
+        "",
+        "",
+      ],
+    ],
+    "t": "table",
+    "widths": [
+      68,
+      32,
+    ],
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 2ª – DO PREÇO E DO PAGAMENTO",
+  },
+  {
+    "t": "p",
+    "text": "O preço total, justo e certo, é de **R$ ______________ (__________________________)**, pago da seguinte forma: à vista, na entrega.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 3ª – DA ENTREGA E DA POSSE",
+  },
+  {
+    "t": "p",
+    "text": "O COMPRADOR toma posse do equipamento em **________________**, data a partir da qual passa a responder por sua guarda e conservação.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 4ª – DO TRANSPORTE",
+  },
+  {
+    "t": "p",
+    "text": "O equipamento será retirado pelo COMPRADOR, sem custo para o VENDEDOR.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 5ª – DA ORIGEM E DOS ÔNUS",
+  },
+  {
+    "t": "p",
+    "text": "O VENDEDOR garante que o equipamento está livre e desembaraçado de qualquer ônus, dívida, penhora ou restrição. Caso o equipamento venha a ser retirado do COMPRADOR por motivo anterior a esta venda, o VENDEDOR devolverá o valor recebido, corrigido monetariamente e acrescido dos juros legais.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 6ª – DA GARANTIA",
+  },
+  {
+    "t": "p",
+    "text": "a) O VENDEDOR concede garantia de **3 (três) meses** contra defeitos de funcionamento, contada da data de entrega do equipamento.",
+  },
+  {
+    "t": "p",
+    "text": "b) A garantia perde a validade se o selo de garantia for rompido, se o equipamento sofrer queda, acidente ou dano causado por terceiros, ou se for ligado em tensão elétrica errada.",
+  },
+  {
+    "t": "p",
+    "text": "c) O atendimento em garantia não tem custo para o COMPRADOR, que deve acioná-lo pelo WhatsApp (12) 99788-1836 ou pelo e-mail 4Vmanutencoes@gmail.com.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 7ª – DA INSTALAÇÃO E DO USO",
+  },
+  {
+    "t": "p",
+    "text": "O COMPRADOR declara ter recebido o equipamento testado e em funcionamento e se compromete a instalá-lo e utilizá-lo conforme o manual do fabricante, na tensão elétrica correta.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 8ª – DISPOSIÇÕES GERAIS",
+  },
+  {
+    "t": "p",
+    "text": "Este contrato é celebrado em caráter irrevogável e irretratável e obriga as partes, seus herdeiros e sucessores.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 9ª – DO FORO",
+  },
+  {
+    "t": "p",
+    "text": "Fica eleito o foro da Comarca de **__________________** para resolver qualquer questão referente a este contrato, com renúncia a qualquer outro, por mais privilegiado que seja.",
+  },
+  {
+    "t": "p",
+    "text": "E, por estarem de acordo, as partes assinam este contrato em 2 (duas) vias de igual teor e forma, na presença das 2 (duas) testemunhas abaixo.",
+  },
+  {
+    "t": "place",
+    "text": "____________, ________________.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "VENDEDOR",
+          },
+          {
+            "x": "Valdir de Paula Bicudo ME",
+          },
+          {
+            "x": "CNPJ 21.914.770/0001-10",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "COMPRADOR",
+          },
+          {
+            "x": "________________________",
+          },
+          {
+            "x": "CPF __________________",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Testemunha 1",
+          },
+          {
+            "x": "Nome: ____________________",
+          },
+          {
+            "x": "CPF: ________________",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Testemunha 2",
+          },
+          {
+            "x": "Nome: ____________________",
+          },
+          {
+            "x": "CPF: ________________",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > contrato / pt / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "Nº C-2026-001",
+    "t": "title",
+    "text": "CONTRATO PARTICULAR DE COMPRA E VENDA DE EQUIPAMENTO",
+  },
+  {
+    "t": "p",
+    "text": "**Valdir de Paula Bicudo ME**, inscrita no CNPJ sob o nº 21.914.770/0001-10, Inscrição Estadual Isento, com sede em Rua São Marcos, 126 – Jardim São José, Jacareí – SP, CEP 12327-668, neste ato representada por Valdir de Paula Bicudo, doravante denominada simplesmente **VENDEDOR**.",
+  },
+  {
+    "t": "p",
+    "text": "**Clínica Exemplo Ltda**, inscrita no CNPJ sob o nº 12.345.678/0001-90, com sede em Rua das Flores, 100 – Centro, São José dos Campos – SP, CEP 12200-000, neste ato representada por Ana Souza, CPF 123.456.789-00, doravante denominada simplesmente **COMPRADOR**.",
+  },
+  {
+    "t": "p",
+    "text": "As partes acima têm entre si justo e contratado o que segue:",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 1ª – DO OBJETO",
+  },
+  {
+    "t": "p",
+    "text": "O VENDEDOR declara ser o legítimo proprietário do(s) equipamento(s) abaixo, que vende ao COMPRADOR no estado **usado e revisado**:",
+  },
+  {
+    "head": [
+      "Equipamento",
+      "Nº de série",
+    ],
+    "rows": [
+      [
+        "Autoclave Sercon 21 litros",
+        "SN12345",
+      ],
+      [
+        "Seladora Cristófoli",
+        "CR-998",
+      ],
+    ],
+    "t": "table",
+    "widths": [
+      68,
+      32,
+    ],
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 2ª – DO PREÇO E DO PAGAMENTO",
+  },
+  {
+    "t": "p",
+    "text": "O preço total, justo e certo, é de **R$ 1.200,00 (mil e duzentos reais)**, pago da seguinte forma: por PIX; metade na assinatura e metade na entrega.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 3ª – DA ENTREGA E DA POSSE",
+  },
+  {
+    "t": "p",
+    "text": "O COMPRADOR toma posse do equipamento em **5 de outubro de 2026**, data a partir da qual passa a responder por sua guarda e conservação.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 4ª – DO TRANSPORTE",
+  },
+  {
+    "t": "p",
+    "text": "O equipamento será despachado por transportadora indicada pelo COMPRADOR, que arcará com o frete e com os riscos do transporte.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 5ª – DA ORIGEM E DOS ÔNUS",
+  },
+  {
+    "t": "p",
+    "text": "O VENDEDOR garante que o equipamento está livre e desembaraçado de qualquer ônus, dívida, penhora ou restrição. Caso o equipamento venha a ser retirado do COMPRADOR por motivo anterior a esta venda, o VENDEDOR devolverá o valor recebido, corrigido monetariamente e acrescido dos juros legais.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 6ª – DA GARANTIA",
+  },
+  {
+    "t": "p",
+    "text": "a) O VENDEDOR concede garantia de **18 (dezoito) meses** contra defeitos de funcionamento, contada da data de entrega do equipamento.",
+  },
+  {
+    "t": "p",
+    "text": "b) A garantia perde a validade se o selo de garantia for rompido, se o equipamento sofrer queda, acidente ou dano causado por terceiros, ou se for ligado em tensão elétrica errada.",
+  },
+  {
+    "t": "p",
+    "text": "c) O atendimento em garantia não tem custo para o COMPRADOR, que deve acioná-lo pelo WhatsApp (12) 99788-1836 ou pelo e-mail 4Vmanutencoes@gmail.com.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 7ª – DA INSTALAÇÃO E DO USO",
+  },
+  {
+    "t": "p",
+    "text": "O COMPRADOR declara ter recebido o equipamento testado e em funcionamento e se compromete a instalá-lo e utilizá-lo conforme o manual do fabricante, na tensão elétrica correta.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 8ª – DISPOSIÇÕES GERAIS",
+  },
+  {
+    "t": "p",
+    "text": "Este contrato é celebrado em caráter irrevogável e irretratável e obriga as partes, seus herdeiros e sucessores.",
+  },
+  {
+    "t": "ch",
+    "text": "CLÁUSULA 9ª – DO FORO",
+  },
+  {
+    "t": "p",
+    "text": "Fica eleito o foro da Comarca de **Jacareí – SP** para resolver qualquer questão referente a este contrato, com renúncia a qualquer outro, por mais privilegiado que seja.",
+  },
+  {
+    "t": "p",
+    "text": "E, por estarem de acordo, as partes assinam este contrato em 2 (duas) vias de igual teor e forma, na presença das 2 (duas) testemunhas abaixo.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, 2 de outubro de 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "VENDEDOR",
+          },
+          {
+            "x": "Valdir de Paula Bicudo ME",
+          },
+          {
+            "x": "CNPJ 21.914.770/0001-10",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "COMPRADOR",
+          },
+          {
+            "x": "Clínica Exemplo Ltda",
+          },
+          {
+            "x": "CNPJ 12.345.678/0001-90",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Testemunha 1",
+          },
+          {
+            "x": "João Silva, CPF 111.222.333-44",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Testemunha 2",
+          },
+          {
+            "x": "Nome: ____________________",
+          },
+          {
+            "x": "CPF: ________________",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > entrega / en / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "No. E-2026-003",
+    "t": "title",
+    "text": "DELIVERY NOTE AND USAGE INSTRUCTIONS",
+  },
+  {
+    "rows": [
+      [
+        "Client",
+        "Clínica Exemplo Ltda",
+      ],
+      [
+        "Attn.",
+        "Dra. Ana Souza — Esterilização",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "p",
+    "text": "We are handing over the equipment below, serviced and in working order, with the following usage instructions:",
+  },
+  {
+    "rows": [
+      [
+        "Equipment",
+        "Autoclave 21 litros",
+      ],
+      [
+        "Brand",
+        "Sercon",
+      ],
+      [
+        "Model",
+        "AHMC-21",
+      ],
+      [
+        "Serial no.",
+        "SN12345",
+      ],
+      [
+        "Voltage",
+        "Dual voltage",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Usage instructions",
+  },
+  {
+    "items": [
+      "Stay with the equipment during the cycle: the beep that signals phase changes and the end of the cycle is quiet.",
+      "Respect the interval between cycles stated in the manual.",
+      "Use only distilled water in the reservoir.",
+      "Clean the inner chamber once a week.",
+      "Always check that the steam outlet hose is not blocked.",
+      "Check the warranty seal when you receive the equipment. A broken seal voids the warranty.",
+      "If you have any questions or a fault occurs during use, stop the equipment and contact technical support: WhatsApp (12) 99788-1836.",
+      "Guarde este termo junto ao manual.",
+    ],
+    "t": "ol",
+  },
+  {
+    "t": "p",
+    "text": "This equipment is under warranty for **12 (twelve) months** from **October 2, 2026**. Warranty service is free of charge to the client.",
+  },
+  {
+    "t": "p",
+    "text": "I declare that I received the equipment in working order and the instructions above.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, October 2, 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Delivered by: Valdir de Paula Bicudo, 4V Manutencoes",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "x": "Received by — name, position and stamp",
+          },
+          {
+            "x": "Date: ___/___/______",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > entrega / fr / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "N° E-2026-003",
+    "t": "title",
+    "text": "BON DE LIVRAISON ET CONSIGNES D’UTILISATION",
+  },
+  {
+    "rows": [
+      [
+        "Client",
+        "Clínica Exemplo Ltda",
+      ],
+      [
+        "À l’att. de",
+        "Dra. Ana Souza — Esterilização",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "p",
+    "text": "Nous remettons l’équipement ci-dessous, révisé et en état de fonctionnement, avec les consignes d’utilisation suivantes :",
+  },
+  {
+    "rows": [
+      [
+        "Équipement",
+        "Autoclave 21 litros",
+      ],
+      [
+        "Marque",
+        "Sercon",
+      ],
+      [
+        "Modèle",
+        "AHMC-21",
+      ],
+      [
+        "N° de série",
+        "SN12345",
+      ],
+      [
+        "Tension",
+        "Bi-tension",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Consignes d’utilisation",
+  },
+  {
+    "items": [
+      "Restez près de l’équipement pendant le cycle : le signal sonore indiquant les changements de phase et la fin du cycle est faible.",
+      "Respectez l’intervalle entre deux cycles indiqué dans le manuel.",
+      "Utilisez uniquement de l’eau distillée dans le réservoir.",
+      "Nettoyez la chambre intérieure une fois par semaine.",
+      "Vérifiez toujours que le tuyau de sortie de vapeur n’est pas obstrué.",
+      "Vérifiez le sceau de garantie à la réception de l’équipement. Un sceau rompu annule la garantie.",
+      "En cas de doute ou de panne pendant l’utilisation, arrêtez l’équipement et contactez le support technique : WhatsApp (12) 99788-1836.",
+      "Guarde este termo junto ao manual.",
+    ],
+    "t": "ol",
+  },
+  {
+    "t": "p",
+    "text": "Cet équipement est garanti pour une durée de **12 (douze) mois** à compter du **2 octobre 2026**. Le service sous garantie est gratuit pour le client.",
+  },
+  {
+    "t": "p",
+    "text": "Je déclare avoir reçu l’équipement en état de fonctionnement et les consignes ci-dessus.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, le 2 octobre 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Remis par : Valdir de Paula Bicudo, 4V Manutencoes",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "x": "Reçu par — nom, fonction et cachet",
+          },
+          {
+            "x": "Date : ___/___/______",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > entrega / pt / empty data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "Nº E-2026-001",
+    "t": "title",
+    "text": "TERMO DE ENTREGA TÉCNICA E ORIENTAÇÕES DE USO",
+  },
+  {
+    "rows": [
+      [
+        "Cliente",
+        "______________________________",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "p",
+    "text": "Entregamos o equipamento abaixo revisado e em funcionamento, com as seguintes orientações de uso:",
+  },
+  {
+    "rows": [
+      [
+        "Equipamento",
+        "______________________________",
+      ],
+      [
+        "Marca",
+        "______________________",
+      ],
+      [
+        "Modelo",
+        "______________________",
+      ],
+      [
+        "Nº de série",
+        "______________________",
+      ],
+      [
+        "Tensão",
+        "______________",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Orientações de uso",
+  },
+  {
+    "items": [
+      "__________________________________________________",
+      "__________________________________________________",
+    ],
+    "t": "ol",
+  },
+  {
+    "t": "p",
+    "text": "Este equipamento tem garantia de **3 (três) meses** a partir de **________________**. O atendimento em garantia não tem custo para o cliente.",
+  },
+  {
+    "t": "p",
+    "text": "Declaro que recebi o equipamento em funcionamento e as orientações acima.",
+  },
+  {
+    "t": "place",
+    "text": "____________, ________________.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Entregue por: Valdir de Paula Bicudo, 4V Manutencoes",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "x": "Recebido por — nome, cargo e carimbo",
+          },
+          {
+            "x": "Data: ___/___/______",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > entrega / pt / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "Nº E-2026-003",
+    "t": "title",
+    "text": "TERMO DE ENTREGA TÉCNICA E ORIENTAÇÕES DE USO",
+  },
+  {
+    "rows": [
+      [
+        "Cliente",
+        "Clínica Exemplo Ltda",
+      ],
+      [
+        "A/C",
+        "Dra. Ana Souza — Esterilização",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "p",
+    "text": "Entregamos o equipamento abaixo revisado e em funcionamento, com as seguintes orientações de uso:",
+  },
+  {
+    "rows": [
+      [
+        "Equipamento",
+        "Autoclave 21 litros",
+      ],
+      [
+        "Marca",
+        "Sercon",
+      ],
+      [
+        "Modelo",
+        "AHMC-21",
+      ],
+      [
+        "Nº de série",
+        "SN12345",
+      ],
+      [
+        "Tensão",
+        "Bivolt",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Orientações de uso",
+  },
+  {
+    "items": [
+      "Acompanhe o equipamento durante o ciclo: o aviso sonoro de mudança de fase e de fim de ciclo é baixo.",
+      "Respeite o intervalo entre um ciclo e outro indicado no manual.",
+      "Use somente água destilada no reservatório.",
+      "Limpe a câmara interna uma vez por semana.",
+      "Verifique sempre se a mangueira de saída de vapor não está obstruída.",
+      "Confira o selo de garantia no ato da entrega. Selo rompido cancela a garantia.",
+      "Em caso de dúvida ou falha durante o uso, interrompa o funcionamento e entre em contato com o suporte técnico: WhatsApp (12) 99788-1836.",
+      "Guarde este termo junto ao manual.",
+    ],
+    "t": "ol",
+  },
+  {
+    "t": "p",
+    "text": "Este equipamento tem garantia de **12 (doze) meses** a partir de **2 de outubro de 2026**. O atendimento em garantia não tem custo para o cliente.",
+  },
+  {
+    "t": "p",
+    "text": "Declaro que recebi o equipamento em funcionamento e as orientações acima.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, 2 de outubro de 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Entregue por: Valdir de Paula Bicudo, 4V Manutencoes",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "x": "Recebido por — nome, cargo e carimbo",
+          },
+          {
+            "x": "Data: ___/___/______",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > garantia / en / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "No. G-2026-007",
+    "t": "title",
+    "text": "SERVICE WARRANTY CERTIFICATE",
+  },
+  {
+    "t": "h",
+    "text": "Client",
+  },
+  {
+    "rows": [
+      [
+        "Name / institution",
+        "Clínica Exemplo Ltda",
+      ],
+      [
+        "Attn.",
+        "Dra. Ana Souza — Esterilização",
+      ],
+      [
+        "CPF / CNPJ",
+        "12.345.678/0001-90",
+      ],
+      [
+        "Address",
+        "Rua das Flores, 100 – Centro",
+      ],
+      [
+        "City",
+        "São José dos Campos – SP — CEP 12200-000",
+      ],
+      [
+        "Phone",
+        "(12) 3333-4444",
+      ],
+      [
+        "E-mail",
+        "contato@exemplo.com.br",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Equipment",
+  },
+  {
+    "rows": [
+      [
+        "Equipment",
+        "Autoclave 21 litros",
+      ],
+      [
+        "Brand",
+        "Sercon",
+      ],
+      [
+        "Model",
+        "AHMC-21",
+      ],
+      [
+        "Serial no.",
+        "SN12345",
+      ],
+      [
+        "Voltage",
+        "220 V",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Service performed",
+  },
+  {
+    "rows": [
+      [
+        "Date of service",
+        "September 30, 2026",
+      ],
+      [
+        "Description of the service",
+        "Troca da borracha de vedação e da válvula de segurança.",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "head": [
+      "Qty.",
+      "Part replaced",
+    ],
+    "rows": [
+      [
+        "1",
+        "Borracha de vedação",
+      ],
+      [
+        "1",
+        "Válvula de segurança",
+      ],
+    ],
+    "t": "table",
+    "widths": [
+      14,
+      86,
+    ],
+  },
+  {
+    "t": "h",
+    "text": "Warranty",
+  },
+  {
+    "t": "p",
+    "text": "1. **4V Manutencoes** warrants the service described above for **6 (six) months**, counted from **October 1, 2026**.",
+  },
+  {
+    "t": "p",
+    "text": "2. This warranty covers the labor of the service performed and the replaced parts listed above. It is in addition to the statutory warranty provided by the Brazilian Consumer Protection Code (arts. 26 and 50).",
+  },
+  {
+    "t": "p",
+    "text": "3. Warranty service is free of charge to the client.",
+  },
+  {
+    "t": "p",
+    "text": "4. To claim the warranty, contact us on WhatsApp **(12) 99788-1836** or by e-mail **4Vmanutencoes@gmail.com** and quote the number of this certificate.",
+  },
+  {
+    "t": "p",
+    "text": "**The warranty does not cover:**",
+  },
+  {
+    "items": [
+      "Use contrary to the manufacturer’s manual.",
+      "Connection to the wrong electrical voltage, drops, impacts, electrical discharges or power-grid fluctuations.",
+      "Opening or repair by third parties, or a broken warranty seal.",
+      "Parts and components that were not replaced in this service.",
+      "Normal wear of consumable items and lack of the cleaning or maintenance indicated.",
+    ],
+    "t": "ul",
+  },
+  {
+    "t": "h",
+    "text": "Notes",
+  },
+  {
+    "t": "p",
+    "text": "Equipamento testado com 3 ciclos completos.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, October 2, 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Valdir de Paula Bicudo",
+          },
+          {
+            "x": "Responsible technician, 4V Manutencoes",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "x": "Client — name, position and stamp",
+          },
+          {
+            "x": "Date: ___/___/______",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > garantia / fr / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "N° G-2026-007",
+    "t": "title",
+    "text": "CERTIFICAT DE GARANTIE DE SERVICE",
+  },
+  {
+    "t": "h",
+    "text": "Client",
+  },
+  {
+    "rows": [
+      [
+        "Nom / établissement",
+        "Clínica Exemplo Ltda",
+      ],
+      [
+        "À l’att. de",
+        "Dra. Ana Souza — Esterilização",
+      ],
+      [
+        "CPF / CNPJ",
+        "12.345.678/0001-90",
+      ],
+      [
+        "Adresse",
+        "Rua das Flores, 100 – Centro",
+      ],
+      [
+        "Ville",
+        "São José dos Campos – SP — CEP 12200-000",
+      ],
+      [
+        "Téléphone",
+        "(12) 3333-4444",
+      ],
+      [
+        "E-mail",
+        "contato@exemplo.com.br",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Équipement",
+  },
+  {
+    "rows": [
+      [
+        "Équipement",
+        "Autoclave 21 litros",
+      ],
+      [
+        "Marque",
+        "Sercon",
+      ],
+      [
+        "Modèle",
+        "AHMC-21",
+      ],
+      [
+        "N° de série",
+        "SN12345",
+      ],
+      [
+        "Tension",
+        "220 V",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Intervention réalisée",
+  },
+  {
+    "rows": [
+      [
+        "Date de l’intervention",
+        "30 septembre 2026",
+      ],
+      [
+        "Description de l’intervention",
+        "Troca da borracha de vedação e da válvula de segurança.",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "head": [
+      "Qté",
+      "Pièce remplacée",
+    ],
+    "rows": [
+      [
+        "1",
+        "Borracha de vedação",
+      ],
+      [
+        "1",
+        "Válvula de segurança",
+      ],
+    ],
+    "t": "table",
+    "widths": [
+      14,
+      86,
+    ],
+  },
+  {
+    "t": "h",
+    "text": "Garantie",
+  },
+  {
+    "t": "p",
+    "text": "1. **4V Manutencoes** garantit l’intervention décrite ci-dessus pour une durée de **6 (six) mois**, à compter du **1 octobre 2026**.",
+  },
+  {
+    "t": "p",
+    "text": "2. Cette garantie couvre la main-d’œuvre de l’intervention réalisée et les pièces remplacées listées ci-dessus. Elle s’ajoute à la garantie légale prévue par le Code brésilien de défense du consommateur (art. 26 et 50).",
+  },
+  {
+    "t": "p",
+    "text": "3. Le service sous garantie est gratuit pour le client.",
+  },
+  {
+    "t": "p",
+    "text": "4. Pour faire jouer la garantie, contactez-nous par WhatsApp au **(12) 99788-1836** ou par e-mail à **4Vmanutencoes@gmail.com** en indiquant le numéro de ce certificat.",
+  },
+  {
+    "t": "p",
+    "text": "**La garantie ne couvre pas :**",
+  },
+  {
+    "items": [
+      "Une utilisation non conforme au manuel du fabricant.",
+      "Un branchement à une mauvaise tension électrique, des chutes, des chocs, des décharges électriques ou des variations du réseau.",
+      "Une ouverture ou une réparation par des tiers, ou un sceau de garantie rompu.",
+      "Les pièces et composants qui n’ont pas été remplacés lors de cette intervention.",
+      "L’usure normale des consommables et le défaut de nettoyage ou d’entretien indiqués.",
+    ],
+    "t": "ul",
+  },
+  {
+    "t": "h",
+    "text": "Remarques",
+  },
+  {
+    "t": "p",
+    "text": "Equipamento testado com 3 ciclos completos.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, le 2 octobre 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Valdir de Paula Bicudo",
+          },
+          {
+            "x": "Technicien responsable, 4V Manutencoes",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "x": "Client — nom, fonction et cachet",
+          },
+          {
+            "x": "Date : ___/___/______",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > garantia / pt / empty data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "Nº G-2026-001",
+    "t": "title",
+    "text": "TERMO DE GARANTIA DE SERVIÇO",
+  },
+  {
+    "t": "h",
+    "text": "Cliente",
+  },
+  {
+    "rows": [
+      [
+        "Nome / instituição",
+        "______________________________",
+      ],
+      [
+        "CPF / CNPJ",
+        "______________________",
+      ],
+      [
+        "Endereço",
+        "____________________________________",
+      ],
+      [
+        "Cidade",
+        "______________________",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Equipamento",
+  },
+  {
+    "rows": [
+      [
+        "Equipamento",
+        "______________________________",
+      ],
+      [
+        "Marca",
+        "______________________",
+      ],
+      [
+        "Modelo",
+        "______________________",
+      ],
+      [
+        "Nº de série",
+        "______________________",
+      ],
+      [
+        "Tensão",
+        "______________",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Serviço executado",
+  },
+  {
+    "rows": [
+      [
+        "Data do serviço",
+        "________________",
+      ],
+      [
+        "Descrição do serviço",
+        "____________________________________________
+____________________________________________",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "head": [
+      "Qtd.",
+      "Peça substituída",
+    ],
+    "rows": [
+      [
+        "",
+        "",
+      ],
+      [
+        "",
+        "",
+      ],
+      [
+        "",
+        "",
+      ],
+    ],
+    "t": "table",
+    "widths": [
+      14,
+      86,
+    ],
+  },
+  {
+    "t": "h",
+    "text": "Garantia",
+  },
+  {
+    "t": "p",
+    "text": "1. A **4V Manutencoes** garante o serviço descrito acima pelo prazo de **3 (três) meses**, contado a partir de **________________**.",
+  },
+  {
+    "t": "p",
+    "text": "2. Esta garantia cobre a mão de obra do serviço executado e as peças substituídas listadas acima. Ela é complementar à garantia legal prevista no Código de Defesa do Consumidor (arts. 26 e 50).",
+  },
+  {
+    "t": "p",
+    "text": "3. O atendimento em garantia não tem custo para o cliente.",
+  },
+  {
+    "t": "p",
+    "text": "4. Para acionar a garantia, entre em contato pelo WhatsApp **(12) 99788-1836** ou pelo e-mail **4Vmanutencoes@gmail.com** e informe o número deste termo.",
+  },
+  {
+    "t": "p",
+    "text": "**A garantia não cobre:**",
+  },
+  {
+    "items": [
+      "Uso em desacordo com o manual do fabricante.",
+      "Ligação em tensão elétrica errada, quedas, batidas, descargas elétricas ou variações da rede.",
+      "Abertura ou conserto por terceiros, ou selo de garantia rompido.",
+      "Peças e componentes que não foram trocados neste serviço.",
+      "Desgaste natural de itens de consumo e falta da limpeza ou manutenção indicadas.",
+    ],
+    "t": "ul",
+  },
+  {
+    "t": "place",
+    "text": "____________, ________________.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Valdir de Paula Bicudo",
+          },
+          {
+            "x": "Técnico responsável, 4V Manutencoes",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "x": "Cliente — nome, cargo e carimbo",
+          },
+          {
+            "x": "Data: ___/___/______",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > garantia / pt / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "num": "Nº G-2026-007",
+    "t": "title",
+    "text": "TERMO DE GARANTIA DE SERVIÇO",
+  },
+  {
+    "t": "h",
+    "text": "Cliente",
+  },
+  {
+    "rows": [
+      [
+        "Nome / instituição",
+        "Clínica Exemplo Ltda",
+      ],
+      [
+        "A/C",
+        "Dra. Ana Souza — Esterilização",
+      ],
+      [
+        "CPF / CNPJ",
+        "12.345.678/0001-90",
+      ],
+      [
+        "Endereço",
+        "Rua das Flores, 100 – Centro",
+      ],
+      [
+        "Cidade",
+        "São José dos Campos – SP — CEP 12200-000",
+      ],
+      [
+        "Telefone",
+        "(12) 3333-4444",
+      ],
+      [
+        "E-mail",
+        "contato@exemplo.com.br",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Equipamento",
+  },
+  {
+    "rows": [
+      [
+        "Equipamento",
+        "Autoclave 21 litros",
+      ],
+      [
+        "Marca",
+        "Sercon",
+      ],
+      [
+        "Modelo",
+        "AHMC-21",
+      ],
+      [
+        "Nº de série",
+        "SN12345",
+      ],
+      [
+        "Tensão",
+        "220 V",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "t": "h",
+    "text": "Serviço executado",
+  },
+  {
+    "rows": [
+      [
+        "Data do serviço",
+        "30 de setembro de 2026",
+      ],
+      [
+        "Descrição do serviço",
+        "Troca da borracha de vedação e da válvula de segurança.",
+      ],
+    ],
+    "t": "kv",
+  },
+  {
+    "head": [
+      "Qtd.",
+      "Peça substituída",
+    ],
+    "rows": [
+      [
+        "1",
+        "Borracha de vedação",
+      ],
+      [
+        "1",
+        "Válvula de segurança",
+      ],
+    ],
+    "t": "table",
+    "widths": [
+      14,
+      86,
+    ],
+  },
+  {
+    "t": "h",
+    "text": "Garantia",
+  },
+  {
+    "t": "p",
+    "text": "1. A **4V Manutencoes** garante o serviço descrito acima pelo prazo de **6 (seis) meses**, contado a partir de **1 de outubro de 2026**.",
+  },
+  {
+    "t": "p",
+    "text": "2. Esta garantia cobre a mão de obra do serviço executado e as peças substituídas listadas acima. Ela é complementar à garantia legal prevista no Código de Defesa do Consumidor (arts. 26 e 50).",
+  },
+  {
+    "t": "p",
+    "text": "3. O atendimento em garantia não tem custo para o cliente.",
+  },
+  {
+    "t": "p",
+    "text": "4. Para acionar a garantia, entre em contato pelo WhatsApp **(12) 99788-1836** ou pelo e-mail **4Vmanutencoes@gmail.com** e informe o número deste termo.",
+  },
+  {
+    "t": "p",
+    "text": "**A garantia não cobre:**",
+  },
+  {
+    "items": [
+      "Uso em desacordo com o manual do fabricante.",
+      "Ligação em tensão elétrica errada, quedas, batidas, descargas elétricas ou variações da rede.",
+      "Abertura ou conserto por terceiros, ou selo de garantia rompido.",
+      "Peças e componentes que não foram trocados neste serviço.",
+      "Desgaste natural de itens de consumo e falta da limpeza ou manutenção indicadas.",
+    ],
+    "t": "ul",
+  },
+  {
+    "t": "h",
+    "text": "Observações",
+  },
+  {
+    "t": "p",
+    "text": "Equipamento testado com 3 ciclos completos.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, 2 de outubro de 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Valdir de Paula Bicudo",
+          },
+          {
+            "x": "Técnico responsável, 4V Manutencoes",
+          },
+        ],
+      },
+      {
+        "lines": [
+          {
+            "x": "Cliente — nome, cargo e carimbo",
+          },
+          {
+            "x": "Data: ___/___/______",
+          },
+        ],
+      },
+    ],
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > recibo / en / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "amount": "R$ 2.345,60",
+    "t": "rec",
+    "text": "RECEIPT No. R-2026-010",
+  },
+  {
+    "t": "p",
+    "text": "Received from **Clínica Exemplo Ltda**, CPF/CNPJ 12.345.678/0001-90, the amount of **R$ 2.345,60 (two thousand three hundred forty-five reais and sixty centavos)**, in payment for conserto de autoclave.",
+  },
+  {
+    "t": "p",
+    "text": "Payment method: PIX.",
+  },
+  {
+    "t": "p",
+    "text": "For the avoidance of doubt, I sign this receipt, giving full discharge for the amount received.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, October 2, 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Valdir de Paula Bicudo",
+          },
+          {
+            "x": "Valdir de Paula Bicudo ME — CNPJ 21.914.770/0001-10",
+          },
+        ],
+      },
+    ],
+    "single": 1,
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > recibo / fr / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "amount": "R$ 2.345,60",
+    "t": "rec",
+    "text": "REÇU N° R-2026-010",
+  },
+  {
+    "t": "p",
+    "text": "J’ai reçu de **Clínica Exemplo Ltda**, CPF/CNPJ 12.345.678/0001-90, la somme de **R$ 2.345,60 (deux mille trois cent quarante-cinq reais et soixante centavos)**, au titre de conserto de autoclave.",
+  },
+  {
+    "t": "p",
+    "text": "Mode de paiement : PIX.",
+  },
+  {
+    "t": "p",
+    "text": "Pour valoir ce que de droit, je signe le présent reçu, donnant pleine quittance de la somme reçue.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, le 2 octobre 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Valdir de Paula Bicudo",
+          },
+          {
+            "x": "Valdir de Paula Bicudo ME — CNPJ 21.914.770/0001-10",
+          },
+        ],
+      },
+    ],
+    "single": 1,
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > recibo / pt / empty data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "amount": "R$ __________",
+    "t": "rec",
+    "text": "RECIBO Nº R-2026-001",
+  },
+  {
+    "t": "p",
+    "text": "Recebi de **______________________________**, CPF/CNPJ ____________________, a importância de **R$ ____________ (__________________________)**, referente a ________________________________________.",
+  },
+  {
+    "t": "p",
+    "text": "Forma de pagamento: Dinheiro.",
+  },
+  {
+    "t": "p",
+    "text": "Para maior clareza, firmo o presente recibo, dando plena quitação do valor recebido.",
+  },
+  {
+    "t": "place",
+    "text": "____________, ________________.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Valdir de Paula Bicudo",
+          },
+          {
+            "x": "Valdir de Paula Bicudo ME — CNPJ 21.914.770/0001-10",
+          },
+        ],
+      },
+    ],
+    "single": 1,
+    "t": "sign",
+  },
+]
+`;
+
+exports[`document builders: block snapshots > recibo / pt / full data 1`] = `
+[
+  {
+    "t": "head",
+  },
+  {
+    "amount": "R$ 2.345,60",
+    "t": "rec",
+    "text": "RECIBO Nº R-2026-010",
+  },
+  {
+    "t": "p",
+    "text": "Recebi de **Clínica Exemplo Ltda**, CPF/CNPJ 12.345.678/0001-90, a importância de **R$ 2.345,60 (dois mil trezentos e quarenta e cinco reais e sessenta centavos)**, referente a conserto de autoclave.",
+  },
+  {
+    "t": "p",
+    "text": "Forma de pagamento: PIX.",
+  },
+  {
+    "t": "p",
+    "text": "Para maior clareza, firmo o presente recibo, dando plena quitação do valor recebido.",
+  },
+  {
+    "t": "place",
+    "text": "Jacareí, 2 de outubro de 2026.",
+  },
+  {
+    "cols": [
+      {
+        "lines": [
+          {
+            "b": 1,
+            "x": "Valdir de Paula Bicudo",
+          },
+          {
+            "x": "Valdir de Paula Bicudo ME — CNPJ 21.914.770/0001-10",
+          },
+        ],
+      },
+    ],
+    "single": 1,
+    "t": "sign",
+  },
+]
+`;

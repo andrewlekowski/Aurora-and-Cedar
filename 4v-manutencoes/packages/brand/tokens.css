@@ -1,0 +1,16 @@
+/* 4V Manutencoes design tokens: black & white only. Shared by apps/site and apps/app. */
+:root{
+  --bg:#ffffff;--fg:#0a0a0a;--muted:#444444;--line:#0a0a0a;--soft:#ededed;--card:#ffffff;
+  --btn-bg:#0a0a0a;--btn-fg:#ffffff;--ok:#0a6b2b;--err:#b00020;--logo-filter:none;--shadow:rgba(0,0,0,.12);
+  --paper:#ffffff;--ink:#000000;
+  --f-display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --f-body:'Atkinson Hyperlegible','Segoe UI',Roboto,Arial,sans-serif;
+  --radius:12px;--border:2px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a0a0a;--fg:#f5f5f5;--muted:#c4c4c4;--line:#f5f5f5;--soft:#242424;--card:#0a0a0a;
+  --btn-bg:#f5f5f5;--btn-fg:#0a0a0a;--ok:#6fdc97;--err:#ff9a9a;--logo-filter:invert(1);--shadow:rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a0a0a;--fg:#f5f5f5;--muted:#c4c4c4;--line:#f5f5f5;--soft:#242424;--card:#0a0a0a;
+  --btn-bg:#f5f5f5;--btn-fg:#0a0a0a;--ok:#6fdc97;--err:#ff9a9a;--logo-filter:invert(1);--shadow:rgba(0,0,0,.6);color-scheme:dark}

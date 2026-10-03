@@ -1,0 +1,17 @@
+{
+  "name": "4v-manutencoes",
+  "private": true,
+  "type": "module",
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "test": "npm run test -w @4v/docs-core && npm run test -w @4v/app",
+    "test:e2e": "npm run test:e2e -w @4v/app && npm run test:e2e -w @4v/site",
+    "build": "npm run build -w @4v/app && npm run build -w @4v/site",
+    "build:app": "npm run build -w @4v/app",
+    "build:site": "npm run build -w @4v/site",
+    "dev:app": "npm run dev -w @4v/app",
+    "dev:site": "npm run dev -w @4v/site",
+    "hash-password": "node apps/app/scripts/hash-password.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
