@@ -1,0 +1,13 @@
+---
+import { BUSINESS, waLink, mailtoLink, telLink } from '@4v/brand/site.config';
+import { CONTENT, pageMeta, type Lang, type PageKey } from '../lib/site';
+interface Props { lang: Lang; pageKey: PageKey; showNumber?: boolean }
+const { lang, pageKey, showNumber = true } = Astro.props;
+const ui = CONTENT[lang].ui;
+const m = pageMeta(lang, pageKey);
+---
+<div class="ctas">
+  <a class="btn primary" href={waLink(m.waText)} target="_blank" rel="noopener" data-track="whatsapp_click">{ui.waBtn}</a>
+  <a class="btn" href={mailtoLink(m.mailSubject)} data-track="email_click">{ui.mailBtn}</a>
+  {showNumber && <p class="num">WhatsApp: <a href={telLink()} data-track="phone_click">{BUSINESS.phoneDisplay}</a> · <span style="overflow-wrap:anywhere">{BUSINESS.email}</span></p>}
+</div>

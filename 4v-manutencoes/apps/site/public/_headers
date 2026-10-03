@@ -1,0 +1,14 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/obrigado
+  X-Robots-Tag: noindex
+/en/thank-you
+  X-Robots-Tag: noindex
+/fr/merci
+  X-Robots-Tag: noindex

@@ -1,0 +1,22 @@
+{
+  "name": "@4v/site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --port 4321",
+    "check:content": "node scripts/check-content.mjs",
+    "test:e2e": "PUBLIC_WEB3FORMS_KEY=test-key astro build && node scripts/check-content.mjs && playwright test",
+    "og": "node scripts/make-og.mjs"
+  },
+  "dependencies": {
+    "@4v/brand": "*",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}

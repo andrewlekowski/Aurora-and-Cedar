@@ -1,0 +1,20 @@
+---
+import Crumbs from '../Crumbs.astro';
+import Contact from '../Contact.astro';
+import Person from '../Person.astro';
+import { CONTENT, type Lang } from '../../lib/site';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = CONTENT[lang];
+const k = c.contato;
+---
+<Crumbs lang={lang} pageKey="contato" />
+<h1>{k.h1}</h1>
+<p class="lead">{k.lead}</p>
+<Person lang={lang} eager />
+<Contact lang={lang} pageKey="contato" form title={c.ui.contactTitle} />
+<section class="sec" aria-labelledby="dicas">
+  <h2 id="dicas">{k.tipsTitle}</h2>
+  <ul class="bullets">{k.tips.map(t => <li>{t}</li>)}</ul>
+  <p><a href="/4V_Manutencoes.vcf" download>{c.ui.vcard}</a></p>
+</section>

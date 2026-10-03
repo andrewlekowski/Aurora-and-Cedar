@@ -1,0 +1,43 @@
+---
+import Crumbs from '../Crumbs.astro';
+import Ctas from '../Ctas.astro';
+import Warranty from '../Warranty.astro';
+import Faq from '../Faq.astro';
+import Contact from '../Contact.astro';
+import { CONTENT, pathFor, type Lang, type ServiceKey } from '../../lib/site';
+interface Props { lang: Lang; pageKey: ServiceKey }
+const { lang, pageKey } = Astro.props;
+const c = CONTENT[lang];
+const s = c.services[pageKey];
+---
+<Crumbs lang={lang} pageKey={pageKey} />
+<h1>{s.h1}</h1>
+<p class="lead">{s.intro[0]}</p>
+<Ctas lang={lang} pageKey={pageKey} />
+{s.intro.slice(1).map(p => <p>{p}</p>)}
+
+<section class="sec" aria-labelledby="problemas">
+  <h2 id="problemas">{c.ui.problemsTitle}</h2>
+  <ul class="checks">{s.problems.map(p => <li>{p}</li>)}</ul>
+</section>
+
+{s.sections.map((sec, i) => (
+  <section class="sec" aria-labelledby={`s${i}`}>
+    <h2 id={`s${i}`}>{sec.h2}</h2>
+    {sec.paras?.map(p => <p>{p}</p>)}
+    {sec.list && <ol class="steps">{sec.list.map(li => <li>{li}</li>)}</ol>}
+  </section>
+))}
+
+<Warranty lang={lang} />
+<Faq lang={lang} items={s.faq} />
+
+<section class="sec" aria-labelledby="relacionados">
+  <h2 id="relacionados">{c.ui.relatedTitle}</h2>
+  <ul class="cards">
+    {s.related.map(k => <li><a href={pathFor(lang, k)}><b>{c.services[k].nav}</b><span>{c.services[k].card}</span></a></li>)}
+  </ul>
+  <p style="margin-top:16px"><a href={pathFor(lang, 'experiencia')}>{c.ui.seeExperience}</a></p>
+</section>
+
+<Contact lang={lang} pageKey={pageKey} form />

@@ -1,0 +1,75 @@
+---
+import '@4v/brand/fonts.css';
+import '@4v/brand/tokens.css';
+import '../styles/site.css';
+import archivoUrl from '@4v/brand/fonts/archivo-latin-wght-normal.woff2?url';
+import { INTEGRATIONS, BUSINESS } from '@4v/brand/site.config';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { CONTENT, LANGS, NOINDEX, abs, pathFor, pageMeta, type Lang, type PageKey } from '../lib/site';
+import { waLink, mailtoLink } from '@4v/brand/site.config';
+
+interface Props { lang: Lang; pageKey: PageKey; jsonld?: object[] }
+const { lang, pageKey, jsonld = [] } = Astro.props;
+const ui = CONTENT[lang].ui;
+const meta = pageMeta(lang, pageKey);
+const noindex = NOINDEX.includes(pageKey);
+const canonical = pageKey === 'notfound' ? null : abs(pathFor(lang, pageKey));
+const alternates = noindex ? [] : LANGS.map(l => ({ hreflang: CONTENT[l].ui.htmlLang, href: abs(pathFor(l, pageKey)) }));
+const webKey = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN || INTEGRATIONS.cfAnalyticsToken;
+const gsv = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || INTEGRATIONS.googleSiteVerification;
+const bsv = import.meta.env.PUBLIC_BING_SITE_VERIFICATION || INTEGRATIONS.bingSiteVerification;
+const ogLocales = LANGS.filter(l => l !== lang).map(l => CONTENT[l].ui.ogLocale);
+---
+<!doctype html>
+<html lang={ui.htmlLang}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{meta.title}</title>
+<meta name="description" content={meta.description}>
+{noindex ? <meta name="robots" content="noindex, follow"> : <meta name="robots" content="index, follow, max-image-preview:large">}
+{canonical && <link rel="canonical" href={canonical}>}
+{alternates.map(a => <link rel="alternate" hreflang={a.hreflang} href={a.href}>)}
+{!noindex && <link rel="alternate" hreflang="x-default" href={abs(pathFor('pt', pageKey))}>}
+<link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content={BUSINESS.name}>
+<meta property="og:title" content={meta.title}>
+<meta property="og:description" content={meta.description}>
+{canonical && <meta property="og:url" content={canonical}>}
+<meta property="og:image" content={abs('/og.jpg')}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content={`${BUSINESS.name} – ${BUSINESS.subtitle}`}>
+<meta property="og:locale" content={ui.ogLocale}>
+{ogLocales.map(l => <meta property="og:locale:alternate" content={l}>)}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={meta.title}>
+<meta name="twitter:description" content={meta.description}>
+<meta name="twitter:image" content={abs('/og.jpg')}>
+{gsv && <meta name="google-site-verification" content={gsv}>}
+{bsv && <meta name="msvalidate.01" content={bsv}>}
+{jsonld.map(o => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
+</head>
+<body>
+<a class="skip" href="#main">{ui.skip}</a>
+<Header lang={lang} pageKey={pageKey} />
+<main id="main" tabindex="-1"><div class="wrap"><slot /></div></main>
+<Footer lang={lang} pageKey={pageKey} />
+<div class="bar">
+  <a class="btn primary" href={waLink(meta.waText)} target="_blank" rel="noopener" data-track="whatsapp_click">WhatsApp</a>
+  <a class="btn" href={mailtoLink(meta.mailSubject)} data-track="email_click">E-mail</a>
+</div>
+<script is:inline>
+/* Conversion hooks (no cookies, ~0.5 KB): forwards clicks to Zaraz/gtag only if one is ever added. */
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-track]');if(!a)return;var n=a.getAttribute('data-track'),p={page_path:location.pathname};try{if(window.zaraz&&zaraz.track)zaraz.track(n,p);else if(window.gtag)gtag('event',n,p);}catch(x){}});
+/* Contact form: block submits faster than 3 s after page load (bots). Works without JS too. */
+(function(){var t0=Date.now();document.querySelectorAll('form.quote').forEach(function(f){f.addEventListener('submit',function(e){if(Date.now()-t0<3000){e.preventDefault();var m=f.querySelector('.form-msg');if(m)m.textContent=f.getAttribute('data-toofast');}else{try{if(window.zaraz&&zaraz.track)zaraz.track('form_submit',{page_path:location.pathname});}catch(x){}}});});})();
+</script>
+{webKey && <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: webKey })}></script>}
+</body>
+</html>

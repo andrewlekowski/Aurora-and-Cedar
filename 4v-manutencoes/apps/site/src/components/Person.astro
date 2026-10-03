@@ -1,0 +1,12 @@
+---
+import { Picture } from 'astro:assets';
+import portrait from '@4v/brand/assets/valdir_bw.jpg';
+import { CONTENT, type Lang } from '../lib/site';
+interface Props { lang: Lang; eager?: boolean }
+const { lang, eager = false } = Astro.props;
+const ui = CONTENT[lang].ui;
+---
+<div class="person">
+  <Picture src={portrait} formats={['avif', 'webp']} widths={[96, 192, 288]} sizes="96px" width={96} height={96} alt={ui.portraitAlt} loading={eager ? 'eager' : 'lazy'} />
+  <div><b>{ui.photoCaptionTitle}</b>{ui.photoCaption}</div>
+</div>

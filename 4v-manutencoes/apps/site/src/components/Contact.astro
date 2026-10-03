@@ -1,0 +1,46 @@
+---
+import { BUSINESS, INTEGRATIONS, fullAddress, telLink } from '@4v/brand/site.config';
+import Ctas from './Ctas.astro';
+import { CONTENT, abs, pathFor, pageMeta, type Lang, type PageKey } from '../lib/site';
+interface Props { lang: Lang; pageKey: PageKey; form?: boolean; title?: string; headingLevel?: 'h1' | 'h2' }
+const { lang, pageKey, form = false, title } = Astro.props;
+const ui = CONTENT[lang].ui;
+const f = ui.form;
+const key = import.meta.env.PUBLIC_WEB3FORMS_KEY || INTEGRATIONS.web3formsKey;
+const m = pageMeta(lang, pageKey);
+---
+<section class="sec" aria-labelledby="contato">
+  <h2 id="contato">{title || ui.contactTitle}</h2>
+  <div class="contact-box">
+    <p class="lead" style="margin-bottom:0">{ui.contactLead}</p>
+    <Ctas lang={lang} pageKey={pageKey} showNumber={false} />
+    <dl class="nap">
+      <div><dt>{ui.phoneLabel}</dt><dd><a href={telLink()} data-track="phone_click">{BUSINESS.phoneDisplay}</a></dd></div>
+      <div><dt>{ui.emailLabel}</dt><dd>{BUSINESS.email}</dd></div>
+      {BUSINESS.showAddress && <div><dt>{ui.addressLabel}</dt><dd>{fullAddress()}</dd></div>}
+    </dl>
+  </div>
+  {form && key && (
+    <div style="margin-top:28px">
+      <h3>{f.title}</h3>
+      <p>{f.lead}</p>
+      <form class="quote" action="https://api.web3forms.com/submit" method="POST" data-toofast={f.tooFast}>
+        <input type="hidden" name="access_key" value={key}>
+        <input type="hidden" name="subject" value={`${f.subject} – ${m.nav}`}>
+        <input type="hidden" name="from_name" value={`${BUSINESS.name} – site`}>
+        <input type="hidden" name="redirect" value={abs(pathFor(lang, 'obrigado'))}>
+        <input type="hidden" name="Página" value={abs(pathFor(lang, pageKey))}>
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fld"><label for="q-name">{f.name} <span class="req">({f.required})</span></label><input id="q-name" name="Nome" required autocomplete="name"></div>
+        <div class="fld"><label for="q-org">{f.org}</label><input id="q-org" name="Empresa / instituição" autocomplete="organization"></div>
+        <div class="fld"><label for="q-city">{f.city}</label><input id="q-city" name="Cidade" autocomplete="address-level2"></div>
+        <div class="fld"><label for="q-phone">{f.phone} <span class="req">({f.required})</span></label><input id="q-phone" name="Telefone / WhatsApp" type="tel" required autocomplete="tel" inputmode="tel"></div>
+        <div class="fld"><label for="q-email">{f.email}</label><input id="q-email" name="email" type="email" autocomplete="email"></div>
+        <div class="fld"><label for="q-eq">{f.equipment}</label><input id="q-eq" name="Equipamento" placeholder={f.equipmentHint}></div>
+        <div class="fld"><label for="q-msg">{f.message} <span class="req">({f.required})</span></label><textarea id="q-msg" name="message" required></textarea></div>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+        <button class="btn primary" type="submit">{f.send}</button>
+      </form>
+    </div>
+  )}
+</section>

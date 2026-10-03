@@ -1,0 +1,6 @@
+---
+import { CONTENT, pathFor, pageMeta, type Lang, type PageKey } from '../lib/site';
+interface Props { lang: Lang; pageKey: PageKey }
+const { lang, pageKey } = Astro.props;
+---
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href={pathFor(lang, 'home')}>{CONTENT[lang].ui.home}</a></li><li aria-current="page">{pageMeta(lang, pageKey).nav}</li></ol></nav>

@@ -1,0 +1,22 @@
+---
+import Crumbs from '../Crumbs.astro';
+import Ctas from '../Ctas.astro';
+import Contact from '../Contact.astro';
+import { CONTENT, type Lang } from '../../lib/site';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const a = CONTENT[lang].areas;
+---
+<Crumbs lang={lang} pageKey="areas" />
+<h1>{a.h1}</h1>
+<p class="lead">{a.paras[0]}</p>
+{a.paras.slice(1).map(p => <p>{p}</p>)}
+<Ctas lang={lang} pageKey="areas" />
+<section class="sec" aria-labelledby="cidades">
+  <h2 id="cidades">{a.citiesTitle}</h2>
+  <ul class="pills">{a.cities.map(x => <li>{x}</li>)}</ul>
+  <h3>{a.regionsTitle}</h3>
+  <ul class="pills">{a.regions.map(x => <li>{x}</li>)}</ul>
+  <p style="margin-top:20px">{a.outside}</p>
+</section>
+<Contact lang={lang} pageKey="areas" />

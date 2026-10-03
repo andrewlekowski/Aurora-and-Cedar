@@ -1,0 +1,29 @@
+---
+import { BUSINESS, fullAddress, telLink } from '@4v/brand/site.config';
+import { CONTENT, LANGS, SERVICE_KEYS, pathFor, pageMeta, type Lang, type PageKey } from '../lib/site';
+interface Props { lang: Lang; pageKey: PageKey }
+const { lang, pageKey } = Astro.props;
+const switchKey: PageKey = pageKey === 'notfound' ? 'home' : pageKey;
+const ui = CONTENT[lang].ui;
+---
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h2>{BUSINESS.name}</h2>
+        <p style="margin:0 0 8px">{BUSINESS.subtitle}</p>
+        <p style="margin:0"><a href={telLink()} data-track="phone_click">{BUSINESS.phoneDisplay}</a><br><span style="overflow-wrap:anywhere">{BUSINESS.email}</span>{BUSINESS.showAddress && <><br>{fullAddress()}</>}</p>
+      </div>
+      <nav aria-label={ui.footerServices}>
+        <h2>{ui.footerServices}</h2>
+        <ul>{SERVICE_KEYS.map(k => <li><a href={pathFor(lang, k)}>{pageMeta(lang, k).nav}</a></li>)}</ul>
+      </nav>
+      <nav aria-label={ui.footerAbout}>
+        <h2>{ui.footerAbout}</h2>
+        <ul>{(['experiencia', 'areas', 'contato'] as PageKey[]).map(k => <li><a href={pathFor(lang, k)}>{pageMeta(lang, k).nav}</a></li>)}</ul>
+      </nav>
+    </div>
+    <nav aria-label={ui.langSwitch} class="foot-langs"><h2>{ui.langSwitch}</h2><ul>{LANGS.map(l => <li><a href={pathFor(l, switchKey)} lang={CONTENT[l].ui.htmlLang} hreflang={CONTENT[l].ui.htmlLang} aria-current={l === lang ? 'page' : undefined}>{CONTENT[l].ui.langName}</a></li>)}</ul></nav>
+    <p class="legal">{BUSINESS.name} · {BUSINESS.legalNameME} · {ui.cnpjLabel} {BUSINESS.cnpj}</p>
+  </div>
+</footer>

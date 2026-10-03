@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@4v/brand/assets/logo_k.png';
+import Ctas from '../Ctas.astro';
+import Person from '../Person.astro';
+import Warranty from '../Warranty.astro';
+import Faq from '../Faq.astro';
+import Contact from '../Contact.astro';
+import { CONTENT, SERVICE_KEYS, pathFor, type Lang } from '../../lib/site';
+import { BUSINESS } from '@4v/brand/site.config';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = CONTENT[lang];
+const h = c.home;
+const e = c.experiencia;
+---
+<section class="hero">
+  <Image class="wm" src={logo} alt="" width={340} height={340} loading="eager" aria-hidden="true" />
+  <p class="eyebrow">{h.eyebrow}</p>
+  <h1>{h.h1}</h1>
+  <p class="lead">{h.lead}</p>
+  <Ctas lang={lang} pageKey="home" />
+</section>
+<Person lang={lang} eager />
+
+<section class="sec" aria-labelledby="servicos">
+  <h2 id="servicos">{c.ui.servicesTitle}</h2>
+  <p>{h.servicesLead}</p>
+  <ul class="cards three">
+    {SERVICE_KEYS.map(k => <li><a href={pathFor(lang, k)}><b>{c.services[k].nav}</b><span>{c.services[k].card}</span></a></li>)}
+  </ul>
+</section>
+
+<section class="sec" aria-labelledby="experiencia">
+  <h2 id="experiencia">{h.expTitle}</h2>
+  <div class="since"><span>{e.sinceLabel}</span><b>{BUSINESS.since}</b></div>
+  <p class="lead">{h.expLead}</p>
+  <h3>{e.uniTitle}</h3>
+  <ul class="uni">{e.unis.map(u => <li><b>{u[0]}</b><span>{u[1]}</span></li>)}</ul>
+  <p style="margin-top:16px"><a href={pathFor(lang, 'experiencia')}>{h.expMore}</a></p>
+</section>
+
+<Warranty lang={lang} />
+
+<section class="sec" aria-labelledby="como">
+  <h2 id="como">{c.ui.howTitle}</h2>
+  <ol class="steps">{c.ui.howSteps.map(s => <li>{s}</li>)}</ol>
+</section>
+
+<section class="sec" aria-labelledby="areas">
+  <h2 id="areas">{h.areasTitle}</h2>
+  <p>{h.areasText}</p>
+  <p><a href={pathFor(lang, 'areas')}>{h.areasMore}</a></p>
+</section>
+
+<Faq lang={lang} items={h.faq} />
+<Contact lang={lang} pageKey="home" />

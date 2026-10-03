@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Home from '../components/pages/Home.astro';
+import Service from '../components/pages/Service.astro';
+import Experiencia from '../components/pages/Experiencia.astro';
+import Areas from '../components/pages/Areas.astro';
+import Contato from '../components/pages/Contato.astro';
+import Message from '../components/pages/Message.astro';
+import { ROUTES, SERVICE_KEYS, businessLd, breadcrumbLd, serviceLd, faqLd, CONTENT, type Lang, type PageKey, type ServiceKey } from '../lib/site';
+
+export function getStaticPaths() {
+  return ROUTES.map(r => ({ params: { path: r.path === '/' ? undefined : r.path.slice(1) }, props: { lang: r.lang, pageKey: r.key } }));
+}
+interface Props { lang: Lang; pageKey: PageKey }
+const { lang, pageKey } = Astro.props;
+const isService = (SERVICE_KEYS as string[]).includes(pageKey);
+const jsonld: object[] = [businessLd(lang)];
+if (pageKey !== 'home') jsonld.push(breadcrumbLd(lang, pageKey));
+if (isService) jsonld.push(serviceLd(lang, pageKey as ServiceKey), faqLd(CONTENT[lang].services[pageKey as ServiceKey].faq));
+if (pageKey === 'home') jsonld.push(faqLd(CONTENT[lang].home.faq));
+---
+<Base lang={lang} pageKey={pageKey} jsonld={pageKey === 'obrigado' ? [] : jsonld}>
+  {pageKey === 'home' && <Home lang={lang} />}
+  {isService && <Service lang={lang} pageKey={pageKey as ServiceKey} />}
+  {pageKey === 'experiencia' && <Experiencia lang={lang} />}
+  {pageKey === 'areas' && <Areas lang={lang} />}
+  {pageKey === 'contato' && <Contato lang={lang} />}
+  {pageKey === 'obrigado' && <Message lang={lang} pageKey="obrigado" />}
+</Base>

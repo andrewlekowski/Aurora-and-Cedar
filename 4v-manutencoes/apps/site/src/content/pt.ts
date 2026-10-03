@@ -1,0 +1,420 @@
+import type { Content, Faq } from './types';
+
+// Placeholders {phone}, {email}, {since} are filled from packages/brand/site.config.ts at render time.
+
+const FAQ_WARRANTY: Faq = { q: 'Quanto tempo de garantia tem o serviço?', a: 'Todos os serviços têm garantia mínima de 3 meses, informada por escrito no termo de garantia. Dependendo do serviço, o prazo pode ser maior.' };
+const FAQ_FREE: Faq = { q: 'O atendimento em garantia é cobrado?', a: 'Não. O atendimento em garantia não tem custo para o cliente.' };
+const FAQ_PREVENTIVE: Faq = { q: 'Vocês fazem manutenção preventiva?', a: 'Sim. A manutenção preventiva revisa o equipamento antes que ele pare, o que reduz o risco de interromper atendimentos e prolonga a vida útil.' };
+const FAQ_PUBLIC: Faq = { q: 'Atendem universidades e órgãos públicos?', a: 'Sim. A 4V Manutencoes já atendeu USP, UNESP, Unifesp e prefeituras da região.' };
+const FAQ_QUOTE: Faq = { q: 'Como peço um orçamento?', a: 'Chame no WhatsApp {phone}, envie um e-mail para {email} ou use o formulário de contato. Informe o equipamento, a marca e o modelo e descreva o problema. Se puder, envie uma foto da etiqueta do equipamento.' };
+const FAQ_DOCS: Faq = { q: 'Recebo documento do serviço?', a: 'Sim. Você recebe o termo de garantia e as orientações de uso do equipamento por escrito.' };
+
+export const pt: Content = {
+  ui: {
+    htmlLang: 'pt-BR', ogLocale: 'pt_BR', langName: 'Português',
+    skip: 'Pular para o conteúdo', menu: 'Menu', home: 'Início',
+    waBtn: 'Chamar no WhatsApp', mailBtn: 'Enviar e-mail', callBtn: 'Ligar',
+    phoneLabel: 'WhatsApp e telefone', emailLabel: 'E-mail', addressLabel: 'Endereço', cnpjLabel: 'CNPJ',
+    servicesTitle: 'Serviços', problemsTitle: 'Problemas comuns que atendemos', faqTitle: 'Perguntas frequentes',
+    relatedTitle: 'Outros serviços', seeExperience: 'Veja a experiência da 4V Manutencoes',
+    warrantyTitle: 'Garantia por escrito',
+    warrantySeal: ['GARANTIA MÍNIMA', '3', 'MESES', 'EM TODOS OS SERVIÇOS'],
+    warrantyPoints: [
+      'Garantia mínima de 3 meses em todos os serviços. Dependendo do serviço, o prazo pode ser maior.',
+      'O atendimento em garantia não tem custo para o cliente.',
+      'Você recebe o termo de garantia e as orientações de uso do equipamento por escrito.',
+    ],
+    contactTitle: 'Peça um orçamento',
+    contactLead: 'Fale direto com o Valdir. Conte qual é o equipamento, a marca, o modelo e o problema.',
+    howTitle: 'Como funciona',
+    howSteps: [
+      'Chame no WhatsApp ou mande um e-mail e conte qual é o equipamento e o problema.',
+      'O equipamento é avaliado.',
+      'O serviço é feito e testado.',
+      'Você recebe o equipamento com termo de garantia e orientações de uso.',
+    ],
+    areasLine: 'Atendimento em Jacareí, São José dos Campos, Vale do Paraíba e Litoral Norte de São Paulo.',
+    langSwitch: 'Idioma',
+    footerServices: 'Serviços', footerAbout: 'A empresa',
+    form: {
+      title: 'Formulário de orçamento',
+      lead: 'Preencha o que souber. O Valdir responde pelo e-mail ou pelo WhatsApp.',
+      name: 'Nome', org: 'Empresa ou instituição', city: 'Cidade', phone: 'Telefone ou WhatsApp', email: 'E-mail',
+      equipment: 'Equipamento (marca e modelo)', equipmentHint: 'Ex.: autoclave Cristófoli 21 litros', message: 'Mensagem',
+      send: 'Enviar mensagem', required: 'obrigatório',
+      tooFast: 'Confira os dados e toque em “Enviar mensagem” de novo.',
+      subject: 'Orçamento pelo site',
+    },
+    portraitAlt: 'Valdir de Paula Bicudo, técnico da 4V Manutencoes',
+    logoAlt: '4V Manutencoes',
+    vcard: 'Salvar o contato no celular (vCard)',
+    photoCaptionTitle: 'Valdir Bicudo',
+    photoCaption: 'Fale direto com o Valdir pelo WhatsApp.',
+  },
+
+  home: {
+    slug: '',
+    title: 'Manutenção de Equipamentos Médicos e de Laboratório | 4V',
+    description: 'Manutenção corretiva e preventiva de autoclaves, estufas, capelas e equipamentos odontológicos em Jacareí e região. Garantia por escrito. Chame no WhatsApp',
+    h1: 'Manutenção de equipamentos médicos, laboratoriais e odontológicos',
+    nav: 'Início',
+    eyebrow: 'Assistência Técnica Especializada',
+    lead: 'Manutenção corretiva e preventiva, com garantia por escrito em todos os serviços. Atendimento em Jacareí, São José dos Campos e região.',
+    waText: 'Olá, Valdir! Vim pelo site da 4V Manutencoes e preciso de manutenção em um equipamento.',
+    mailSubject: 'Orçamento – manutenção de equipamento',
+    servicesLead: 'Manutenção corretiva e preventiva para hospitais, clínicas, consultórios odontológicos, laboratórios, universidades e prefeituras.',
+    expTitle: 'Experiência',
+    expLead: 'Empresa ativa desde {since}, com atendimento a universidades públicas e prefeituras.',
+    expMore: 'Ver experiência e principais clientes',
+    faq: [FAQ_WARRANTY, FAQ_FREE, FAQ_PREVENTIVE, FAQ_PUBLIC, FAQ_QUOTE, FAQ_DOCS],
+    areasTitle: 'Áreas atendidas',
+    areasText: 'A 4V Manutencoes fica em Jacareí e atende Jacareí, São José dos Campos, Caraguatatuba, Ubatuba e outras cidades do Vale do Paraíba e do Litoral Norte de São Paulo.',
+    areasMore: 'Ver áreas atendidas',
+  },
+
+  services: {
+    autoclave: {
+      slug: 'manutencao-de-autoclave',
+      title: 'Manutenção e Conserto de Autoclave em Jacareí | 4V',
+      description: 'Conserto e manutenção preventiva de autoclaves hospitalares, odontológicas e de laboratório. Garantia mínima de 3 meses. Atendimento pelo WhatsApp.',
+      h1: 'Manutenção e conserto de autoclave',
+      nav: 'Autoclave',
+      serviceName: 'Manutenção de autoclave',
+      card: 'Conserto e manutenção preventiva de autoclaves hospitalares, odontológicas e de laboratório.',
+      waText: 'Olá, Valdir! Vim pelo site e preciso de manutenção em uma autoclave.',
+      mailSubject: 'Orçamento – manutenção de autoclave',
+      intro: [
+        'A autoclave é o equipamento que esteriliza instrumentais e materiais com vapor sob pressão. Quando ela para, o consultório, a clínica ou o laboratório para junto. A 4V Manutencoes faz o conserto e a manutenção preventiva de autoclaves hospitalares, odontológicas e de laboratório, em Jacareí, São José dos Campos e região.',
+        'O atendimento começa pelo WhatsApp: você conta qual é a autoclave, a marca, o modelo e o que está acontecendo. O equipamento é avaliado, o serviço é feito e testado, e você recebe a autoclave com termo de garantia e orientações de uso por escrito.',
+        'A 4V Manutencoes já fez o conserto de 3 autoclaves para a Prefeitura de Ubatuba, em 2021.',
+      ],
+      problems: [
+        'Autoclave não esquenta ou demora muito para aquecer',
+        'Autoclave não pressuriza ou perde pressão durante o ciclo',
+        'Autoclave vazando vapor pela porta',
+        'Troca da borracha de vedação da porta',
+        'Válvula de segurança ou de alívio com defeito',
+        'Ciclo que não termina, para no meio ou mostra erro no painel',
+        'Material que sai molhado no fim do ciclo',
+        'Manutenção de autoclave odontológica, hospitalar e de laboratório',
+      ],
+      sections: [
+        { h2: 'Manutenção corretiva e preventiva', paras: [
+          'A manutenção corretiva resolve o defeito que já apareceu: a autoclave que não liga, não aquece, não pressuriza ou vaza vapor. Antes de qualquer troca de peça, o problema é avaliado e explicado.',
+          'A manutenção preventiva revisa a autoclave antes que ela pare. É feita a limpeza, a verificação da vedação, das válvulas, da resistência e dos sensores, e os itens gastos são indicados. Isso reduz o risco de interromper os atendimentos e ajuda o equipamento a durar mais.',
+        ] },
+      ],
+      faq: [
+        { q: 'Minha autoclave não está pressurizando. O que pode ser?', a: 'As causas mais comuns são a borracha de vedação da porta gasta, uma válvula com defeito, a resistência ou um sensor. Só uma avaliação técnica confirma a causa. Chame no WhatsApp e descreva o que está acontecendo.' },
+        { q: 'Vocês atendem autoclave odontológica?', a: 'Sim. A 4V Manutencoes faz manutenção de autoclaves odontológicas, hospitalares e de laboratório.' },
+        FAQ_WARRANTY, FAQ_FREE, FAQ_QUOTE,
+      ],
+      related: ['odonto', 'hospitalar'],
+    },
+
+    odonto: {
+      slug: 'manutencao-de-equipamentos-odontologicos',
+      title: 'Manutenção de Cadeira e Equipo Odontológico | 4V',
+      description: 'Conserto de equipo, cuspideira, seringa tríplice, alta rotação e micromotor. Manutenção preventiva para consultórios. Garantia por escrito.',
+      h1: 'Manutenção de equipamentos odontológicos',
+      nav: 'Odontológicos',
+      serviceName: 'Manutenção de equipamentos odontológicos',
+      card: 'Cadeira, equipo, cuspideira, seringa tríplice, alta rotação e micromotor.',
+      waText: 'Olá, Valdir! Vim pelo site e preciso de manutenção em um equipamento odontológico.',
+      mailSubject: 'Orçamento – manutenção de equipamento odontológico',
+      intro: [
+        'No consultório odontológico, um equipo parado significa pacientes remarcados. A 4V Manutencoes faz a manutenção corretiva e preventiva de cadeiras e equipos odontológicos: equipo, cuspideira, seringa tríplice, mangueiras, caneta de alta rotação e micromotor.',
+        'O atendimento é direto com o técnico. Você conta pelo WhatsApp qual é o equipamento e o problema, o serviço é combinado, feito e testado, e você recebe o termo de garantia e as orientações de uso por escrito.',
+        'A 4V Manutencoes também faz manutenção de autoclaves odontológicas, que costumam trabalhar ao lado do equipo no mesmo consultório.',
+      ],
+      problems: [
+        'Equipo sem água, sem ar ou com pressão fraca',
+        'Mangueiras do equipo ou da cuspideira ressecadas ou vazando',
+        'Cuspideira que não escoa ou não enche o copo',
+        'Seringa tríplice sem água ou sem ar',
+        'Caneta de alta rotação e micromotor sem força ou com ruído',
+        'Sugador com sucção fraca',
+        'Comandos da cadeira que não respondem',
+      ],
+      sections: [
+        { h2: 'Manutenção corretiva e preventiva no consultório', paras: [
+          'Na manutenção corretiva, o defeito é avaliado e o conserto é feito com a troca das peças necessárias, como mangueiras, conexões e componentes do equipo e da cuspideira.',
+          'Na manutenção preventiva, o equipamento é revisado antes de falhar: são verificadas as mangueiras, as conexões, a parte de água e ar e os comandos. Também são dadas orientações simples de cuidado diário, como a limpeza da cuspideira e a drenagem do compressor.',
+        ] },
+      ],
+      faq: [
+        { q: 'Vocês trocam as mangueiras do equipo e da cuspideira?', a: 'Sim. A troca de mangueiras do equipo e da cuspideira é um dos serviços feitos na manutenção de equipamentos odontológicos.' },
+        { q: 'Quais marcas vocês atendem?', a: 'Chame no WhatsApp e informe a marca e o modelo do equipamento. Assim o Valdir confirma o atendimento antes de marcar o serviço.' },
+        FAQ_WARRANTY, FAQ_FREE, FAQ_QUOTE,
+      ],
+      related: ['autoclave', 'hospitalar'],
+    },
+
+    estufa: {
+      slug: 'manutencao-de-estufa-de-laboratorio',
+      title: 'Manutenção de Estufa de Laboratório e Secagem | 4V',
+      description: 'Manutenção corretiva e preventiva de estufas de laboratório, secagem e esterilização. Garantia mínima de 3 meses em todos os serviços.',
+      h1: 'Manutenção de estufas de laboratório',
+      nav: 'Estufas',
+      serviceName: 'Manutenção de estufa de laboratório',
+      card: 'Estufas de laboratório, de secagem e de esterilização.',
+      waText: 'Olá, Valdir! Vim pelo site e preciso de manutenção em uma estufa.',
+      mailSubject: 'Orçamento – manutenção de estufa',
+      intro: [
+        'Estufas de laboratório, de secagem e de esterilização precisam manter a temperatura certa para que o trabalho dê resultado. Quando a estufa não aquece, passa da temperatura ou desliga sozinha, o processo fica comprometido.',
+        'A 4V Manutencoes faz a manutenção corretiva e preventiva de estufas para laboratórios de universidades, clínicas, hospitais e empresas. O defeito é avaliado, o conserto é feito e testado, e você recebe o termo de garantia e as orientações de uso por escrito.',
+      ],
+      problems: [
+        'Estufa não aquece',
+        'Temperatura que não estabiliza ou passa do valor ajustado',
+        'Termostato ou controlador de temperatura com defeito',
+        'Resistência queimada',
+        'Ventilação interna que não funciona',
+        'Porta que não veda bem',
+        'Estufa que desarma o disjuntor ou desliga sozinha',
+      ],
+      sections: [
+        { h2: 'Manutenção corretiva e preventiva', paras: [
+          'Na manutenção corretiva, são verificados a resistência, o termostato ou controlador, os sensores, a ventilação e a parte elétrica, e é feita a troca do que estiver com defeito.',
+          'Na manutenção preventiva, a estufa é revisada para evitar paradas: limpeza, verificação da vedação da porta, das ligações elétricas e do funcionamento do controle de temperatura.',
+        ] },
+      ],
+      faq: [
+        { q: 'Minha estufa não aquece. O que pode ser?', a: 'Pode ser a resistência, o termostato ou controlador, um sensor ou a alimentação elétrica. Só a avaliação técnica confirma a causa. Chame no WhatsApp e descreva o que acontece.' },
+        FAQ_PREVENTIVE, FAQ_WARRANTY, FAQ_FREE, FAQ_QUOTE,
+      ],
+      related: ['capela', 'remanejamento'],
+    },
+
+    capela: {
+      slug: 'manutencao-de-capela-de-exaustao',
+      title: 'Manutenção de Capela / Cabine de Exaustão de Gases | 4V',
+      description: 'Manutenção de capelas e cabines de exaustão de gases para laboratórios e universidades. Corretiva e preventiva, com garantia.',
+      h1: 'Manutenção de capela de exaustão de gases',
+      nav: 'Capela de exaustão',
+      serviceName: 'Manutenção de capela de exaustão de gases',
+      card: 'Capelas químicas e cabines de exaustão de gases para laboratórios.',
+      waText: 'Olá, Valdir! Vim pelo site e preciso de manutenção em uma capela de exaustão.',
+      mailSubject: 'Orçamento – manutenção de capela de exaustão',
+      intro: [
+        'A capela (ou cabine) de exaustão de gases protege quem trabalha no laboratório, retirando vapores e gases da área de trabalho. Para isso, o exaustor, os dutos e a janela precisam funcionar bem.',
+        'A 4V Manutencoes faz a manutenção corretiva e preventiva de capelas químicas e cabines de exaustão de gases em laboratórios de universidades, escolas, hospitais e empresas. O serviço é feito, testado e entregue com termo de garantia e orientações de uso por escrito.',
+      ],
+      problems: [
+        'Exaustor que não liga ou faz ruído',
+        'Exaustão fraca',
+        'Janela (guilhotina) que não para na altura ou não desliza',
+        'Iluminação interna queimada',
+        'Comandos e interruptores com defeito',
+        'Revisão preventiva de capelas de laboratório',
+      ],
+      sections: [
+        { h2: 'Manutenção corretiva e preventiva', paras: [
+          'Na manutenção corretiva, o defeito do exaustor, da janela, da iluminação ou dos comandos é avaliado e consertado.',
+          'Na manutenção preventiva, a capela é revisada para continuar protegendo quem usa: verificação do exaustor, da janela, da parte elétrica e da limpeza. Também são passadas orientações de uso, como trabalhar com a janela na altura indicada e não guardar produtos dentro da cabine.',
+        ] },
+      ],
+      faq: [
+        { q: 'A capela está com exaustão fraca. O que pode ser?', a: 'Pode ser o exaustor, uma obstrução nas aberturas ou nos dutos, ou um problema elétrico. Só a avaliação técnica confirma a causa.' },
+        FAQ_PUBLIC, FAQ_WARRANTY, FAQ_FREE, FAQ_QUOTE,
+      ],
+      related: ['bio', 'estufa'],
+    },
+
+    bio: {
+      slug: 'manutencao-de-cabine-de-seguranca-biologica',
+      title: 'Manutenção de Cabine de Segurança Biológica | 4V',
+      description: 'Manutenção de cabines de segurança biológica e equipamentos de biossegurança para laboratórios. Garantia por escrito.',
+      h1: 'Manutenção de cabine de segurança biológica',
+      nav: 'Biossegurança',
+      serviceName: 'Manutenção de cabine de segurança biológica',
+      card: 'Cabines de segurança biológica e equipamentos de biossegurança.',
+      waText: 'Olá, Valdir! Vim pelo site e preciso de manutenção em uma cabine de segurança biológica.',
+      mailSubject: 'Orçamento – manutenção de cabine de segurança biológica',
+      intro: [
+        'A cabine de segurança biológica protege o operador, o material e o ambiente do laboratório. Ela depende do ventilador, das grelhas livres, da iluminação e dos comandos para trabalhar com segurança.',
+        'A 4V Manutencoes faz a manutenção corretiva e preventiva de cabines de segurança biológica e de outros equipamentos de biossegurança para laboratórios. O serviço é feito, testado e entregue com termo de garantia e orientações de uso por escrito.',
+      ],
+      problems: [
+        'Cabine que não liga',
+        'Ventilador com ruído ou fluxo de ar fraco',
+        'Lâmpada UV ou iluminação queimada',
+        'Comandos, alarmes ou interruptores com defeito',
+        'Revisão preventiva de equipamentos de biossegurança',
+      ],
+      sections: [
+        { h2: 'Manutenção corretiva e preventiva', paras: [
+          'Na manutenção corretiva, o defeito é avaliado e o conserto é feito com a troca das peças necessárias.',
+          'Na manutenção preventiva, a cabine é revisada antes de falhar e são reforçadas as orientações de uso: aguardar o tempo de estabilização, não bloquear as grelhas e nunca usar a lâmpada UV com o operador presente. A periodicidade indicada pelo fabricante deve ser respeitada.',
+        ] },
+      ],
+      faq: [
+        { q: 'Com que frequência a cabine precisa de manutenção preventiva?', a: 'Siga a periodicidade indicada pelo fabricante e pelo protocolo do laboratório. A 4V Manutencoes pode fazer as revisões nesse intervalo.' },
+        FAQ_PUBLIC, FAQ_WARRANTY, FAQ_FREE, FAQ_QUOTE,
+      ],
+      related: ['capela', 'remanejamento'],
+    },
+
+    hospitalar: {
+      slug: 'manutencao-de-equipamentos-hospitalares',
+      title: 'Manutenção de Equipamentos Médico-Hospitalares | 4V',
+      description: 'Manutenção de autoclaves, bombas de vácuo, cardioversores e equipamentos hospitalares. Experiência com setor público e universidades.',
+      h1: 'Manutenção de equipamentos médico-hospitalares',
+      nav: 'Hospitalares',
+      serviceName: 'Manutenção de equipamentos médico-hospitalares',
+      card: 'Autoclaves, bombas de vácuo, cardioversores e outros equipamentos.',
+      waText: 'Olá, Valdir! Vim pelo site e preciso de manutenção em um equipamento hospitalar.',
+      mailSubject: 'Orçamento – manutenção de equipamento hospitalar',
+      intro: [
+        'Hospitais, clínicas e unidades de saúde dependem de equipamentos funcionando todos os dias. A 4V Manutencoes faz a manutenção corretiva e preventiva de equipamentos médico-hospitalares, como autoclaves, bombas de vácuo e cardioversores.',
+        'A empresa tem experiência com o setor público: em 2018 fez a manutenção de um cardioversor em uma contratação pública, e em 2021 consertou 3 autoclaves para a Prefeitura de Ubatuba. Também atende universidades públicas, como USP, UNESP e Unifesp.',
+      ],
+      problems: [
+        'Autoclave que não esquenta, não pressuriza ou vaza vapor',
+        'Bomba de vácuo sem sucção ou com ruído',
+        'Manutenção de cardioversor',
+        'Equipamento que não liga ou desarma',
+        'Revisão preventiva de equipamentos hospitalares',
+      ],
+      sections: [
+        { h2: 'Manutenção corretiva e preventiva', paras: [
+          'Na manutenção corretiva, o equipamento parado é avaliado, o defeito é explicado e o conserto é feito e testado antes da entrega.',
+          'Na manutenção preventiva, os equipamentos são revisados antes de falhar, o que reduz o risco de interromper atendimentos e ajuda a prolongar a vida útil.',
+        ] },
+        { h2: 'Documentos para compras públicas', paras: [
+          'Cada serviço sai com termo de garantia por escrito, com o número do documento, a descrição do serviço, as peças trocadas e o prazo. Isso facilita o registro do serviço por prefeituras, universidades e hospitais.',
+        ] },
+      ],
+      faq: [FAQ_PUBLIC, FAQ_DOCS, FAQ_WARRANTY, FAQ_FREE, FAQ_QUOTE],
+      related: ['autoclave', 'remanejamento'],
+    },
+
+    remanejamento: {
+      slug: 'instalacao-e-remanejamento-de-equipamentos-de-laboratorio',
+      title: 'Instalação e Remanejamento de Equipamentos de Laboratório',
+      description: 'Desinstalação, mudança e reinstalação de equipamentos de laboratório. Experiência com USP, UNESP e Unifesp.',
+      h1: 'Instalação e remanejamento de equipamentos de laboratório',
+      nav: 'Remanejamento',
+      serviceName: 'Instalação e remanejamento de equipamentos de laboratório',
+      card: 'Desinstalação, mudança e reinstalação de equipamentos de laboratório.',
+      waText: 'Olá, Valdir! Vim pelo site e preciso de instalação ou remanejamento de equipamentos de laboratório.',
+      mailSubject: 'Orçamento – remanejamento de equipamentos de laboratório',
+      intro: [
+        'Mudar um laboratório de sala ou de prédio exige cuidado: os equipamentos precisam ser desligados e desinstalados corretamente, transportados e reinstalados funcionando.',
+        'A 4V Manutencoes faz a desinstalação, o remanejamento e a reinstalação de equipamentos de laboratório. Em 2024, fez esse serviço para a UNESP. A empresa tem experiência com laboratórios de universidades públicas, como USP, UNESP e Unifesp.',
+      ],
+      problems: [
+        'Desinstalação de equipamentos de laboratório',
+        'Mudança de laboratório para outra sala ou prédio',
+        'Reinstalação e teste de funcionamento após a mudança',
+        'Instalação de equipamentos de laboratório',
+        'Revisão dos equipamentos aproveitando a mudança',
+      ],
+      sections: [
+        { h2: 'Equipamentos que costumam mudar junto', paras: [
+          'Em uma mudança de laboratório entram equipamentos como estufas, capelas de exaustão de gases, cabines de segurança biológica, autoclaves e bombas de vácuo. São os mesmos equipamentos em que a 4V Manutencoes faz manutenção corretiva e preventiva, o que ajuda a reinstalar cada um do jeito certo e a conferir se está funcionando depois da mudança.',
+          'Mande a lista de equipamentos, os endereços de origem e de destino e o prazo da mudança. Assim o orçamento sai mais rápido e o trabalho pode ser planejado com o laboratório.',
+        ] },
+        { h2: 'Como o serviço é feito', list: [
+          'Levantamento dos equipamentos que vão mudar e do local de destino.',
+          'Desligamento e desinstalação com cuidado.',
+          'Remanejamento para o novo local.',
+          'Reinstalação, teste de funcionamento e entrega com documento por escrito.',
+        ] },
+      ],
+      faq: [
+        FAQ_PUBLIC,
+        { q: 'Dá para revisar os equipamentos durante a mudança?', a: 'Sim. A mudança é um bom momento para fazer a manutenção preventiva. Informe a lista de equipamentos ao pedir o orçamento.' },
+        FAQ_DOCS, FAQ_QUOTE,
+      ],
+      related: ['estufa', 'capela'],
+    },
+  },
+
+  experiencia: {
+    slug: 'experiencia',
+    title: 'Experiência e Clientes: USP, UNESP, Unifesp | 4V Manutencoes',
+    description: 'Atendimento a universidades públicas e prefeituras desde 2015. Conheça a experiência da 4V Manutencoes.',
+    h1: 'Experiência e principais clientes',
+    nav: 'Experiência',
+    waText: 'Olá, Valdir! Vim pelo site da 4V Manutencoes e gostaria de um orçamento.',
+    mailSubject: 'Orçamento – 4V Manutencoes',
+    lead: 'A 4V Manutencoes está ativa desde {since} e faz manutenção de equipamentos médico-hospitalares, de laboratório e odontológicos.',
+    sinceLabel: 'Desde',
+    uniTitle: 'Principais clientes: universidades',
+    uniLead: 'Experiência com três das maiores universidades públicas do país.',
+    unis: [['USP', 'Universidade de São Paulo'], ['UNESP', 'Universidade Estadual Paulista “Júlio de Mesquita Filho”'], ['Unifesp', 'Universidade Federal de São Paulo']],
+    publicTitle: 'Serviços prestados ao setor público',
+    publicItems: [
+      ['2018', 'Manutenção de cardioversor (contratação pública).'],
+      ['2021', 'Prefeitura de Ubatuba: conserto de 3 autoclaves.'],
+      ['2024', 'UNESP: desinstalação, remanejamento e instalação de equipamentos de laboratório.'],
+    ],
+    eqTitle: 'Experiência com equipamentos',
+    equipment: ['Autoclaves', 'Bombas de vácuo', 'Cardioversores', 'Equipamentos de laboratório', 'Equipamentos odontológicos', 'Estufas', 'Capelas de exaustão', 'Equipamentos de biossegurança'],
+    otherTitle: 'Mais sobre a empresa',
+    other: [
+      'Em 2016, fez o conserto de equipo e cuspideira odontológicos Dabi Atlante.',
+      'Listada pela Prismatec como assistência técnica em Jacareí.',
+      'Participação institucional: membro do Conselho Municipal dos Direitos da Pessoa com Deficiência de Jacareí (2019–2021).',
+    ],
+    note: 'Os nomes das universidades são citados apenas para indicar experiência de atendimento.',
+  },
+
+  areas: {
+    slug: 'areas-atendidas',
+    title: 'Áreas Atendidas: Jacareí, São José dos Campos e Região | 4V',
+    description: 'Manutenção de equipamentos médicos e de laboratório em Jacareí, Vale do Paraíba e Litoral Norte de SP.',
+    h1: 'Áreas atendidas',
+    nav: 'Áreas atendidas',
+    waText: 'Olá, Valdir! Vim pelo site e gostaria de saber se vocês atendem a minha cidade.',
+    mailSubject: 'Orçamento – atendimento na minha cidade',
+    paras: [
+      'A 4V Manutencoes fica em Jacareí, no Vale do Paraíba, e faz manutenção de equipamentos médicos, laboratoriais e odontológicos na cidade e na região.',
+      'Já atendeu clientes em Jacareí, São José dos Campos, Caraguatatuba e Ubatuba, incluindo o conserto de autoclaves para a Prefeitura de Ubatuba. Também tem experiência com laboratórios de universidades públicas, como USP, UNESP e Unifesp.',
+      'Para saber se a sua cidade é atendida, chame no WhatsApp e informe a cidade, o equipamento e o problema.',
+    ],
+    citiesTitle: 'Cidades com atendimento já realizado',
+    cities: ['Jacareí', 'São José dos Campos', 'Caraguatatuba', 'Ubatuba'],
+    regionsTitle: 'Regiões',
+    regions: ['Vale do Paraíba', 'Litoral Norte de São Paulo'],
+    outside: 'É de outra cidade? Chame no WhatsApp e pergunte.',
+  },
+
+  contato: {
+    slug: 'contato',
+    title: 'Contato: WhatsApp e E-mail | 4V Manutencoes',
+    description: 'Fale pelo WhatsApp {phone} ou e-mail {email}. Formulário de orçamento. Jacareí – SP.',
+    h1: 'Fale com a 4V Manutencoes',
+    nav: 'Contato',
+    waText: 'Olá, Valdir! Vim pelo site da 4V Manutencoes e gostaria de um orçamento.',
+    mailSubject: 'Orçamento – 4V Manutencoes',
+    lead: 'O jeito mais rápido é o WhatsApp. Você também pode mandar um e-mail ou usar o formulário abaixo.',
+    tipsTitle: 'Para agilizar o orçamento, informe:',
+    tips: ['Qual é o equipamento, a marca e o modelo.', 'O que está acontecendo.', 'A cidade onde o equipamento está.', 'Se puder, uma foto da etiqueta do equipamento.'],
+  },
+
+  obrigado: {
+    slug: 'obrigado',
+    title: 'Mensagem enviada | 4V Manutencoes',
+    description: 'Sua mensagem foi enviada para a 4V Manutencoes.',
+    h1: 'Mensagem enviada',
+    nav: 'Mensagem enviada',
+    waText: 'Olá, Valdir! Acabei de mandar uma mensagem pelo site da 4V Manutencoes.',
+    mailSubject: 'Orçamento – 4V Manutencoes',
+    lead: 'Mensagem enviada. O Valdir vai responder pelo e-mail ou WhatsApp.',
+    back: 'Voltar ao início',
+  },
+
+  notfound: {
+    slug: '404',
+    title: 'Página não encontrada | 4V Manutencoes',
+    description: 'Esta página não existe.',
+    h1: 'Página não encontrada',
+    nav: 'Página não encontrada',
+    waText: 'Olá, Valdir! Vim pelo site da 4V Manutencoes e preciso de manutenção em um equipamento.',
+    mailSubject: 'Orçamento – 4V Manutencoes',
+    lead: 'Esta página não existe ou mudou de endereço.',
+    back: 'Ir para o início',
+  },
+};

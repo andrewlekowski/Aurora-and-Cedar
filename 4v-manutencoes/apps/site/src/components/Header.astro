@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@4v/brand/assets/logo_k.png';
+import { CONTENT, LANGS, SERVICE_KEYS, pathFor, pageMeta, type Lang, type PageKey } from '../lib/site';
+interface Props { lang: Lang; pageKey: PageKey }
+const { lang, pageKey } = Astro.props;
+const ui = CONTENT[lang].ui;
+const switchKey: PageKey = pageKey === 'notfound' ? 'home' : pageKey;
+const links: PageKey[] = ['home', ...SERVICE_KEYS, 'experiencia', 'areas', 'contato'];
+---
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href={pathFor(lang, 'home')}><Image src={logo} alt="" width={36} height={36} densities={[1, 2, 3]} loading="eager" /><span>4V Manutencoes</span></a>
+    <div class="top-r">
+      <nav class="langs wide-only" aria-label={ui.langSwitch}>
+        {LANGS.map(l => <a href={pathFor(l, switchKey)} hreflang={CONTENT[l].ui.htmlLang} lang={CONTENT[l].ui.htmlLang} aria-current={l === lang ? 'page' : undefined} title={CONTENT[l].ui.langName}>{l.toUpperCase()}</a>)}
+      </nav>
+      <details class="menu">
+        <summary>{ui.menu}</summary>
+        <nav aria-label={ui.menu}>
+          <ul>
+            {links.map(k => <li><a href={pathFor(lang, k)} aria-current={k === pageKey ? 'page' : undefined}>{pageMeta(lang, k).nav}</a></li>)}
+          </ul>
+          <div class="menu-langs"><span>{ui.langSwitch}</span>
+            <div class="langs">{LANGS.map(l => <a href={pathFor(l, switchKey)} hreflang={CONTENT[l].ui.htmlLang} lang={CONTENT[l].ui.htmlLang} aria-current={l === lang ? 'page' : undefined}>{CONTENT[l].ui.langName}</a>)}</div>
+          </div>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>

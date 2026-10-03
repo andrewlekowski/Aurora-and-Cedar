@@ -1,0 +1,25 @@
+# CI for the 4V Manutencoes monorepo (4v-manutencoes/). Free GitHub Actions minutes; runs only when that folder changes.
+name: 4v-manutencoes
+on:
+  push:
+    paths: ['4v-manutencoes/**', '.github/workflows/4v-manutencoes.yml']
+  pull_request:
+    paths: ['4v-manutencoes/**', '.github/workflows/4v-manutencoes.yml']
+defaults:
+  run:
+    working-directory: 4v-manutencoes
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: 4v-manutencoes/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e

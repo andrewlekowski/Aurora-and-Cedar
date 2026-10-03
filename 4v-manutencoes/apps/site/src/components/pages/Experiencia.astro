@@ -1,0 +1,37 @@
+---
+import Crumbs from '../Crumbs.astro';
+import Ctas from '../Ctas.astro';
+import Contact from '../Contact.astro';
+import { CONTENT, type Lang } from '../../lib/site';
+import { BUSINESS } from '@4v/brand/site.config';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = CONTENT[lang];
+const e = c.experiencia;
+---
+<Crumbs lang={lang} pageKey="experiencia" />
+<h1>{e.h1}</h1>
+<div class="since"><span>{e.sinceLabel}</span><b>{BUSINESS.since}</b></div>
+<p class="lead">{e.lead}</p>
+<Ctas lang={lang} pageKey="experiencia" />
+
+<section class="sec" aria-labelledby="uni">
+  <h2 id="uni">{e.uniTitle}</h2>
+  <p>{e.uniLead}</p>
+  <ul class="uni">{e.unis.map(u => <li><b>{u[0]}</b><span>{u[1]}</span></li>)}</ul>
+</section>
+<section class="sec" aria-labelledby="pub">
+  <h2 id="pub">{e.publicTitle}</h2>
+  <dl class="chrono">{e.publicItems.map(x => <div><dt>{x[0]}</dt><dd>{x[1]}</dd></div>)}</dl>
+</section>
+<section class="sec" aria-labelledby="eq">
+  <h2 id="eq">{e.eqTitle}</h2>
+  <ul class="pills">{e.equipment.map(x => <li>{x}</li>)}</ul>
+</section>
+<section class="sec" aria-labelledby="mais">
+  <h2 id="mais">{e.otherTitle}</h2>
+  {e.other.map(x => <p class="fact">{x}</p>)}
+  <p class="fact">{BUSINESS.name} · {c.ui.cnpjLabel} {BUSINESS.cnpj}</p>
+  <p class="muted" style="margin-top:20px;font-size:16px">{e.note}</p>
+</section>
+<Contact lang={lang} pageKey="experiencia" />

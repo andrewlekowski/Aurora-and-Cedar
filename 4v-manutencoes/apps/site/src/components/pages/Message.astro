@@ -1,0 +1,11 @@
+---
+import Ctas from '../Ctas.astro';
+import { CONTENT, pathFor, type Lang } from '../../lib/site';
+interface Props { lang: Lang; pageKey: 'obrigado' | 'notfound' }
+const { lang, pageKey } = Astro.props;
+const m = CONTENT[lang][pageKey];
+---
+<h1>{m.h1}</h1>
+<p class="lead">{m.lead}</p>
+<Ctas lang={lang} pageKey={pageKey} />
+<p><a class="btn" href={pathFor(lang, 'home')}>{m.back}</a></p>

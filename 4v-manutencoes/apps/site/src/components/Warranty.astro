@@ -1,0 +1,21 @@
+---
+import { CONTENT, type Lang } from '../lib/site';
+interface Props { lang: Lang; level?: 2 | 3 }
+const { lang } = Astro.props;
+const ui = CONTENT[lang].ui;
+const s = ui.warrantySeal;
+---
+<section class="sec" aria-labelledby="garantia">
+  <h2 id="garantia">{ui.warrantyTitle}</h2>
+  <div class="g-wrap">
+    <svg class="seal" viewBox="0 0 220 220" role="img" aria-label={s.join(' ')}>
+      <circle cx="110" cy="110" r="104" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round"/>
+      <circle cx="110" cy="110" r="92" fill="none" stroke="currentColor" stroke-width="3"/>
+      <text x="110" y="66" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="11.5" letter-spacing=".8" fill="currentColor">{s[0]}</text>
+      <text x="110" y="128" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="72" fill="currentColor">{s[1]}</text>
+      <text x="110" y="150" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="19" letter-spacing="3" fill="currentColor">{s[2]}</text>
+      <text x="110" y="170" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="700" font-size="9" letter-spacing=".3" fill="currentColor">{s[3]}</text>
+    </svg>
+    <ul>{ui.warrantyPoints.map(p => <li>{p}</li>)}</ul>
+  </div>
+</section>

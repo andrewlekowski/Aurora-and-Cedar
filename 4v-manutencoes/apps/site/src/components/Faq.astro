@@ -1,0 +1,10 @@
+---
+import type { Faq } from '../content/types';
+import { CONTENT, type Lang } from '../lib/site';
+interface Props { lang: Lang; items: Faq[] }
+const { lang, items } = Astro.props;
+---
+<section class="sec faq" aria-labelledby="faq">
+  <h2 id="faq">{CONTENT[lang].ui.faqTitle}</h2>
+  {items.map(f => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+</section>
