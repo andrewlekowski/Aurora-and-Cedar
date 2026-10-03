@@ -1,0 +1,3 @@
+# Copy to .dev.vars for `npm run dev:pages` (wrangler). Never commit .dev.vars.
+APP_PASSWORD_HASH=REPLACE_WITH_OUTPUT_OF_npm_run_hash-password
+SESSION_SECRET=REPLACE_WITH_A_LONG_RANDOM_STRING_AT_LEAST_32_CHARS
