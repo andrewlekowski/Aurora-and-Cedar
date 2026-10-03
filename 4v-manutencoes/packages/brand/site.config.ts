@@ -25,7 +25,7 @@ export const BUSINESS = {
   phoneE164: '+5512997881836',
   whatsappDigits: '5512997881836',
   email: '4Vmanutencoes@gmail.com',
-  /** ⛔ HANDOVER §8: confirm with Valdir that this address is current and OK to show publicly. */
+  /** Confirmed current and OK to show publicly (Andrew, Oct 2026). */
   showAddress: true,
   address: {
     street: 'Rua São Marcos, 126 – Jardim São José',
@@ -34,8 +34,8 @@ export const BUSINESS = {
     postalCode: '12327-668',
     country: 'BR',
   },
-  /** Cities evidenced by past work (HANDOVER §6.3). Add others only after Valdir confirms them. */
-  areaServed: ['Jacareí', 'São José dos Campos', 'Caraguatatuba', 'Ubatuba', 'Vale do Paraíba', 'Litoral Norte de São Paulo'],
+  /** Greater São Paulo confirmed by Andrew (Oct 2026); the rest is evidenced by past work (HANDOVER §6.3). */
+  areaServed: ['São Paulo', 'Grande São Paulo', 'Jacareí', 'São José dos Campos', 'Caraguatatuba', 'Ubatuba', 'Vale do Paraíba', 'Litoral Norte de São Paulo'],
   /** Fill after the Google Business Profile / social pages exist. Empty entries are dropped from JSON-LD. */
   sameAs: [] as string[],
   /** Add when Valdir confirms them (HANDOVER §6.5). */

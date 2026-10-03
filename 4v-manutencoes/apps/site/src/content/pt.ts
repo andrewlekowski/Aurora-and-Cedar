@@ -33,7 +33,7 @@ export const pt: Content = {
       'O serviço é feito e testado.',
       'Você recebe o equipamento com termo de garantia e orientações de uso.',
     ],
-    areasLine: 'Atendimento em Jacareí, São José dos Campos, Vale do Paraíba e Litoral Norte de São Paulo.',
+    areasLine: 'Atendimento em São Paulo e Grande São Paulo, Jacareí, São José dos Campos, Vale do Paraíba e Litoral Norte.',
     langSwitch: 'Idioma',
     footerServices: 'Serviços', footerAbout: 'A empresa',
     form: {
@@ -59,7 +59,7 @@ export const pt: Content = {
     h1: 'Manutenção de equipamentos médicos, laboratoriais e odontológicos',
     nav: 'Início',
     eyebrow: 'Assistência Técnica Especializada',
-    lead: 'Manutenção corretiva e preventiva, com garantia por escrito em todos os serviços. Atendimento em Jacareí, São José dos Campos e região.',
+    lead: 'Manutenção corretiva e preventiva, com garantia por escrito em todos os serviços. Atendimento em São Paulo e Grande São Paulo, Jacareí, São José dos Campos e região.',
     waText: 'Olá, Valdir! Vim pelo site da 4V Manutencoes e preciso de manutenção em um equipamento.',
     mailSubject: 'Orçamento – manutenção de equipamento',
     servicesLead: 'Manutenção corretiva e preventiva para hospitais, clínicas, consultórios odontológicos, laboratórios, universidades e prefeituras.',
@@ -68,7 +68,7 @@ export const pt: Content = {
     expMore: 'Ver experiência e principais clientes',
     faq: [FAQ_WARRANTY, FAQ_FREE, FAQ_PREVENTIVE, FAQ_PUBLIC, FAQ_QUOTE, FAQ_DOCS],
     areasTitle: 'Áreas atendidas',
-    areasText: 'A 4V Manutencoes fica em Jacareí e atende Jacareí, São José dos Campos, Caraguatatuba, Ubatuba e outras cidades do Vale do Paraíba e do Litoral Norte de São Paulo.',
+    areasText: 'A 4V Manutencoes fica em Jacareí e atende a cidade de São Paulo e a Grande São Paulo, além de Jacareí, São José dos Campos, Caraguatatuba, Ubatuba e outras cidades do Vale do Paraíba e do Litoral Norte.',
     areasMore: 'Ver áreas atendidas',
   },
 
@@ -363,21 +363,21 @@ export const pt: Content = {
 
   areas: {
     slug: 'areas-atendidas',
-    title: 'Áreas Atendidas: Jacareí, São José dos Campos e Região | 4V',
-    description: 'Manutenção de equipamentos médicos e de laboratório em Jacareí, Vale do Paraíba e Litoral Norte de SP.',
+    title: 'Áreas Atendidas: Grande São Paulo e Vale do Paraíba | 4V',
+    description: 'Manutenção de equipamentos médicos e de laboratório em São Paulo, Grande São Paulo, Jacareí, Vale do Paraíba e Litoral Norte de SP.',
     h1: 'Áreas atendidas',
     nav: 'Áreas atendidas',
     waText: 'Olá, Valdir! Vim pelo site e gostaria de saber se vocês atendem a minha cidade.',
     mailSubject: 'Orçamento – atendimento na minha cidade',
     paras: [
-      'A 4V Manutencoes fica em Jacareí, no Vale do Paraíba, e faz manutenção de equipamentos médicos, laboratoriais e odontológicos na cidade e na região.',
+      'A 4V Manutencoes fica em Jacareí, no Vale do Paraíba, e faz manutenção de equipamentos médicos, laboratoriais e odontológicos na cidade de São Paulo, em toda a Grande São Paulo, no Vale do Paraíba e no Litoral Norte.',
       'Já atendeu clientes em Jacareí, São José dos Campos, Caraguatatuba e Ubatuba, incluindo o conserto de autoclaves para a Prefeitura de Ubatuba. Também tem experiência com laboratórios de universidades públicas, como USP, UNESP e Unifesp.',
       'Para saber se a sua cidade é atendida, chame no WhatsApp e informe a cidade, o equipamento e o problema.',
     ],
     citiesTitle: 'Cidades com atendimento já realizado',
     cities: ['Jacareí', 'São José dos Campos', 'Caraguatatuba', 'Ubatuba'],
     regionsTitle: 'Regiões',
-    regions: ['Vale do Paraíba', 'Litoral Norte de São Paulo'],
+    regions: ['São Paulo (capital)', 'Grande São Paulo', 'Vale do Paraíba', 'Litoral Norte de São Paulo'],
     outside: 'É de outra cidade? Chame no WhatsApp e pergunte.',
   },
 

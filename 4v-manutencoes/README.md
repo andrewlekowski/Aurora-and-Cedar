@@ -32,7 +32,20 @@ In a Claude Code cloud session, Playwright uses the preinstalled Chromium. On yo
 
 ---
 
-## Deploy: step by step (about 30 minutes, all free)
+## Launch in one command (recommended)
+
+On any computer with Node 22 and git (Mac, Windows/WSL or Linux), from a clone of the repo on this branch:
+
+```bash
+bash 4v-manutencoes/scripts/launch.sh
+```
+
+It installs, runs the tests, logs you in to Cloudflare in the browser (once), creates both free Pages projects, asks for Valdir's password and stores only its hash as an encrypted secret, deploys both apps with direct upload, and smoke-tests the live URLs. It is safe to re-run; `ROTATE=1 bash …/launch.sh` changes the password and logs out every phone.
+Headless alternative: set `CLOUDFLARE_API_TOKEN` (permission *Account → Cloudflare Pages → Edit*) and `CLOUDFLARE_ACCOUNT_ID`, plus `APP_PASSWORD`.
+
+Direct upload means a later code change goes live by re-running the script. If you'd rather have every push deploy automatically, use the Git setup below instead.
+
+## Deploy with Git integration (auto-deploy on push)
 
 The code is in the `4v-manutencoes/` folder of the `andrewlekowski/Aurora-and-Cedar` repo. Merge the branch to `main` first (or pick the branch as the production branch below).
 
@@ -117,8 +130,8 @@ Register e.g. `4vmanutencoes.com.br`, add it under the Pages project → Custom 
 
 ## Before launch: open questions (HANDOVER §8)
 
-- ⛔ **Address:** is "Rua São Marcos, 126 – Jardim São José, Jacareí – SP, CEP 12327-668" current and OK to show? It is shown now (`BUSINESS.showAddress = true`). If customers don't visit, set it to `false`: the street disappears from pages, JSON-LD and the vCard, and the Google profile should be a service-area business.
-- ⛔ **Cities:** the site lists only cities with evidence of past work (Jacareí, São José dos Campos, Caraguatatuba, Ubatuba) plus "Vale do Paraíba" and "Litoral Norte". Add confirmed ones to `BUSINESS.areaServed` and to the areas page text in `apps/site/src/content/{pt,en,fr}.ts`.
+- ✅ **Address** confirmed current and OK to show (Rua São Marcos, 126 – Jardim São José, Jacareí – SP, CEP 12327-668).
+- ✅ **Service area:** the city of São Paulo and Greater São Paulo (confirmed), plus Jacareí, São José dos Campos, Caraguatatuba, Ubatuba, Vale do Paraíba and Litoral Norte (past work). Edit `BUSINESS.areaServed` and the areas text in `apps/site/src/content/{pt,en,fr}.ts` if this changes.
 - Business hours → `BUSINESS.openingHours`. Map coordinates → `BUSINESS.geo`.
 - Brands he services → the dental FAQ currently says "tell us the brand"; once confirmed, brand names can be added as keywords.
 - Other equipment (fluxo laminar, centrífugas, banho-maria, compressores)? Each confirmed "yes" can become a page.

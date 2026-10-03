@@ -4,7 +4,7 @@ Ready-to-paste text for the free listings. It uses only the confirmed facts in `
 
 **NAP rule:** name, address and phone must be identical everywhere:
 - **4V Manutencoes**
-- Rua São Marcos, 126 – Jardim São José, Jacareí – SP, CEP 12327-668 *(⛔ confirm with Valdir first)*
+- Rua São Marcos, 126 – Jardim São José, Jacareí – SP, CEP 12327-668
 - (12) 99788-1836
 
 ---
@@ -13,14 +13,14 @@ Ready-to-paste text for the free listings. It uses only the confirmed facts in `
 
 - **Name:** 4V Manutencoes
 - **Category (primary):** pick the closest to "Medical equipment repair service" ("Serviço de reparo de equipamentos médicos"). **Secondary:** laboratory equipment repair / dental equipment repair, if offered.
-- **If customers don't visit the address:** set it up as a *service-area business* (address hidden) and list: Jacareí, São José dos Campos, Caraguatatuba, Ubatuba (plus any cities Valdir confirms).
+- **If customers don't visit the address:** set it up as a *service-area business* (address hidden) and list: São Paulo, Grande São Paulo (add the main municipalities, e.g. Guarulhos, Mogi das Cruzes, Santo André, Osasco), Jacareí, São José dos Campos, Caraguatatuba, Ubatuba. Google allows up to 20 areas.
 - **Website:** `https://4vmanutencoes.pages.dev/?utm_source=gbp`
 - **Phone:** (12) 99788-1836 · **WhatsApp chat:** enable and use the same number.
 - **Opening date:** February 2015.
 
 **Description (≤ 750 characters):**
 
-> A 4V Manutencoes faz manutenção corretiva e preventiva de equipamentos médicos, laboratoriais e odontológicos: autoclaves, estufas, capelas de exaustão de gases, cabines de segurança biológica, bombas de vácuo, cardioversores, cadeiras e equipos odontológicos. Também faz instalação e remanejamento de equipamentos de laboratório. Empresa ativa desde 2015, com experiência em universidades públicas (USP, UNESP e Unifesp) e prefeituras da região. Todos os serviços têm garantia mínima de 3 meses, por escrito, e o atendimento em garantia não tem custo. Atendimento em Jacareí, São José dos Campos, Vale do Paraíba e Litoral Norte. Chame no WhatsApp (12) 99788-1836.
+> A 4V Manutencoes faz manutenção corretiva e preventiva de equipamentos médicos, laboratoriais e odontológicos: autoclaves, estufas, capelas de exaustão de gases, cabines de segurança biológica, bombas de vácuo, cardioversores, cadeiras e equipos odontológicos. Também faz instalação e remanejamento de equipamentos de laboratório. Empresa ativa desde 2015, com experiência em universidades públicas (USP, UNESP e Unifesp) e prefeituras da região. Todos os serviços têm garantia mínima de 3 meses, por escrito, e o atendimento em garantia não tem custo. Atendimento em São Paulo e Grande São Paulo, Jacareí, São José dos Campos, Vale do Paraíba e Litoral Norte. Chame no WhatsApp (12) 99788-1836.
 
 **Services list** (one per line):
 Manutenção de autoclave · Manutenção de equipamentos odontológicos · Manutenção de estufa de laboratório · Manutenção de capela de exaustão de gases · Manutenção de cabine de segurança biológica · Manutenção de equipamentos médico-hospitalares · Instalação e remanejamento de equipamentos de laboratório · Manutenção preventiva
@@ -38,7 +38,7 @@ Manutenção de autoclave · Manutenção de equipamentos odontológicos · Manu
 - **Name:** 4V Manutencoes
 - **Category:** Serviços / Reparo e manutenção
 - **Description (≤ 256 characters):**
-  > Manutenção corretiva e preventiva de equipamentos médicos, laboratoriais e odontológicos. Garantia mínima de 3 meses por escrito. Jacareí e região.
+  > Manutenção corretiva e preventiva de equipamentos médicos, laboratoriais e odontológicos. Garantia mínima de 3 meses por escrito. Grande SP e Vale do Paraíba.
 - **Address:** same as above (or leave blank if service-area only)
 - **E-mail:** 4Vmanutencoes@gmail.com · **Website:** https://4vmanutencoes.pages.dev/?utm_source=whatsapp
 - **Greeting message (automatic):**
@@ -51,7 +51,7 @@ Reuse the Google description and services list word for word. Website links: add
 
 ## 4. Business card update
 
-The current card says "São Paulo, Brazil". For NAP consistency, change the location line to **Jacareí – SP** (or the full address, once confirmed) and add:
+The current card says "São Paulo, Brazil". For NAP consistency, change the location line to the full address (**Rua São Marcos, 126 – Jacareí – SP**) and add:
 - `4vmanutencoes.pages.dev`
 - A small QR code (bottom right, as before) pointing to **`https://4vmanutencoes.pages.dev/4V_Manutencoes.vcf`**. Scanning it downloads the contact card, which is built from `site.config.ts`, so it always matches the website.
 

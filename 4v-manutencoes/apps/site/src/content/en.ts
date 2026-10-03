@@ -31,7 +31,7 @@ export const en: Content = {
       'The service is done and tested.',
       'You get the equipment back with a warranty certificate and usage instructions.',
     ],
-    areasLine: 'Service in Jacareí, São José dos Campos, the Paraíba Valley and the North Coast of São Paulo state, Brazil.',
+    areasLine: 'Service in the city of São Paulo and Greater São Paulo, Jacareí, São José dos Campos, the Paraíba Valley and the North Coast of São Paulo state, Brazil.',
     langSwitch: 'Language',
     footerServices: 'Services', footerAbout: 'The company',
     form: {
@@ -57,7 +57,7 @@ export const en: Content = {
     h1: 'Maintenance of medical, laboratory and dental equipment',
     nav: 'Home',
     eyebrow: 'Specialised Technical Service',
-    lead: 'Corrective and preventive maintenance with a written warranty on every service. Based in Jacareí, São Paulo state, Brazil.',
+    lead: 'Corrective and preventive maintenance with a written warranty on every service. Serving Greater São Paulo and the Paraíba Valley, Brazil.',
     waText: 'Hello Valdir! I found the 4V Manutencoes website and need maintenance on a piece of equipment.',
     mailSubject: 'Quote – equipment maintenance',
     servicesLead: 'Corrective and preventive maintenance for hospitals, clinics, dental offices, laboratories, universities and city halls.',
@@ -66,7 +66,7 @@ export const en: Content = {
     expMore: 'See experience and main clients',
     faq: [FAQ_WARRANTY, FAQ_FREE, FAQ_PREVENTIVE, FAQ_PUBLIC, FAQ_QUOTE, FAQ_DOCS],
     areasTitle: 'Service areas',
-    areasText: '4V Manutencoes is based in Jacareí and serves Jacareí, São José dos Campos, Caraguatatuba, Ubatuba and other cities in the Paraíba Valley and on the North Coast of São Paulo state.',
+    areasText: '4V Manutencoes is based in Jacareí and serves the city of São Paulo and Greater São Paulo, as well as Jacareí, São José dos Campos, Caraguatatuba, Ubatuba and other cities in the Paraíba Valley and on the North Coast of São Paulo state.',
     areasMore: 'See service areas',
   },
 
@@ -361,21 +361,21 @@ export const en: Content = {
 
   areas: {
     slug: 'service-areas',
-    title: 'Service Areas: Jacareí, São José dos Campos and Region | 4V',
-    description: 'Medical and laboratory equipment maintenance in Jacareí, the Paraíba Valley and the North Coast of São Paulo state, Brazil.',
+    title: 'Service Areas: Greater São Paulo and Paraíba Valley | 4V',
+    description: 'Medical and laboratory equipment maintenance in São Paulo, Greater São Paulo, Jacareí, the Paraíba Valley and the North Coast, Brazil.',
     h1: 'Service areas',
     nav: 'Service areas',
     waText: 'Hello Valdir! I found your website and would like to know if you cover my city.',
     mailSubject: 'Quote – service in my city',
     paras: [
-      '4V Manutencoes is based in Jacareí, in the Paraíba Valley, and maintains medical, laboratory and dental equipment in the city and the surrounding region.',
+      '4V Manutencoes is based in Jacareí, in the Paraíba Valley, and maintains medical, laboratory and dental equipment in the city of São Paulo, across Greater São Paulo, in the Paraíba Valley and on the North Coast.',
       'It has served clients in Jacareí, São José dos Campos, Caraguatatuba and Ubatuba, including autoclave repairs for the City of Ubatuba. It also has experience with laboratories at public universities such as USP, UNESP and Unifesp.',
       'To check whether your city is covered, message us on WhatsApp with the city, the equipment and the problem.',
     ],
     citiesTitle: 'Cities already served',
     cities: ['Jacareí', 'São José dos Campos', 'Caraguatatuba', 'Ubatuba'],
     regionsTitle: 'Regions',
-    regions: ['Paraíba Valley (Vale do Paraíba)', 'North Coast of São Paulo state (Litoral Norte)'],
+    regions: ['City of São Paulo', 'Greater São Paulo (Grande São Paulo)', 'Paraíba Valley (Vale do Paraíba)', 'North Coast of São Paulo state (Litoral Norte)'],
     outside: 'In another city? Ask us on WhatsApp.',
   },
 

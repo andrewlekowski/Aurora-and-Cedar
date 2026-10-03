@@ -31,7 +31,7 @@ export const fr: Content = {
       'L’intervention est réalisée et testée.',
       'Vous récupérez l’équipement avec un certificat de garantie et les consignes d’utilisation.',
     ],
-    areasLine: 'Interventions à Jacareí, São José dos Campos, dans la vallée du Paraíba et sur le littoral nord de l’État de São Paulo (Brésil).',
+    areasLine: 'Interventions à São Paulo et dans le Grand São Paulo, à Jacareí, São José dos Campos, dans la vallée du Paraíba et sur le littoral nord de l’État de São Paulo (Brésil).',
     langSwitch: 'Langue',
     footerServices: 'Services', footerAbout: 'L’entreprise',
     form: {
@@ -57,7 +57,7 @@ export const fr: Content = {
     h1: 'Maintenance d’équipements médicaux, de laboratoire et dentaires',
     nav: 'Accueil',
     eyebrow: 'Assistance technique spécialisée',
-    lead: 'Maintenance corrective et préventive, avec une garantie écrite sur tous les services. Basé à Jacareí, État de São Paulo, Brésil.',
+    lead: 'Maintenance corrective et préventive, avec une garantie écrite sur tous les services. Interventions dans le Grand São Paulo et la vallée du Paraíba (Brésil).',
     waText: 'Bonjour Valdir ! J’ai trouvé le site de 4V Manutencoes et j’ai besoin d’une maintenance sur un équipement.',
     mailSubject: 'Devis – maintenance d’équipement',
     servicesLead: 'Maintenance corrective et préventive pour hôpitaux, cliniques, cabinets dentaires, laboratoires, universités et mairies.',
@@ -66,7 +66,7 @@ export const fr: Content = {
     expMore: 'Voir l’expérience et les principaux clients',
     faq: [FAQ_WARRANTY, FAQ_FREE, FAQ_PREVENTIVE, FAQ_PUBLIC, FAQ_QUOTE, FAQ_DOCS],
     areasTitle: 'Zones desservies',
-    areasText: '4V Manutencoes est basé à Jacareí et intervient à Jacareí, São José dos Campos, Caraguatatuba, Ubatuba et dans d’autres villes de la vallée du Paraíba et du littoral nord de l’État de São Paulo.',
+    areasText: '4V Manutencoes est basé à Jacareí et intervient à São Paulo et dans le Grand São Paulo, ainsi qu’à Jacareí, São José dos Campos, Caraguatatuba, Ubatuba et dans d’autres villes de la vallée du Paraíba et du littoral nord de l’État de São Paulo.',
     areasMore: 'Voir les zones desservies',
   },
 
@@ -361,21 +361,21 @@ export const fr: Content = {
 
   areas: {
     slug: 'zones-desservies',
-    title: 'Zones desservies : Jacareí, São José dos Campos | 4V',
-    description: 'Maintenance d’équipements médicaux et de laboratoire à Jacareí, dans la vallée du Paraíba et sur le littoral nord de São Paulo.',
+    title: 'Zones desservies : Grand São Paulo et vallée du Paraíba | 4V',
+    description: 'Maintenance d’équipements médicaux et de laboratoire à São Paulo, dans le Grand São Paulo, à Jacareí et dans la vallée du Paraíba.',
     h1: 'Zones desservies',
     nav: 'Zones desservies',
     waText: 'Bonjour Valdir ! J’ai trouvé votre site et je voudrais savoir si vous intervenez dans ma ville.',
     mailSubject: 'Devis – intervention dans ma ville',
     paras: [
-      '4V Manutencoes est basé à Jacareí, dans la vallée du Paraíba, et assure la maintenance d’équipements médicaux, de laboratoire et dentaires dans la ville et la région.',
+      '4V Manutencoes est basé à Jacareí, dans la vallée du Paraíba, et assure la maintenance d’équipements médicaux, de laboratoire et dentaires à São Paulo, dans tout le Grand São Paulo, dans la vallée du Paraíba et sur le littoral nord.',
       'L’entreprise est déjà intervenue à Jacareí, São José dos Campos, Caraguatatuba et Ubatuba, notamment pour la réparation d’autoclaves de la mairie d’Ubatuba. Elle a aussi l’expérience des laboratoires d’universités publiques comme l’USP, l’UNESP et l’Unifesp.',
       'Pour savoir si votre ville est desservie, écrivez sur WhatsApp en indiquant la ville, l’équipement et le problème.',
     ],
     citiesTitle: 'Villes où nous sommes déjà intervenus',
     cities: ['Jacareí', 'São José dos Campos', 'Caraguatatuba', 'Ubatuba'],
     regionsTitle: 'Régions',
-    regions: ['Vallée du Paraíba (Vale do Paraíba)', 'Littoral nord de l’État de São Paulo (Litoral Norte)'],
+    regions: ['Ville de São Paulo', 'Grand São Paulo (Grande São Paulo)', 'Vallée du Paraíba (Vale do Paraíba)', 'Littoral nord de l’État de São Paulo (Litoral Norte)'],
     outside: 'Vous êtes dans une autre ville ? Demandez sur WhatsApp.',
   },
 
