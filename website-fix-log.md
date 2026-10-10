@@ -128,3 +128,10 @@ WPvivid DB backup on live at **07:15** server time before starting. All edits be
   - B5 (Stripe live vs test key): **not checked**. Reading the payment settings page was blocked by Claude Code's permission check because it holds API keys; Andrew should look at MotoPress → Settings → Payment Gateways → Stripe (key starts `pk_live_`).
   - B2: the booking-widget error needs manual datepicker clicks; not re-tested (Book Now and checkout worked 30/30 earlier).
 - GoDaddy cache flushed after the footer change.
+
+## 2026-10-10: "Why Aurora & Cedar?" page, repo prep only (cloud session, no live changes)
+Andrew sent the v2 page package (`copy/why-aurora-and-cedar/`: mockup, production HTML/CSS, About link, 17 images + manifest, copy deck, `CLAUDE_CODE_PROMPT.md`).
+This cloud session has no Claude in Chrome, and the network policy blocks auroraandcedarstays.com, so **nothing is on the site yet: no backup, no media upload, no page.**
+- **acs-site 0.2.3 (git only, not on live):** `assets/acs-why.css` (copied unchanged from the package) plus section 20. Section 20 enqueues the CSS only on `is_page('why-aurora-and-cedar')` and sets the SEO title and meta description from `copy.md`, because there's no SEO plugin (same approach as section 19). `php -l` is clean.
+- **Local render check** (production HTML + CSS, images from the package): no horizontal scroll at 1366 or 400 px, exactly one H1, antler rings and Then/Now tags in place. Fonts weren't checked (Google Fonts blocked here).
+- **Still to do in a local session with Chrome:** steps 1–6 of `copy/why-aurora-and-cedar/CLAUDE_CODE_PROMPT.md`. Upload 0.2.3 instead of hand-adding the enqueue block. It goes in after the WPvivid backup, and before the page is previewed. Rollback is to re-upload 0.2.2 from git.
