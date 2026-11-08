@@ -128,3 +128,84 @@ WPvivid DB backup on live at **07:15** server time before starting. All edits be
   - B5 (Stripe live vs test key): **not checked**. Reading the payment settings page was blocked by Claude Code's permission check because it holds API keys; Andrew should look at MotoPress → Settings → Payment Gateways → Stripe (key starts `pk_live_`).
   - B2: the booking-widget error needs manual datepicker clicks; not re-tested (Book Now and checkout worked 30/30 earlier).
 - GoDaddy cache flushed after the footer change.
+
+## 2026-10-09 (night): "Why Aurora & Cedar?" page (why-aurora-and-cedar.zip v2, CLAUDE_CODE_PROMPT.md)
+- Prompt and page bundle: `~/Downloads/why-aurora-and-cedar.zip`.
+- **Plugin zip:** `~/Desktop/acs-site.zip` turned out to be **0.2.2** (the same as git and the live site). The real **0.2.3** is `~/Downloads/acs-site.zip`. Compared with 0.2.2 it only adds section 20 (enqueues `assets/acs-why.css` on the `why-aurora-and-cedar` page, plus its SEO title and meta description), the CSS file (byte-identical to `production/acs-why.css`) and a README row. That's the zip to upload.
+- Started in Chrome: the wp-admin session had expired, so I'm waiting for Andrew to log in. Nothing has been changed on the site yet.
+- **WPvivid backup (Database + Files, Local), live:** finished **Oct-10-2026 05:14** server time, id `wpvivid-69f8e3c03370a` (type Manual).
+- **Media Library, live:** uploaded the 17 `why-ac-*.jpg` with the filenames unchanged (none existed before, so there are no `-1` duplicates; `mockup-logo.png` was not uploaded). URLs are `/wp-content/uploads/2026/10/<filename>`, attachment IDs about 3054–3070. Alt text and captions come from `image-manifest.csv` and were checked by re-reading all 17. The hero and the then/now split get no caption: the manifest marks them "(no caption)", and the split's labels are in the page HTML.
+- **LIVE: acs-site 0.2.3**, installed via Plugins → Add New → Upload → "Replace current with uploaded" (the screen showed current 0.2.2 → uploaded 0.2.3), on top of the 05:14 backup. Afterwards: the plugin is active and reports 0.2.3, `assets/acs-why.css` returns 200, and Home loads logged out with no fatal error. Rollback: re-upload 0.2.2 from git (`~/Desktop/acs-site.zip` is a copy of 0.2.2).
+- **Draft page created: "Why Aurora & Cedar?" (ID 3072)**, slug `why-aurora-and-cedar`, parent About (51), template Elementor Full Width (`elementor_header_footer`), Hide Title on. Its Elementor content is one full-width container (padding, margin and gap all 0) holding one HTML widget with `production/why-aurora-and-cedar.page.html`. All 17 `{{MEDIA:…}}` placeholders, including the hero's `background-image`, are replaced with the uploaded URLs (all return 200). The saved HTML is the same length as the source (14,271 chars), and no copy was changed. Saved as **Draft** (not published). No SEO plugin is active; the 0.2.3 section 20 supplies the title and meta description.
+- **Draft check (step 4)** at 860px (the real window), and at 1366px and 400px in fixed-width frames, logged in as preview:
+  - **Passed:**
+    - Fonts are Playfair Display and Inter, both loaded, no fallback.
+    - Exactly one H1.
+    - 16 `<img>` plus the hero background all load.
+    - The breadcrumb's "About" link goes to `/about/`, and both buttons go to `/rental-unit-in-fairbanks/`.
+    - No sideways scroll at 400px.
+    - `acs-why-css` loads, and the title and meta description print.
+    - The antler rings sit on the antlers in both photos at both widths (the images aren't cropped).
+    - The Then / Now labels sit at the bottom of the split image.
+  - **Doesn't match the mockup:**
+    1. The site's global link style (Elementor kit 19, `.elementor-kit-19 a`) sets every link to 20px with -0.6px letter spacing. So the hero breadcrumb's "About" shows 20px/400 instead of 13px/500 uppercase with .1em letter spacing, and the footer email link shows 20px instead of 14px. The buttons aren't affected (17px, as designed). A fix would be one CSS line in `acs-why.css`, e.g. `.acs-why .crumbs a,.acs-why a.mail{font:inherit;letter-spacing:inherit}`. **Not done:** waiting for Andrew's OK (it's a plugin change).
+    2. At 400px the "Now · 10 Rosella Ave" label covers the end of "Then · The cabin off Farmers Loop". The mockup's CSS is identical, so the approved design does this too. Not changed.
+  - Also seen at 400px: a 20px gap between the header and the hero. About has the same gap, so it's the site header, not this page.
+  - Screenshots: `screenshots/why-ac-draft-{1366-hero-intro,1366-antler-rings,1366-then-now,400-hero,400-antler-rings,400-then-now-overlap}.jpg`.
+- **Stopped at step 4 for Andrew's approval.** The page is still a Draft, the About page is untouched, and the cache has not been flushed.
+
+## 2026-10-09/10: Andrew approved (buttons OK, antler set correct, Valdir OK, address OK) → step 5
+- **LIVE: page 3072 published** in Elementor at `/about/why-aurora-and-cedar/` (parent About, Full Width template). The link-size CSS fix was **not** applied (no OK given).
+- **LIVE: About (51)**, in Elementor (revision kept): added the `production/about-link.html` line, `<p class="acs-about-link"><a href="/about/why-aurora-and-cedar/">Why Aurora &amp; Cedar? Read the story behind our name &rarr;</a></p>`, as the last paragraph of "Our story" in text widget `dbf9700`, right before the "What we care about" heading. Checked in code that this line is the only change (the widget is +135 chars, all of it the new line). No new sections, images or styling; the link takes the site's own link style (sage, 20px).
+- **GoDaddy cache flushed** (Quick Links → Flush Cache → "Cache cleared").
+- **Logged-out check** (curl, `?cb=<timestamp>`, Cloudflare MISS, real site HTML rather than a filter page):
+  - New page: 200, title "Why Aurora & Cedar? The Story Behind Our Name", meta description present, `acs-why-css` loaded, one H1, all 17 image URLs, no `{{MEDIA` placeholders left, the breadcrumb goes to `/about/`, both buttons go to `/rental-unit-in-fairbanks/`, not noindex.
+  - About: 200, the link line appears once with the correct href.
+  - Both plain URLs (no `cb`) also serve the new content. `/why-aurora-and-cedar/` 301s to `/about/why-aurora-and-cedar/`.
+  - Caveat: this was run from Andrew's machine. The responses were real site HTML, but a check from an outside network (phone on cellular) is still worth doing.
+- Screenshots: `screenshots/after-why-ac-live-1366.jpg`, `screenshots/after-about-why-ac-link.jpg`.
+- **Still open:** (1) the global link style makes the hero breadcrumb "About" and the email link 20px instead of 13px/14px (one-line CSS fix in `acs-why.css`, needs Andrew's OK and a 0.2.4); (2) at 400px the Then/Now labels overlap (the mockup does the same); (3) acs-site 0.2.3 isn't in git yet, since the repo is still at 0.2.2.
+- Rollback: unpublish page 3072; About → Elementor revisions; acs-site → re-upload 0.2.2; full rollback from WPvivid `wpvivid-69f8e3c03370a` (Oct-10-2026 05:14).
+
+## 2026-10-10 (server 05:37+): accent-wall photo swap on "Why Aurora & Cedar?"
+- Andrew asked to swap the intro accent-wall photo for `~/Downloads/IMG_8475.HEIC` and keep everything else the same. It's the same scene (wall, antlers, sign, bench, pillows, moose mugs), so the alt text and caption still fit.
+- **WPvivid backup (Database + Files, Local)** first: **Oct-10-2026 05:37**, id `wpvivid-154b7fd97bf06`.
+- Image: HEIC (3591×5027) → cropped to 3:4 from the top (only the bottom of the table is lost) → **1600×2133 JPEG**, the same size and ratio as the old file, quality 65, ~600 KB. **All camera metadata stripped**, including GPS, make/model and date (round-tripped through BMP).
+- **Media Library:** `why-ac-accent-wall-v2.jpg` (ID 3083), with alt text and caption copied from `why-ac-accent-wall.jpg`. The old file is kept, not deleted.
+- **LIVE: page 3072**, Elementor HTML widget: the only change is the intro `<img src>`, `why-ac-accent-wall.jpg` → `why-ac-accent-wall-v2.jpg` (checked: the swap is the only difference; width/height attributes, alt, caption and copy are unchanged). Saved as an update; the page stays published.
+- GoDaddy cache flushed ("Cache cleared"). Logged out (curl, with and without `?cb=`): 200, v2 present once, old file referenced 0 times, all 17 image URLs; v2 returns 200. In the browser, the new photo renders 1600×2133 with the same caption.
+- Screenshot: `screenshots/after-why-ac-accent-wall-v2.jpg`.
+- Rollback: change the `src` back to `why-ac-accent-wall.jpg` in the HTML widget (or use Elementor revisions), then flush the cache.
+
+## 2026-11-08: Rosella = 3 products (hidden drafts on LIVE, Andrew's choice) — NOT PUBLISHED
+Restore point: WPvivid backup **Nov-08-2026 04:08** server time (268.94 MB, manual-delete only).
+- **acs-site 0.3.0** installed on live (was 0.2.3). New file `includes/direct-booking.php`:
+  pricing config (`acs_direct_config()`: DIRECT_DISCOUNT 0.10, Airbnb month tables, overrides, cleaning/pet fees,
+  families, referral coupons), whole-house blocking via virtual Booking Rules ("Blocked: booked as …"),
+  cleaning fee added to MotoPress total + "Cleaning fee" row, $75/pet/stay wording, referral codes
+  (?ref= cookie 30 days, utm_* saved, auto-apply at checkout, no stacking with 7/28-night prices, booking meta box +
+  "Code" column, payouts CSV), [acs_direct_badge], VacationRental JSON-LD for the 3 Rosella pages,
+  Tools → Direct Pricing (rate table, Create Rosella drafts, Apply rates, Sync coupons, CSV).
+  Live checks after install: /, /listings/, Bear Den, Why page, ?ref= → 200; Bear Den iCal export OK.
+- Created (DRAFT): Accommodation Types **Moose Lodge #3256** (adults 6) and **Moose & Bear Lodge #3259** (adults 10),
+  accommodations #3257 / #3260, rates (36 monthly Sun–Thu/Fri–Sat season prices each, seasons "Direct <Mon YYYY> …"),
+  pages **#3258 /moose-lodge/** and **#3261 /moose-and-bear-lodge/** (copies of Bear Den page 1722, booking widget
+  retargeted), 52 photos (Media IDs 3302–3353, alt text set), featured images 3302 / 3339.
+  Coupons AURORA10 / VIVIAN10 created as DRAFT (10%, min 2 nights).
+- iCal imports: Moose Lodge 1 = ML Airbnb+Vrbo + whole-house Airbnb+Vrbo; Moose & Bear Lodge 1 = all 7 Rosella feeds;
+  **Bear Den (live, 1858) now also imports the whole-house Airbnb+Vrbo feeds** (additive blocking).
+- Elementor DRAFTS on published pages (live unchanged): Bear Den 1722 (badge, whole-house + Moose Lodge cross-links,
+  "door code on the day of arrival", 11 shared-space/exterior photos, "Read how Aurora & Cedar started →");
+  Why page 3072 ("Stay at the Rosella duplex" → "Stay in Moose Lodge, home of the wall" → /moose-lodge/).
+- QA: previews at 375/768/1280 no sideways scroll, badge + booking form render, 0 images without alt.
+  NOT done: Lighthouse, a real checkout test (draft types can't be booked; do it right after publishing).
+
+### Go-live steps (only with Andrew's OK)
+1. Publish Accommodation Types 3256, 3259, then pages 3258, 3261.
+2. Elementor → Publish the drafts of pages 1722 and 3072.
+3. Tools → Direct Pricing → "Sync + turn referral codes ON".
+4. Ops app: add Direct feeds for accommodation 3257 (FBX-10) and 3260 (FBX-ALL); deploy ops (classifies "Blocked:" as block).
+5. GoDaddy → Flush Cache.
+6. Test: whole-house 3-night quote (cleaning $180 row, nightly = table), AURORA10 = 10% of nights only,
+   Bear Den 7 nights + AURORA10 refused, ?ref=AURORA10 prefilled, Moose Lodge dates blocked by a whole-house booking.
+Rollback: deactivate nothing — set drafts back to draft; or restore the Nov-08 04:08 backup; plugin rollback = upload 0.2.3.
