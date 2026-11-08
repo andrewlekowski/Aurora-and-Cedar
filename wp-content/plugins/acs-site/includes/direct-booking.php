@@ -124,10 +124,34 @@ function acs_direct_booking_type_id( $booking ) {
  * on the Booking Rules screen itself (where the option is edited and saved) they are left out.
  * ------------------------------------------------------------------------------------------- */
 
+/**
+ * Does this booking hold a guest (and so block its relatives)? Website bookings: yes. Imported calendar events:
+ * Airbnb "Reserved" and Vrbo "Reserved - Name" yes; Airbnb "Not available", Vrbo "Blocked" and website
+ * "Blocked: ..." are placeholders — Airbnb puts one on the whole house for every suite stay, so counting them
+ * would block Moose Lodge whenever Bear Den is booked. Booking.com marks bookings and closed dates alike as
+ * "CLOSED - Not available", so those count (safer to over-block than double-book). Same rules as the ops app.
+ */
+function acs_direct_is_real_stay( $booking ) {
+	if ( ! method_exists( $booking, 'isImported' ) || ! $booking->isImported() ) {
+		return true;
+	}
+	// MotoPress keeps the summary wrapped in quotes ("Reserved"), so strip quotes as well as spaces.
+	$s = strtolower( trim( (string) ( method_exists( $booking, 'getICalSummary' ) ? $booking->getICalSummary() : '' ), " \t\n\r\"'" ) );
+	$p = strtolower( (string) ( method_exists( $booking, 'getICalProdid' ) ? $booking->getICalProdid() : '' ) );
+	if ( 0 === strpos( $s, 'reserved' ) ) {
+		return true; // Airbnb "Reserved", Vrbo "Reserved - Name"
+	}
+	if ( false !== strpos( $s, 'closed' ) || false !== strpos( $p, 'booking.com' ) ) {
+		return true; // Booking.com: can't tell a booking from a closed date
+	}
+	return false; // "Airbnb (Not available)", Vrbo "Blocked", "Blocked: booked as ..."
+}
+
 function acs_direct_family_rules() {
-	$cached = get_transient( 'acs_family_rules' );
-	if ( is_array( $cached ) ) {
-		return $cached;
+	// Built fresh for each request (cached only within it). A longer cache went stale: MotoPress reads the
+	// rules in the middle of a calendar import, before the import has finished saving bookings.
+	if ( isset( $GLOBALS['acs_family_rules_cache'] ) && is_array( $GLOBALS['acs_family_rules_cache'] ) ) {
+		return $GLOBALS['acs_family_rules_cache'];
 	}
 	$rules = array();
 	if ( ! function_exists( 'MPHB' ) ) {
@@ -153,17 +177,29 @@ function acs_direct_family_rules() {
 			if ( ! $roomIds ) {
 				continue;
 			}
-			try {
-				$bookings = MPHB()->getBookingRepository()->findAll( array(
-					'rooms'       => $roomIds,
-					'room_locked' => true,
-					'date_from'   => $today,
-					'date_to'     => gmdate( 'Y-m-d', strtotime( $today . ' +3 years' ) ),
-				) );
-			} catch ( \Throwable $e ) {
-				continue;
+			// Website bookings (room-locking statuses) AND bookings imported from Airbnb/Vrbo/Booking.com
+			// calendars. Each listing imports only its own channel calendars (importing one calendar into
+			// two listings makes MotoPress delete the other listing's copy as "outdated"), so the family
+			// blocking below is what keeps the whole house and the suites from overlapping.
+			$range    = array(
+				'rooms'     => $roomIds,
+				'date_from' => $today,
+				'date_to'   => gmdate( 'Y-m-d', strtotime( $today . ' +3 years' ) ),
+			);
+			$bookings = array();
+			foreach ( array( array( 'room_locked' => true ), array( 'post_status' => array( 'imported' ) ) ) as $extraArgs ) {
+				try {
+					foreach ( (array) MPHB()->getBookingRepository()->findAll( $range + $extraArgs ) as $b ) {
+						$bookings[ $b->getId() ] = $b;
+					}
+				} catch ( \Throwable $e ) {
+					continue;
+				}
 			}
 			foreach ( $bookings as $b ) {
+				if ( ! acs_direct_is_real_stay( $b ) ) {
+					continue; // a channel's own "not available" placeholder, not a guest
+				}
 				$in  = $b->getCheckInDate();
 				$out = clone $b->getCheckOutDate();
 				$out->modify( '-1 day' ); // last night
@@ -183,9 +219,22 @@ function acs_direct_family_rules() {
 			}
 		}
 	}
-	set_transient( 'acs_family_rules', $rules, 10 * MINUTE_IN_SECONDS );
+	$GLOBALS['acs_family_rules_cache'] = $rules;
 	return $rules;
 }
+
+// Rebuild the family blocks as soon as any booking is created, imported, changed or removed.
+$acs_family_flush = function ( $postId = 0 ) {
+	if ( ! $postId || 'mphb_booking' === get_post_type( $postId ) ) {
+		unset( $GLOBALS['acs_family_rules_cache'] ); delete_transient( 'acs_family_rules' );
+	}
+};
+add_action( 'save_post_mphb_booking', $acs_family_flush );
+add_action( 'before_delete_post', $acs_family_flush );
+add_action( 'trashed_post', $acs_family_flush );
+add_action( 'mphb_booking_status_changed', function () {
+	unset( $GLOBALS['acs_family_rules_cache'] ); delete_transient( 'acs_family_rules' );
+} );
 
 add_filter( 'option_mphb_booking_rules_custom', function ( $value ) {
 	if ( is_admin() && isset( $_GET['page'] ) && 'mphb_booking_rules' === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
@@ -207,17 +256,17 @@ add_filter( 'option_mphb_booking_rules_custom', function ( $value ) {
 // Any booking change (new, status, iCal import, delete) refreshes the virtual rules.
 foreach ( array( 'save_post_mphb_booking', 'mphb_create_booking_by_user', 'mphb_booking_confirmed', 'mphb_booking_cancelled', 'mphb_create_booking_via_ical' ) as $acs_hook ) {
 	add_action( $acs_hook, function () {
-		delete_transient( 'acs_family_rules' );
+		unset( $GLOBALS['acs_family_rules_cache'] ); delete_transient( 'acs_family_rules' );
 	} );
 }
 add_action( 'before_delete_post', function ( $id ) {
 	if ( 'mphb_booking' === get_post_type( $id ) ) {
-		delete_transient( 'acs_family_rules' );
+		unset( $GLOBALS['acs_family_rules_cache'] ); delete_transient( 'acs_family_rules' );
 	}
 } );
 add_action( 'transition_post_status', function ( $new, $old, $post ) {
 	if ( $post && in_array( $post->post_type, array( 'mphb_booking', 'mphb_room_type' ), true ) && $new !== $old ) {
-		delete_transient( 'acs_family_rules' );
+		unset( $GLOBALS['acs_family_rules_cache'] ); delete_transient( 'acs_family_rules' );
 	}
 }, 10, 3 );
 
@@ -607,6 +656,60 @@ add_action( 'admin_menu', function () {
 	add_management_page( 'Direct Pricing', 'Direct Pricing', 'manage_options', 'acs-direct-pricing', 'acs_direct_admin_page' );
 } );
 
+/**
+ * Extend a hand-priced listing (Bear Den) past the end of its seasons without touching the seasons other
+ * listings share: for every season row in its rate that ends before $to, add a copy of that row on a new
+ * listing-only season (same weekdays, same prices) running from the day after it ends to $to. Re-running is safe.
+ */
+function acs_direct_extend_manual_rate( $slug, $to ) {
+	$tid = acs_direct_type_id( $slug );
+	if ( ! $tid ) {
+		return 'not found';
+	}
+	$parse = function ( $d ) {
+		foreach ( array( 'Y-m-d', 'm/d/Y', 'd/m/Y' ) as $f ) {
+			$o = DateTime::createFromFormat( '!' . $f, (string) $d );
+			if ( $o ) {
+				return $o;
+			}
+		}
+		return null;
+	};
+	$rates = get_posts( array( 'post_type' => 'mphb_rate', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids',
+		'meta_query' => array( array( 'key' => 'mphb_room_type_id', 'value' => (int) $tid ) ), 'suppress_filters' => true ) );
+	$added = 0;
+	foreach ( $rates as $rid ) {
+		$rows = (array) get_post_meta( $rid, 'mphb_season_prices', true );
+		$have = array_map( function ( $r ) {
+			return (int) ( $r['season'] ?? 0 );
+		}, $rows );
+		$new = array();
+		foreach ( $rows as $row ) {
+			$sid = (int) ( $row['season'] ?? 0 );
+			if ( ! $sid || 0 === strpos( (string) get_post_meta( $sid, 'acs_direct_season', true ), 'ext-' ) ) {
+				continue;
+			}
+			$end = $parse( get_post_meta( $sid, 'mphb_end_date', true ) );
+			if ( ! $end || $end->format( 'Y-m-d' ) >= $to ) {
+				continue;
+			}
+			$from   = ( clone $end )->modify( '+1 day' )->format( 'Y-m-d' );
+			$title  = get_the_title( $tid ) . ': ' . get_the_title( $sid ) . ' (' . $from . ' to ' . $to . ')';
+			$days   = (array) get_post_meta( $sid, 'mphb_days', true );
+			$newSid = acs_direct_season( "ext-$rid-$sid-$to", $title, $from, $to, $days ? $days : array( '0', '1', '2', '3', '4', '5', '6' ) );
+			if ( $newSid && ! in_array( $newSid, $have, true ) ) {
+				$row['season'] = $newSid;
+				$new[]         = $row;
+			}
+		}
+		if ( $new ) {
+			update_post_meta( $rid, 'mphb_season_prices', array_merge( $rows, $new ) ); // same order: weekend rows stay above all-week rows
+			$added += count( $new );
+		}
+	}
+	return get_the_title( $tid ) . ": $added season price rows added through $to";
+}
+
 add_action( 'admin_post_acs_direct_apply', function () {
 	if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'acs_direct' ) ) {
 		wp_die( 'Not allowed' );
@@ -623,8 +726,14 @@ add_action( 'admin_post_acs_direct_apply', function () {
 		}
 	} elseif ( 'coupons' === $what || 'coupons_publish' === $what ) {
 		$msg = acs_direct_sync_coupons( 'coupons_publish' === $what );
+	} elseif ( 'extend_manual' === $what ) {
+		foreach ( acs_direct_config()['listings'] as $slug => $l ) {
+			if ( ! empty( $l['manual_rates'] ) ) {
+				$msg[] = acs_direct_extend_manual_rate( $slug, '2028-04-30' );
+			}
+		}
 	}
-	delete_transient( 'acs_family_rules' );
+	unset( $GLOBALS['acs_family_rules_cache'] ); delete_transient( 'acs_family_rules' );
 	wp_safe_redirect( add_query_arg( array( 'page' => 'acs-direct-pricing', 'acs_msg' => rawurlencode( implode( ' · ', $msg ) ) ), admin_url( 'tools.php' ) ) );
 	exit;
 } );
@@ -660,6 +769,32 @@ function acs_direct_admin_page() {
 	if ( ! empty( $_GET['acs_msg'] ) ) { // phpcs:ignore
 		echo '<div class="notice notice-success"><p>' . esc_html( rawurldecode( wp_unslash( $_GET['acs_msg'] ) ) ) . '</p></div>'; // phpcs:ignore
 	}
+	// Read-only check of the whole-house <-> suite blocking: what each listing has booked and what it blocks.
+	echo '<h2>Rosella blocking check</h2><table class="widefat striped" style="max-width:900px"><thead><tr><th>Listing</th><th>Rooms</th><th>Bookings found (from today)</th></tr></thead><tbody>';
+	foreach ( $cfg['families'] as $wholeSlug => $suiteSlugs ) {
+		foreach ( array_merge( array( $wholeSlug ), $suiteSlugs ) as $slug ) {
+			$tid   = acs_direct_type_id( $slug );
+			$rooms = $tid ? acs_direct_room_ids( $tid ) : array();
+			$rows  = array();
+			if ( $rooms && function_exists( 'MPHB' ) ) {
+				foreach ( array( array( 'room_locked' => true ), array( 'post_status' => array( 'imported' ) ) ) as $x ) {
+					try {
+						foreach ( (array) MPHB()->getBookingRepository()->findAll( array( 'rooms' => $rooms, 'date_from' => current_time( 'Y-m-d' ), 'date_to' => gmdate( 'Y-m-d', strtotime( '+3 years' ) ) ) + $x ) as $b ) {
+							$rows[ $b->getId() ] = sprintf( '#%d %s→%s %s [%s, %s] %s', $b->getId(), $b->getCheckInDate()->format( 'm/d' ), $b->getCheckOutDate()->format( 'm/d' ),
+								get_post_status( $b->getId() ), $b->isImported() ? 'imported' : 'website', $b->isImported() ? $b->getICalSummary() : '', acs_direct_is_real_stay( $b ) ? 'BLOCKS RELATIVES' : 'placeholder' );
+						}
+					} catch ( \Throwable $e ) {
+						$rows[] = 'error: ' . $e->getMessage();
+					}
+				}
+			}
+			echo '<tr><td>' . esc_html( $slug . ' (type #' . (int) $tid . ', ' . get_post_status( $tid ) . ')' ) . '</td><td>' . esc_html( implode( ',', $rooms ) ) . '</td><td>' . esc_html( implode( ' | ', $rows ) ?: '—' ) . '</td></tr>';
+		}
+	}
+	$rules = acs_direct_family_rules();
+	echo '</tbody></table><p><strong>Blocks in effect:</strong> ' . esc_html( $rules ? implode( ' | ', array_map( function ( $r ) {
+		return 'type #' . $r['room_type_id'] . ' ' . $r['date_from'] . '→' . $r['date_to'] . ' (' . $r['comment'] . ')';
+	}, $rules ) ) : 'none' ) . '</p>';
 	echo '<p>Direct nightly = Airbnb nightly × (1 − ' . esc_html( $cfg['DIRECT_DISCOUNT'] ) . '), rounded. Edit <code>acs_direct_config()</code> in <code>acs-site/includes/direct-booking.php</code>, then press Apply rates.</p>';
 	foreach ( $cfg['listings'] as $slug => $l ) {
 		$tid = acs_direct_type_id( $slug );
@@ -687,6 +822,7 @@ function acs_direct_admin_page() {
 	$form( 'acs_direct_apply', 'rates', 'Apply rates to MotoPress' );
 	$form( 'acs_direct_apply', 'coupons', 'Sync referral codes (keep status)' );
 	$form( 'acs_direct_apply', 'coupons_publish', 'Sync + turn referral codes ON' );
+	$form( 'acs_direct_apply', 'extend_manual', 'Extend Bear Den prices to Apr 30, 2028' );
 	echo '<h2>Referral codes</h2><p>' . esc_html( implode( ', ', acs_direct_codes() ) ) . ' — ' . esc_html( $cfg['coupons'][0]['pct'] * 100 ) . '% off the nightly total, ' . (int) $cfg['coupon_min_nights'] . '+ nights, one code per booking, not with weekly/monthly prices. Share links like <code>' . esc_html( home_url( '/?ref=AURORA10' ) ) . '</code>.</p>';
 	$form( 'acs_direct_csv', 'csv', 'Download payouts CSV', '<input type="month" name="month" value="' . esc_attr( current_time( 'Y-m' ) ) . '"> ' );
 	echo '<h2>Whole-house blocking</h2><p>Live blocks added from bookings right now: ' . count( acs_direct_family_rules() ) . '.</p></div>';
@@ -795,7 +931,7 @@ function acs_direct_setup_rosella() {
 			$out[] = "$slug: page #$pid (draft, copy of #$src_page)";
 		}
 	}
-	delete_transient( 'acs_family_rules' );
+	unset( $GLOBALS['acs_family_rules_cache'] ); delete_transient( 'acs_family_rules' );
 	return $out;
 }
 

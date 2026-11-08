@@ -227,3 +227,23 @@ Rollback: deactivate nothing — set drafts back to draft; or restore the Nov-08
 - FOUND (pre-existing): Bear Den's own Airbnb iCal marks 2027-01-25 → 2027-11-09 "Not available" (Airbnb availability
   window), so the website blocks Bear Den — and the whole house, which imports that feed — from Jan 25 2027.
   Fix on Airbnb: Bear Den → Availability → raise the availability window (e.g. 12 months).
+
+### QC + fixes (2026-11-08, after "I don't see the Rosella listings")
+- Listings page (Elementor page 40): added a row with Moose Lodge and Moose & Bear Lodge (Whole House) cards, copied from
+  the Bear Den card (photo, specs, `[acs_from_price]`, Book Now link). Live: $122 / $216 per night.
+- Bear Den Airbnb: Jan 25 – Nov 8, 2027 were "Blocked by you" on Airbnb (not Booking.com). Opened them on Airbnb.
+- BUG FIXED (double-booking risk): importing the same Airbnb/Vrbo calendar into two website listings makes MotoPress
+  delete the other listing's copy as "outdated" (the whole-house sync deleted Bear Den's Nov 6–10 guest, so the site quoted
+  Bear Den for occupied nights). Each Rosella listing now imports only its own Airbnb + Vrbo + Booking.com calendar:
+  Bear Den 1858, Moose Lodge 3257, whole house 3260.
+- acs-site 0.3.1 → 0.3.6:
+  - Family blocking now also reads imported bookings, but only real guests: Airbnb/Vrbo "Reserved" and Booking.com
+    "CLOSED"; skips Airbnb "Not available" / Vrbo "Blocked" placeholders (MotoPress stores the summary in quotes).
+    Otherwise Moose Lodge would be blocked every time Bear Den is booked (Airbnb mirrors it onto the whole house).
+  - Blocks are rebuilt per request (the 10-min cache went stale mid-import).
+  - Tools → Direct Pricing: read-only "Rosella blocking check" table.
+  - "Extend Bear Den prices" button: Bear Den-only seasons Jul 1 2027 – Apr 30 2028 ($125, Fri–Sat $160, same weekly/
+    monthly). Ran it. The shared "All Season"/"Weekends" seasons still END 2027-06-30 for every other listing.
+- Verified live: Bear Den + whole house refused tonight (Bear Den guest); Moose Lodge Nov 12–15 $517.96; Bear Den
+  Mar/Jul 2027 and Mar 2028 bookable; whole house Feb + AURORA10 = $967.32; ?ref prefill; Listings page 375/768/1280 OK.
+- Ops app: Booking.com calendars for Moose Lodge and the whole house exist on the website but are not in the ops app yet.
