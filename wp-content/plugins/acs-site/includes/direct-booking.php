@@ -683,6 +683,7 @@ function acs_direct_admin_page() {
 		echo '</form>';
 	};
 	echo '<h2>Actions</h2>';
+	$form( 'acs_direct_setup', 'setup', 'Create Rosella drafts' );
 	$form( 'acs_direct_apply', 'rates', 'Apply rates to MotoPress' );
 	$form( 'acs_direct_apply', 'coupons', 'Sync referral codes (keep status)' );
 	$form( 'acs_direct_apply', 'coupons_publish', 'Sync + turn referral codes ON' );
@@ -729,4 +730,104 @@ add_filter( 'acs_listing_schema', function ( $s ) {
 		}
 	}
 	return $s;
+} );
+
+/* ---------------------------------------------------------------------------------------------
+ * 29. One-time setup: "Create Rosella drafts" (Tools → Direct Pricing)
+ * Creates the Moose Lodge and Moose & Bear Lodge Accommodation Types (DRAFT), one Accommodation
+ * each, and DRAFT copies of the Bear Den Elementor page (same template, same widgets) with the
+ * booking widget pointed at the new type. Safe to press again: existing items are left alone.
+ * ------------------------------------------------------------------------------------------- */
+
+function acs_direct_setup_rosella() {
+	$src_type = acs_direct_type_id( 'rental-unit-in-fairbanks' );
+	$src_page = acs_direct_page_id( 'rental-unit-in-fairbanks' );
+	$out      = array();
+	$defs     = array(
+		'moose-lodge'          => array( 'title' => 'Moose Lodge', 'adults' => 6, 'page_title' => 'Moose Lodge',
+			'excerpt' => 'Main-level 2BR/1BA suite at 10 Rosella Ave, across from Creamer’s Field: queen bedroom with the moose accent wall, full bedroom, living room with fireplace, full kitchen.' ),
+		'moose-and-bear-lodge' => array( 'title' => 'Moose & Bear Lodge', 'adults' => 10, 'page_title' => 'Moose & Bear Lodge',
+			'excerpt' => 'The whole house at 10 Rosella Ave, across from Creamer’s Field: both suites in one booking. 3BR/2BA, 2 kitchens, 2 living rooms, sleeps up to 10.' ),
+	);
+	foreach ( $defs as $slug => $d ) {
+		// Accommodation Type
+		$tid = acs_direct_type_id( $slug );
+		if ( ! $tid ) {
+			$tid = wp_insert_post( array( 'post_type' => 'mphb_room_type', 'post_status' => 'draft', 'post_title' => $d['title'], 'post_name' => $slug,
+				'post_excerpt' => $d['excerpt'], 'post_content' => $d['excerpt'] ) );
+			if ( ! $tid || is_wp_error( $tid ) ) {
+				$out[] = "$slug: could not create the accommodation type";
+				continue;
+			}
+			update_post_meta( $tid, 'mphb_adults_capacity', $d['adults'] );
+			update_post_meta( $tid, 'mphb_children_capacity', 0 );
+			update_post_meta( $tid, 'mphb_pets_allowed', 1 );
+			if ( $src_type ) {
+				foreach ( array( 'mphb_room_type_facility', 'mphb_city' ) as $tax ) {
+					wp_set_object_terms( $tid, wp_get_object_terms( $src_type, $tax, array( 'fields' => 'ids' ) ), $tax );
+				}
+			}
+			$out[] = "$slug: accommodation type #$tid (draft)";
+		}
+		// One Accommodation (the bookable unit)
+		if ( ! acs_direct_room_ids( $tid ) ) {
+			$rid = wp_insert_post( array( 'post_type' => 'mphb_room', 'post_status' => 'publish', 'post_title' => $d['title'] . ' 1' ) );
+			update_post_meta( $rid, 'mphb_room_type_id', $tid );
+			$out[] = "$slug: accommodation #$rid";
+		}
+		// Elementor page copy
+		if ( ! acs_direct_page_id( $slug ) && $src_page ) {
+			$src = get_post( $src_page );
+			$pid = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => $d['page_title'], 'post_name' => $slug,
+				'post_content' => $src->post_content, 'post_excerpt' => $src->post_excerpt, 'post_parent' => $src->post_parent, 'menu_order' => $src->menu_order ) );
+			foreach ( get_post_meta( $src_page ) as $key => $values ) {
+				if ( in_array( $key, array( '_edit_lock', '_edit_last', '_elementor_css', '_wp_old_slug' ), true ) || 0 === strpos( $key, '_oembed' ) ) {
+					continue;
+				}
+				foreach ( $values as $v ) {
+					$v = maybe_unserialize( $v );
+					if ( '_elementor_data' === $key ) {
+						$v = acs_direct_retarget_elementor( $v, (int) $src_type, (int) $tid );
+					}
+					add_post_meta( $pid, $key, is_string( $v ) ? wp_slash( $v ) : $v );
+				}
+			}
+			$out[] = "$slug: page #$pid (draft, copy of #$src_page)";
+		}
+	}
+	delete_transient( 'acs_family_rules' );
+	return $out;
+}
+
+/** Point MotoPress/Elementor booking widgets in a copied page at another Accommodation Type. */
+function acs_direct_retarget_elementor( $json, $from, $to ) {
+	$data = is_string( $json ) ? json_decode( $json, true ) : $json;
+	if ( ! is_array( $data ) || ! $from || ! $to ) {
+		return $json;
+	}
+	$walk = function ( &$els ) use ( &$walk, $from, $to ) {
+		foreach ( $els as &$el ) {
+			if ( isset( $el['widgetType'] ) && 0 === strpos( $el['widgetType'], 'mphb' ) && ! empty( $el['settings'] ) ) {
+				foreach ( $el['settings'] as $k => $v ) {
+					if ( (string) $v === (string) $from ) {
+						$el['settings'][ $k ] = (string) $to;
+					}
+				}
+			}
+			if ( ! empty( $el['elements'] ) ) {
+				$walk( $el['elements'] );
+			}
+		}
+	};
+	$walk( $data );
+	return wp_json_encode( $data );
+}
+
+add_action( 'admin_post_acs_direct_setup', function () {
+	if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'acs_direct' ) ) {
+		wp_die( 'Not allowed' );
+	}
+	$msg = acs_direct_setup_rosella();
+	wp_safe_redirect( add_query_arg( array( 'page' => 'acs-direct-pricing', 'acs_msg' => rawurlencode( implode( ' · ', $msg ? $msg : array( 'Everything already exists' ) ) ) ), admin_url( 'tools.php' ) ) );
+	exit;
 } );
