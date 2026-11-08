@@ -209,3 +209,21 @@ Restore point: WPvivid backup **Nov-08-2026 04:08** server time (268.94 MB, manu
 6. Test: whole-house 3-night quote (cleaning $180 row, nightly = table), AURORA10 = 10% of nights only,
    Bear Den 7 nights + AURORA10 refused, ?ref=AURORA10 prefilled, Moose Lodge dates blocked by a whole-house booking.
 Rollback: deactivate nothing — set drafts back to draft; or restore the Nov-08 04:08 backup; plugin rollback = upload 0.2.3.
+
+### Go-live run (2026-11-08, Andrew: "Yes, publish")
+- Published: types 3256 (Moose Lodge), 3259 (Moose & Bear Lodge); pages 3258 /moose-lodge/, 3261 /moose-and-bear-lodge/;
+  Elementor drafts of 1722 (Bear Den) and 3072 (Why page). Public HTML checked: badge, booking form, cross-links, "day of arrival".
+- Referral codes AURORA10 / VIVIAN10 published. GoDaddy cache flushed.
+- Ops: Direct feeds for 3257 (FBX-10) and 3260 (FBX-ALL) added; worker deployed (version e935b9ba).
+- FIX found in testing: the 8% "Fairbanks Tax" (Bookings → Taxes & Fees) only covered Bear Den. Added Moose Lodge and
+  Moose & Bear Lodge to it.
+- Live quote tests (stopped before payment):
+  - Whole house Feb 9–12 2027, 4 guests: $810 nights + $64.80 tax + $180 cleaning = $1,054.80.
+  - Same + AURORA10: −$81 (10% of nights), tax $58.32, cleaning untouched → $967.32.
+  - Bear Den Mar 2–9 2027 (weekly 10%) + AURORA10: refused ("can't be combined with the weekly or monthly price").
+  - /moose-lodge/?ref=AURORA10 → coupon field pre-filled at checkout; Moose Lodge 3 nights $387 + $100 cleaning.
+  - Whole house Nov 8–11 2026 refused (Bear Den's Airbnb guest blocks it through the cross-import).
+- NOT tested: a direct website booking blocking the other two units (needs a real booking; do it with Andrew).
+- FOUND (pre-existing): Bear Den's own Airbnb iCal marks 2027-01-25 → 2027-11-09 "Not available" (Airbnb availability
+  window), so the website blocks Bear Den — and the whole house, which imports that feed — from Jan 25 2027.
+  Fix on Airbnb: Bear Den → Availability → raise the availability window (e.g. 12 months).
