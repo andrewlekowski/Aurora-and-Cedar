@@ -16,3 +16,4 @@ If the phase-1 `mu-plugins/acs-review-count.php` is installed, delete it. This p
 | 9 | GA4 events | Needs Site Kit's gtag | Tag Assistant: `check_availability` on form submit, `begin_checkout` on checkout, `booking_complete` with value on reservation-received |
 | 10 | Schema | Brand schema is automatic on Home. Fill `acs_listing_schema()` with **verified** facts per listing. FAQ: turn on "FAQ Schema" in the Elementor accordion | Rich Results Test on Home, one listing, FAQ |
 | 10b | noindex on checkout/search/confirmation | Automatic. Remove this section if Rank Math/Yoast also sets it | View source on checkout: `noindex, follow` |
+| 20 | "Why Aurora & Cedar?" page styles | Automatic on the page with slug `why-aurora-and-cedar`. Also sets its SEO title and meta description | View source on the draft preview: `acs-why-css` link, the title and the meta description |

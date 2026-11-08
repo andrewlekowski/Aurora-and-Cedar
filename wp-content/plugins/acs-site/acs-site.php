@@ -3,8 +3,9 @@
  * Plugin Name: ACS Site Customizations
  * Description: Aurora & Cedar Stays site code: review count, no-cache booking pages, live "from" prices,
  *              pet-fee estimate, per-home check-in/out times, clearer booking messages, GA4 events, schema,
- *              city search, weekly/monthly discount display, search results → checkout.
- * Version:     0.2.2
+ *              city search, weekly/monthly discount display, search results → checkout,
+ *              "Why Aurora & Cedar?" page styles.
+ * Version:     0.2.3
  * Author:      Aurora & Cedar Stays
  *
  * Every section is independent and guarded, so a missing MotoPress function turns a feature off
@@ -1527,3 +1528,27 @@ add_filter( 'rest_endpoints', function ( $endpoints ) {
 	}
 	return $endpoints;
 } );
+
+/* -------------------------------------------------------------------------
+ * 20. Why Aurora & Cedar page styles
+ * The page (/about/why-aurora-and-cedar/) is one Elementor HTML widget; its
+ * styles live in assets/acs-why.css, scoped under .acs-why, and load only on
+ * that page. The SEO title and meta description are set here too, because no
+ * SEO plugin is installed (see section 19).
+ * ---------------------------------------------------------------------- */
+
+add_action( 'wp_enqueue_scripts', function () {
+	if ( is_page( 'why-aurora-and-cedar' ) ) {
+		wp_enqueue_style( 'acs-why', plugins_url( 'assets/acs-why.css', __FILE__ ), array(), '2.0' );
+	}
+} );
+
+add_filter( 'pre_get_document_title', function ( $title ) {
+	return is_page( 'why-aurora-and-cedar' ) ? 'Why Aurora & Cedar? The Story Behind Our Name' : $title;
+} );
+
+add_action( 'wp_head', function () {
+	if ( is_page( 'why-aurora-and-cedar' ) ) {
+		printf( '<meta name="description" content="%s" />' . "\n", esc_attr( 'How a log cabin off Farmers Loop became the cedar-and-antler accent wall at 10 Rosella Ave, and why our name joins Alaska and Washington.' ) );
+	}
+}, 2 );
