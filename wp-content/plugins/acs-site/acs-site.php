@@ -4,8 +4,9 @@
  * Description: Aurora & Cedar Stays site code: review count, no-cache booking pages, live "from" prices,
  *              pet-fee estimate, per-home check-in/out times, clearer booking messages, GA4 events, schema,
  *              city search, weekly/monthly discount display, search results → checkout,
- *              "Why Aurora & Cedar?" page styles.
- * Version:     0.2.3
+ *              "Why Aurora & Cedar?" page styles, direct-booking pricing, whole-house blocking,
+ *              cleaning fees and referral codes (includes/direct-booking.php).
+ * Version:     0.3.0
  * Author:      Aurora & Cedar Stays
  *
  * Every section is independent and guarded, so a missing MotoPress function turns a feature off
@@ -204,6 +205,8 @@ add_action( 'wp_footer', function () {
 			'first' => (int) $c['pet_fee_long_first'],
 			'extra' => (int) $c['pet_fee_long_extra'],
 			'long'  => (int) $c['pet_long_nights'],
+			// listings with a flat per-stay pet fee (includes/direct-booking.php), e.g. Moose Lodge $75
+			'stay'  => function_exists( 'acs_direct_listing_for_type' ) ? (int) ( ( acs_direct_listing_for_type( acs_direct_checkout_type_id() ) ?: array() )['pet_fee_per_stay'] ?? 0 ) : 0,
 		) ); ?>;
 		function nights() {
 			var a = document.querySelector('[name="mphb_check_in_date"]'),
@@ -224,7 +227,10 @@ add_action( 'wp_footer', function () {
 			}
 			if (!pets || !n) { box.textContent = ''; return; }
 			var fee, how;
-			if (n >= cfg.long) {
+			if (cfg.stay) {
+				fee = pets * cfg.stay;
+				how = pets + (pets > 1 ? ' pets' : ' pet') + ' × $' + cfg.stay + ' per stay';
+			} else if (n >= cfg.long) {
 				fee = cfg.first + (pets - 1) * cfg.extra;
 				how = '$' + cfg.first + ' first pet' + (pets > 1 ? ' + ' + (pets - 1) + ' × $' + cfg.extra : '') + ' (' + cfg.long + '+ night stay)';
 			} else {
@@ -1552,3 +1558,9 @@ add_action( 'wp_head', function () {
 		printf( '<meta name="description" content="%s" />' . "\n", esc_attr( 'How a log cabin off Farmers Loop became the cedar-and-antler accent wall at 10 Rosella Ave, and why our name joins Alaska and Washington.' ) );
 	}
 }, 2 );
+
+/* -------------------------------------------------------------------------
+ * 21-27. Direct booking: pricing config, whole-house blocking, cleaning fees,
+ * referral codes, "Book direct and save" badge, Tools → Direct Pricing.
+ * ---------------------------------------------------------------------- */
+require_once __DIR__ . '/includes/direct-booking.php';
