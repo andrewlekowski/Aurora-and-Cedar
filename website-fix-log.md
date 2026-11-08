@@ -247,3 +247,15 @@ Rollback: deactivate nothing — set drafts back to draft; or restore the Nov-08
 - Verified live: Bear Den + whole house refused tonight (Bear Den guest); Moose Lodge Nov 12–15 $517.96; Bear Den
   Mar/Jul 2027 and Mar 2028 bookable; whole house Feb + AURORA10 = $967.32; ?ref prefill; Listings page 375/768/1280 OK.
 - Ops app: Booking.com calendars for Moose Lodge and the whole house exist on the website but are not in the ops app yet.
+
+### Website calendars connected to the channels (2026-11-08)
+- acs-site 0.3.7: family blocking ignores a Booking.com "CLOSED" that overlaps a real stay on a related listing (echo
+  guard). Booking.com is set to export "Booked dates only", so its CLOSED events are real Booking.com bookings anyway.
+- Airbnb: Bear Den, Moose Lodge and Moose & Bear Lodge each import their website calendar ("Website (auroraandcedarstays.com)").
+- Booking.com: same three, connection "Aurora & Cedar website", status Okay. Completing each connection needed the website
+  to fetch that connection's export link, so the website now imports the NEW Booking.com links (fingerprints 0150be975e
+  Bear Den, 6c51b93679 Moose Lodge, e124c0ac5b whole house) instead of the old ones. The ops app keeps the old links
+  (d649…, 7be2…, 2b19…) — same bookings.
+- Vrbo: Bear Den imports the website calendar. Moose Lodge and the whole house are at Vrbo's 5-import limit — waiting on
+  Andrew to pick which import to drop.
+- Booking.com: Moose & Bear Lodge is "Closed/Not bookable" until the property location is confirmed (video or letter code).

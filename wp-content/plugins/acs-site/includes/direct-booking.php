@@ -131,20 +131,25 @@ function acs_direct_booking_type_id( $booking ) {
  * would block Moose Lodge whenever Bear Den is booked. Booking.com marks bookings and closed dates alike as
  * "CLOSED - Not available", so those count (safer to over-block than double-book). Same rules as the ops app.
  */
-function acs_direct_is_real_stay( $booking ) {
+function acs_direct_stay_kind( $booking ) {
 	if ( ! method_exists( $booking, 'isImported' ) || ! $booking->isImported() ) {
-		return true;
+		return 'real'; // a website booking
 	}
 	// MotoPress keeps the summary wrapped in quotes ("Reserved"), so strip quotes as well as spaces.
 	$s = strtolower( trim( (string) ( method_exists( $booking, 'getICalSummary' ) ? $booking->getICalSummary() : '' ), " \t\n\r\"'" ) );
 	$p = strtolower( (string) ( method_exists( $booking, 'getICalProdid' ) ? $booking->getICalProdid() : '' ) );
 	if ( 0 === strpos( $s, 'reserved' ) ) {
-		return true; // Airbnb "Reserved", Vrbo "Reserved - Name"
+		return 'real'; // Airbnb "Reserved", Vrbo "Reserved - Name"
 	}
 	if ( false !== strpos( $s, 'closed' ) || false !== strpos( $p, 'booking.com' ) ) {
-		return true; // Booking.com: can't tell a booking from a closed date
+		return 'closed'; // Booking.com: can't tell a booking from a closed date
 	}
-	return false; // "Airbnb (Not available)", Vrbo "Blocked", "Blocked: booked as ..."
+	return 'placeholder'; // "Airbnb (Not available)", Vrbo "Blocked", "Blocked: booked as ..."
+}
+
+/** Kept for the admin check table: does this booking block its relatives on its own? */
+function acs_direct_is_real_stay( $booking ) {
+	return 'placeholder' !== acs_direct_stay_kind( $booking );
 }
 
 function acs_direct_family_rules() {
@@ -169,11 +174,14 @@ function acs_direct_family_rules() {
 		foreach ( $suites as $s ) {
 			$blocks[ $s ] = array( $whole );
 		}
-		foreach ( $blocks as $sourceType => $targets ) {
-			if ( 'publish' !== get_post_status( $sourceType ) ) {
+		// 1) Every live booking of each member, with its kind and nights.
+		$stays = array();
+		foreach ( array_keys( $blocks ) as $type ) {
+			$stays[ $type ] = array();
+			if ( 'publish' !== get_post_status( $type ) ) {
 				continue; // drafts take no bookings
 			}
-			$roomIds = acs_direct_room_ids( $sourceType );
+			$roomIds = acs_direct_room_ids( $type );
 			if ( ! $roomIds ) {
 				continue;
 			}
@@ -181,39 +189,56 @@ function acs_direct_family_rules() {
 			// calendars. Each listing imports only its own channel calendars (importing one calendar into
 			// two listings makes MotoPress delete the other listing's copy as "outdated"), so the family
 			// blocking below is what keeps the whole house and the suites from overlapping.
-			$range    = array(
+			$range = array(
 				'rooms'     => $roomIds,
 				'date_from' => $today,
 				'date_to'   => gmdate( 'Y-m-d', strtotime( $today . ' +3 years' ) ),
 			);
-			$bookings = array();
 			foreach ( array( array( 'room_locked' => true ), array( 'post_status' => array( 'imported' ) ) ) as $extraArgs ) {
 				try {
 					foreach ( (array) MPHB()->getBookingRepository()->findAll( $range + $extraArgs ) as $b ) {
-						$bookings[ $b->getId() ] = $b;
+						$out = clone $b->getCheckOutDate();
+						$out->modify( '-1 day' ); // last night
+						if ( $out < $b->getCheckInDate() ) {
+							continue;
+						}
+						$stays[ $type ][ $b->getId() ] = array(
+							'id'   => $b->getId(),
+							'kind' => acs_direct_stay_kind( $b ),
+							'from' => $b->getCheckInDate()->format( 'Y-m-d' ),
+							'to'   => $out->format( 'Y-m-d' ),
+						);
 					}
 				} catch ( \Throwable $e ) {
 					continue;
 				}
 			}
-			foreach ( $bookings as $b ) {
-				if ( ! acs_direct_is_real_stay( $b ) ) {
-					continue; // a channel's own "not available" placeholder, not a guest
-				}
-				$in  = $b->getCheckInDate();
-				$out = clone $b->getCheckOutDate();
-				$out->modify( '-1 day' ); // last night
-				if ( $out < $in ) {
+		}
+		// 2) Real stays block their relatives. A Booking.com "CLOSED" counts too, unless it overlaps a real stay
+		// on a relative: then it is the channel echoing that stay back (website calendar -> Booking.com -> here),
+		// and counting it would spread the block to the other suite.
+		foreach ( $blocks as $sourceType => $targets ) {
+			foreach ( $stays[ $sourceType ] as $st ) {
+				if ( 'placeholder' === $st['kind'] ) {
 					continue;
+				}
+				if ( 'closed' === $st['kind'] ) {
+					foreach ( $targets as $t ) {
+						foreach ( $stays[ $t ] as $o ) {
+							if ( 'real' === $o['kind'] && $o['from'] <= $st['to'] && $o['to'] >= $st['from'] ) {
+								continue 3; // echo of a relative's stay
+							}
+						}
+					}
 				}
 				foreach ( $targets as $t ) {
 					$rules[] = array(
 						'room_type_id' => (int) $t,
 						'room_id'      => 0,
-						'date_from'    => $in->format( 'Y-m-d' ),
-						'date_to'      => $out->format( 'Y-m-d' ),
+						'date_from'    => $st['from'],
+						'date_to'      => $st['to'],
 						'restrictions' => array( 'stay-in' ),
-						'comment'      => sprintf( 'Blocked: booked as %s (#%d)', get_the_title( $sourceType ), $b->getId() ),
+						'comment'      => sprintf( 'Blocked: booked as %s (#%d)', get_the_title( $sourceType ), $st['id'] ),
 					);
 				}
 			}

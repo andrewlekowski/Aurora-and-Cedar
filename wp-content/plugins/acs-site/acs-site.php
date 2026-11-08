@@ -6,7 +6,7 @@
  *              city search, weekly/monthly discount display, search results → checkout,
  *              "Why Aurora & Cedar?" page styles, direct-booking pricing, whole-house blocking,
  *              cleaning fees and referral codes (includes/direct-booking.php).
- * Version:     0.3.6
+ * Version:     0.3.7
  * Author:      Aurora & Cedar Stays
  *
  * Every section is independent and guarded, so a missing MotoPress function turns a feature off
