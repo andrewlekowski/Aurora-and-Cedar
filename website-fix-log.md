@@ -259,3 +259,22 @@ Rollback: deactivate nothing — set drafts back to draft; or restore the Nov-08
 - Vrbo: Bear Den imports the website calendar. Moose Lodge and the whole house are at Vrbo's 5-import limit — waiting on
   Andrew to pick which import to drop.
 - Booking.com: Moose & Bear Lodge is "Closed/Not bookable" until the property location is confirmed (video or letter code).
+
+### Calendar design: like-with-like + website relay (2026-11-08, Andrew: "connect like listings with like listings … use logic")
+- Every channel listing imports ONLY the same listing's calendars from the other channels, plus that listing's website calendar:
+  | Channel | Bear Den imports | Moose Lodge imports | Moose & Bear Lodge imports |
+  |---|---|---|---|
+  | Airbnb | Vrbo BD, Booking BD, website 1858 | Vrbo ML, Booking ML, website 3257 | Vrbo whole, Booking whole, website 3260 |
+  | Vrbo | Airbnb BD, Booking BD, website 1858 | Airbnb ML, Booking ML, website 3257 | Airbnb whole, Booking whole, website 3260 |
+  | Booking.com | Vrbo BD, Airbnb BD, website 1858 | Vrbo ML, Airbnb ML, website 3257 | Vrbo whole, Airbnb whole, website 3260 |
+  | Website | Airbnb/Vrbo/Booking BD | Airbnb/Vrbo/Booking ML | Airbnb/Vrbo/Booking whole |
+- Suite ↔ whole-house blocking: Airbnb parent-child (on Airbnb) and the website relay everywhere else. The website imports
+  every channel for all three listings every 15 min and publishes "BLOCKED" on each listing's calendar for REAL stays of
+  its relatives (whole → both suites; a suite → whole only), never for "Not available" placeholders.
+- Removed cross-listing imports: Vrbo ML (Airbnb whole, Vrbo whole, Booking whole), Vrbo whole (Vrbo BD, Vrbo ML,
+  Booking BD), Vrbo BD (Airbnb whole, Vrbo whole), Airbnb BD (Vrbo whole, Booking whole), Airbnb ML (Vrbo whole, Booking
+  whole), Airbnb whole (Vrbo BD, Booking BD, Vrbo ML, Booking ML). Moose Lodge on Vrbo is no longer blocked by Bear Den guests.
+- MotoPress Settings → General: "Export admin blocks" turned ON (needed for the relay; there are no other admin blocks).
+  "Do not export imported bookings" stays ON (prevents loops).
+- acs-site 0.3.8: in the iCal export, a relay block ends on the checkout date (MotoPress wrote the last night as DTEND).
+- Verified: website 3260 publishes Nov 6–10 BLOCKED (Bear Den guest); 3257 and 1858 empty; Moose Lodge open on Vrbo.

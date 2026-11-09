@@ -231,12 +231,18 @@ function acs_direct_family_rules() {
 						}
 					}
 				}
+				// MotoPress writes a rule's last night as the iCal DTEND, and iCal reads DTEND as checkout, so in the
+				// calendar export (?feed=mphb.ics) the block would end a night early. There, end it on checkout day.
+				$to = $st['to'];
+				if ( isset( $_GET['feed'] ) && 'mphb.ics' === $_GET['feed'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+					$to = gmdate( 'Y-m-d', strtotime( $to . ' +1 day' ) );
+				}
 				foreach ( $targets as $t ) {
 					$rules[] = array(
 						'room_type_id' => (int) $t,
 						'room_id'      => 0,
 						'date_from'    => $st['from'],
-						'date_to'      => $st['to'],
+						'date_to'      => $to,
 						'restrictions' => array( 'stay-in' ),
 						'comment'      => sprintf( 'Blocked: booked as %s (#%d)', get_the_title( $sourceType ), $st['id'] ),
 					);
